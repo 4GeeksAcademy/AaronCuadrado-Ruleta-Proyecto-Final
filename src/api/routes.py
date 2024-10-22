@@ -54,3 +54,5 @@ def register():
         "message": "Usuario registrado con exito",
         "balance": new_user.balance
     }), 201
+
+@api.route ()
