@@ -20,3 +20,13 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+@api.route('/db-esquema', methods=['GET'])
+def db_esquema():
+    result = db.engine.execute("""
+        SELECT column_name, data_type 
+        FROM information_schema.columns 
+        WHERE table_name = 'user';
+    """)
+    esquema = [{"columna": row['column_name'], "tipo": row['data_type']} for row in result]
+    return jsonify(esquema), 200
