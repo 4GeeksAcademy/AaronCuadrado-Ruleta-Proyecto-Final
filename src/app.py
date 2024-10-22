@@ -42,6 +42,7 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3001, debug=True)
 
 # Configurar la clave secreta y el tipo de sesión
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')  # Clave secreta desde .env
+app.config['SECRET_KEY'] = 'ClaveTopSecret'  # Clave secreta 
 app.config['SESSION_TYPE'] = 'filesystem'  # Usar sistema de archivos para manejar sesiones
+app.config['SESSION_PERMANENT'] = False #No se cierre la sesion
 Session(app)

@@ -1,7 +1,7 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-from flask import Flask, request, jsonify, url_for, Blueprint
+from flask import Flask, session, request, jsonify, url_for, Blueprint
 from api.models import db, User
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
@@ -12,24 +12,6 @@ api = Blueprint('api', __name__)
 CORS(api)
 
 
-# @api.route('/hello', methods=['POST', 'GET'])
-# def handle_hello():
-
-#     response_body = {
-#         "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-#     }
-
-#     return jsonify(response_body), 200
-
-# @api.route('/db-esquema', methods=['GET'])
-# def db_esquema():
-#     result = db.engine.execute("""
-#         SELECT column_name, data_type 
-#         FROM information_schema.columns 
-#         WHERE table_name = 'user';
-#     """)
-#     esquema = [{"columna": row['column_name'], "tipo": row['data_type']} for row in result]
-#     return jsonify(esquema), 200
 
 @api.route('/register', methods=['POST'])
 def register():
@@ -75,6 +57,8 @@ def login():
     if not user or user.password != password:
         return jsonify({"error": "Datos incorrectos"}), 400
     
+    session['user_id'] = user.id
+    
     return jsonify({
         "message": "Inicio de sesion correcto",
         "user": {
@@ -84,3 +68,28 @@ def login():
         }
     }), 200
 
+@api.route('/add-funds', methods=['POST'])
+def add_funds():
+    if 'user_id' not in session:
+        return '', 403
+    
+    data = request.get_json()
+    amount= data.get('amount')
+
+    if not amount or float(amount) <= 0:
+        return jsonify({"error": "Cantidad no valida"}), 400
+
+    user = User.query.get(session['user_id'])
+
+    stripe_payment_url = "https://buy.stripe.com/test_14k9ACdnx2DQ6U8aEF"
+
+    return jsonify({
+        "message": "Redirigiendo a Stripe para procesar el pago",
+        "stripe_url": stripe_payment_url
+    }), 200
+
+@api.route('/session-info', methods=['GET'])
+def session_info():
+    if 'user_id' in session:
+        return jsonify({"message": "Sesión activa", "user_id": session['user_id']}), 200
+    return jsonify({"error": "No hay sesion activa"}), 403
