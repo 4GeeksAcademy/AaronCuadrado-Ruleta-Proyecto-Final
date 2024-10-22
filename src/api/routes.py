@@ -60,3 +60,26 @@ def get_users():
     users = User.query.all()
     users_list = [user.serialize() for user in users]
     return jsonify(users_list), 200
+
+@api.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    email = data.get('email')
+    password = data.get('password')
+
+    if not email or not password:
+        return jsonify({"error": "Email y contraseña obligatorios"}), 400
+    
+    user = User.query.filter_by(email=email).first()
+
+    if not user or user.password != password:
+        return jsonify({"error": "Datos incorrectos"}), 400
+    
+    return jsonify({
+        "message": "Inicio de sesion correcto",
+        "user": {
+            "id": user.id,
+            "email": user.email,
+            "balance": user.balance
+        }
+    }), 200
