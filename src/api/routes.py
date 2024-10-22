@@ -30,3 +30,27 @@ def db_esquema():
     """)
     esquema = [{"columna": row['column_name'], "tipo": row['data_type']} for row in result]
     return jsonify(esquema), 200
+
+@api.route('/register', methods=['POST'])
+def register():
+    data = request.get_json()
+    email = data.get('email')
+    password = data.get('password')
+
+    if not email or not password:
+        return jsonify({"error": "Email y contraseña son obligatorios"}), 400
+    
+    # si el usuario ya existe
+    existing_user = User.query.filter_by(email=email).first()
+    if existing_user:
+        return jsonify({"error": "El usuario ya existe"}), 400
+    
+    # Crear usuario con saldo de 200€
+    new_user = User(email=email, password=password, is_active=True, balance=200.0)
+    db.session.add(new_user)
+    db.session.commit()
+
+    return jsonify({
+        "message": "Usuario registrado con exito",
+        "balance": new_user.balance
+    }), 201
