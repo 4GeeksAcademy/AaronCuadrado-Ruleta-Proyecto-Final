@@ -12,7 +12,7 @@ api = Blueprint('api', __name__)
 CORS(api)
 
 
-
+#RUTA DE REGISTRO
 @api.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
@@ -37,12 +37,14 @@ def register():
         "balance": new_user.balance
     }), 201
 
+#RUTA DE USUARIOS
 @api.route('/users', methods=['GET'])
 def get_users():
     users = User.query.all()
     users_list = [user.serialize() for user in users]
     return jsonify(users_list), 200
 
+#RUTA DE INICIO DE SESION
 @api.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
@@ -68,6 +70,7 @@ def login():
         }
     }), 200
 
+#RUTA INGRESO DE DINERO CON STRIPE
 @api.route('/add-funds', methods=['POST'])
 def add_funds():
     if 'user_id' not in session:
@@ -81,7 +84,7 @@ def add_funds():
 
     user = User.query.get(session['user_id'])
 
-    session = stripe.checkout.Session.create(
+    stripe_session = stripe.checkout.Session.create(
         payment_method_types=['card'],
         line_items=[{
             'price_data':{
@@ -101,24 +104,25 @@ def add_funds():
         }
     )
 
-
-
     stripe_payment_url = "https://buy.stripe.com/test_14k9ACdnx2DQ6U8aEF"
 
     return jsonify({
         "message": "Redirigiendo a Stripe para procesar el pago",
-        "stripe_url": stripe_payment_url
+        "stripe_url": stripe_session.url
     }), 200
 
+#RUTA PARA COMPROBAR SI ESTA LE SESION INICIADA
 @api.route('/session-info', methods=['GET'])
 def session_info():
     if 'user_id' in session:
         return jsonify({"message": "Sesion activa", "user_id": session['user_id']}), 200
     return jsonify({"error": "No hay sesion"}), 403
 
+
 import stripe 
 stripe.api_key = 'sk_test_51QChOk2LySc2UsGFgu1RKTF6bMDw3S2mVy6XKJXTgHNNAtH1atJLsazX43l1XBR4UqR5zFqqLBY23GKFymypK7Za00NvNwNXaP'
 
+#RUTA PARA AÑADIR STRIPE WEBHOOK
 @api.route('/stripe-webhook', methods=['POST'])
 def stripe_webhook():
     payload = request.get_data(as_text=True)
@@ -145,10 +149,12 @@ def stripe_webhook():
 
     return '', 200
 
+#RUTA REDIRIGIR SI EL PAGO HA SIDO REALIZADO
 @api.route('/success')
 def payment_success():
     return "<h1>¡Pago completado con éxito!</h1><p>Tu saldo ha sido recargado.</p>"
 
+#RUTA PARA REDIRIGIR SI EL PAGO HA SIDO RECHAZADO
 @api.route('/cancel')
 def payment_cancel():
     return "<h1>Has cancelado el proceso de pago.</h1><p>Vuelve a intentarlo cuando estés listo.</p>"
