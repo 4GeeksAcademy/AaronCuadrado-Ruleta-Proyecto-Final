@@ -12,24 +12,24 @@ api = Blueprint('api', __name__)
 CORS(api)
 
 
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
+# @api.route('/hello', methods=['POST', 'GET'])
+# def handle_hello():
 
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
+#     response_body = {
+#         "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
+#     }
 
-    return jsonify(response_body), 200
+#     return jsonify(response_body), 200
 
-@api.route('/db-esquema', methods=['GET'])
-def db_esquema():
-    result = db.engine.execute("""
-        SELECT column_name, data_type 
-        FROM information_schema.columns 
-        WHERE table_name = 'user';
-    """)
-    esquema = [{"columna": row['column_name'], "tipo": row['data_type']} for row in result]
-    return jsonify(esquema), 200
+# @api.route('/db-esquema', methods=['GET'])
+# def db_esquema():
+#     result = db.engine.execute("""
+#         SELECT column_name, data_type 
+#         FROM information_schema.columns 
+#         WHERE table_name = 'user';
+#     """)
+#     esquema = [{"columna": row['column_name'], "tipo": row['data_type']} for row in result]
+#     return jsonify(esquema), 200
 
 @api.route('/register', methods=['POST'])
 def register():
@@ -46,7 +46,7 @@ def register():
         return jsonify({"error": "El usuario ya existe"}), 400
     
     # Crear usuario con saldo de 200€
-    new_user = User(email=email, password=password, is_active=True, balance=200.0)
+    new_user = User(email=email, password=password, is_active=True, balance=200.00)
     db.session.add(new_user)
     db.session.commit()
 
@@ -55,4 +55,8 @@ def register():
         "balance": new_user.balance
     }), 201
 
-@api.route ()
+@api.route('/users', methods=['GET'])
+def get_users():
+    users = User.query.all()
+    users_list = [user.serialize() for user in users]
+    return jsonify(users_list), 200
