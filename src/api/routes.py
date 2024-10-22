@@ -81,6 +81,28 @@ def add_funds():
 
     user = User.query.get(session['user_id'])
 
+    session = stripe.checkout.Session.create(
+        payment_method_types=['card'],
+        line_items=[{
+            'price_data':{
+                'currency': 'eur',
+                'product_data': {
+                    'name': 'Recarga de saldo',
+                },
+                'unit_amount': int(float(amount) * 100),
+            },
+            'quantity': 1,
+        }],
+        mode='payment',
+        success_url='https://organic-succotash-5gvx65ww5x5vcpvg-3001.app.github.dev/success',
+        cancel_url='https://organic-succotash-5gvx65ww5x5vcpvg-3001.app.github.dev/cancel',
+        metadata={
+            'user_id': user.id
+        }
+    )
+
+
+
     stripe_payment_url = "https://buy.stripe.com/test_14k9ACdnx2DQ6U8aEF"
 
     return jsonify({
@@ -91,5 +113,42 @@ def add_funds():
 @api.route('/session-info', methods=['GET'])
 def session_info():
     if 'user_id' in session:
-        return jsonify({"message": "Sesión activa", "user_id": session['user_id']}), 200
-    return jsonify({"error": "No hay sesion activa"}), 403
+        return jsonify({"message": "Sesion activa", "user_id": session['user_id']}), 200
+    return jsonify({"error": "No hay sesion"}), 403
+
+import stripe 
+stripe.api_key = 'sk_test_51QChOk2LySc2UsGFgu1RKTF6bMDw3S2mVy6XKJXTgHNNAtH1atJLsazX43l1XBR4UqR5zFqqLBY23GKFymypK7Za00NvNwNXaP'
+
+@api.route('/stripe-webhook', methods=['POST'])
+def stripe_webhook():
+    payload = request.get_data(as_text=True)
+    sig_header = request.headers.get('Stripe-Signature')
+
+    try:
+        event = stripe.webhook.construct_event(
+            payload, sig_header, 'whsec_osM6Tq6TZliF8HjxzwgbTTqvYTvucY1g'
+        )
+    except ValueError as e:
+        return jsonify({"error": "Payload invalido"}), 400
+    except stripe.error.SignatureVerificationError as e:
+        return jsonify({"error": " Firma invalida"}), 400
+
+    if event['type'] == 'checkout.session.completed':
+        stripe_session = event['data']['object']
+        user_id = stripe_session['metadata']['user_id']
+        amount = stripe_session['amount_total'] / 100 #stripe envia el calculo en centimos
+
+        #actualizar saldo en bdd
+        user = User.query.get(user_id)
+        user.balance += amount
+        db.session.commit()
+
+    return '', 200
+
+@api.route('/success')
+def payment_success():
+    return "<h1>¡Pago completado con éxito!</h1><p>Tu saldo ha sido recargado.</p>"
+
+@api.route('/cancel')
+def payment_cancel():
+    return "<h1>Has cancelado el proceso de pago.</h1><p>Vuelve a intentarlo cuando estés listo.</p>"
