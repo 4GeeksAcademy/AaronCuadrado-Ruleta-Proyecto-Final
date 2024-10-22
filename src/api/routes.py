@@ -83,3 +83,4 @@ def login():
             "balance": user.balance
         }
     }), 200
+

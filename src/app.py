@@ -1,5 +1,6 @@
 import os
-from flask import Flask
+from flask import Flask, session
+from flask_session import Session
 from flask_migrate import Migrate
 from api.models import db
 from api.routes import api  # Importar el blueprint
@@ -39,3 +40,8 @@ def home():
 # Ejecutar la aplicación si se ejecuta directamente
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3001, debug=True)
+
+# Configurar la clave secreta y el tipo de sesión
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')  # Clave secreta desde .env
+app.config['SESSION_TYPE'] = 'filesystem'  # Usar sistema de archivos para manejar sesiones
+Session(app)
