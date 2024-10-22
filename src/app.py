@@ -44,5 +44,5 @@ if __name__ == '__main__':
 # Configurar la clave secreta y el tipo de sesión
 app.config['SECRET_KEY'] = 'ClaveTopSecret'  # Clave secreta 
 app.config['SESSION_TYPE'] = 'filesystem'  # Usar sistema de archivos para manejar sesiones
-app.config['SESSION_PERMANENT'] = False #No se cierre la sesion
+app.config['SESSION_PERMANENT'] = False #que la sesion se cierre con el navegador
 Session(app)

@@ -11,7 +11,7 @@ class User(db.Model):
     balance = db.Column(db.Float, default=200.00)
     #dinero del usuario y registro con 200€ por defecto
 
-# Método que devuelve una representación en cadena del objeto User
+    # Método que devuelve una representación en cadena del objeto User
     def __repr__(self):
         return f'<User {self.email}>'
 
