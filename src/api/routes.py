@@ -158,3 +158,28 @@ def payment_success():
 @api.route('/cancel')
 def payment_cancel():
     return "<h1>Has cancelado el proceso de pago.</h1><p>Vuelve a intentarlo cuando estés listo.</p>"
+
+#RETIRADA DE SALDO
+@api.route('/withdraw-funds', methods=['POST'])
+def withdraw_funds():
+    if 'user_id' not in session:
+        return '', 403
+    
+    data = request.get_json()
+    amount = data.get('amount')
+
+    if not amount or float(amount) <=0:
+        return jsonify({"error": "Cantidad no valida"}), 400
+    
+    user = User.query.get(session['user_id'])
+
+    if user.balance < float(amount):
+        return jsonify({"error": "Saldo insuficiente"}), 400
+    
+    user.balance -= float(amount)
+    db.session.commit()
+
+    return jsonify({
+        "message": f"Has retirado {amount}€. Tu nuevo saldo es {user.balance}€.",
+        "new_balance": user.balance
+    }), 200
