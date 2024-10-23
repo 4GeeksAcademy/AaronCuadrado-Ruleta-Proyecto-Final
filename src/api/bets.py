@@ -11,6 +11,9 @@ RED_NUMBERS = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36
 #Fichas para apostar
 VALID_BETS = [0.20, 0.50, 1.00, 2.00, 5.00, 10.00, 25.00, 50.00, 100.00]
 
+#Lista para almacenar los ultimos numeros
+LAST_NUMBERS = []
+
 #APUESTAS Y TIPOS DE APUESTAS/GANANCIAS
 @bets.route('/bet', methods=['POST'])
 def bet():
@@ -40,6 +43,11 @@ def bet():
 
     #generar numero aleatorio entre 0 y 36
     roulette_number = random.randint(0, 36)
+
+    #Almacenar ultimos 10 numeros en la lista
+    LAST_NUMBERS.append(roulette_number)
+    if len(LAST_NUMBERS) > 10:
+        LAST_NUMBERS.pop(0)
 
     #verificar el color segun su numero
     if roulette_number == 0:
@@ -100,4 +108,11 @@ def bet():
         "new_balance": user.balance,
         "roulette_number": roulette_number,
         "roulette_color": roulette_color
+    }), 200
+
+#Ruta para obtener los ultimos numeros
+@bets.route('/last-numbers', methods=['GET'])
+def get_last_numbers():
+    return jsonify({
+        "last_numbers": LAST_NUMBERS
     }), 200
