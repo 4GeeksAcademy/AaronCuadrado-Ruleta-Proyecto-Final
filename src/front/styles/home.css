@@ -1,7 +1,57 @@
-/*
-    home.css: This website contains selectors only used in home.css
-
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
+.home-container {
+    background-image: url('../img/inicio.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.7); /* Oscurecer para que el texto resalte */
+    padding: 40px;
+    text-align: center;
+    border-radius: 15px;
+  }
+  
+  .logo {
+    width: 150px;
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    color: white;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+  }
+  
+  .buttons-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    color: white;
+    background-color: #ff6347; /* Cambia el color a gusto */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #e5533d;
+  }
+  
+  .register-btn {
+    background-color: #28a745; /* Verde para resaltar */
+  }
+  
+  .login-btn {
+    background-color: #007bff; /* Azul */
+  }
+  
