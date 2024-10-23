@@ -4,6 +4,12 @@ from api.models import db, User
 
 bets = Blueprint('bets', __name__)
 
+#NUMEROS EN LA RULETA
+BLACK_NUMBERS = [2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35]
+RED_NUMBERS = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36]
+
+#Fichas para apostar
+VALID_BETS = [0.20, 0.50, 1.00, 2.00, 5.00, 10.00, 25.00, 50.00]
 
 #APUESTAS Y TIPOS DE APUESTAS/GANANCIAS
 @bets.route('/bet', methods=['POST'])
@@ -16,9 +22,13 @@ def bet():
     bet_type = data.get('bet_type')
     bet_value = data.get('bet_value')
 
+    #Verificar que la cantidad apostada corresponde a una ficha valida
+    if float(amount) not in VALID_BETS:
+        return jsonify ({"error": f"La cantidad para apostar no es valida"})
+
     #verificar que la cantidad es valida
     if not amount or float(amount) <=0:
-        return jsonify({"error": "Cantidad no valida"})
+        return jsonify({"error": "Cantidad no valida"}), 400
     
     user=User.query.get(session['user_id'])
 
@@ -28,7 +38,14 @@ def bet():
     
     #generar numero aleatorio entre 0 y 36
     roulette_number = random.randint(0, 36)
-    roulette_color = "black" if roulette_number in BLACK_NUMBERS else "red" if roulette_number in RED_NUMBERS else "green"
+
+    #verificar el color segun su numero
+    if roulette_number == 0:
+        roulette_color = "green"
+    elif roulette_number in BLACK_NUMBERS:
+        roulette_color = "black"
+    elif roulette_number in RED_NUMBERS:
+        roulette_color = "red"
 
     winnings = 0  #Ganancias iniciales
     message = ""
