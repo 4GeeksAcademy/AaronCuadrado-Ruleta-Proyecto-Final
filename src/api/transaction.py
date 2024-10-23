@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify, session
-from api.models import db, User
+from api.models import db, User, TransactionHistory
 import stripe
 
 transaction = Blueprint('transaction', __name__)
@@ -44,6 +44,16 @@ def add_funds():
 
     stripe_payment_url = "https://buy.stripe.com/test_14k9ACdnx2DQ6U8aEF"
 
+#Guardar transaccion en el historial
+    new_transaction = TransactionHistory(
+        user_id=user.id,
+        transaction_type="Recarga de saldo",
+        amount=amount,
+        result="Confirmada"
+    )
+    db.session.add(new_transaction)
+    db.session.commit()
+
     return jsonify({
         "message": "Redirigiendo a Stripe para procesar el pago",
         "stripe_url": stripe_session.url #url para que el usuario haga el ingreso
@@ -70,6 +80,15 @@ def withdraw_funds():
         return jsonify({"error": "Saldo insuficiente"}), 400
     
     user.balance -= float(amount)
+
+    #Guardar transaccion en el historial
+    new_transaction = TransactionHistory(
+        user_id=user.id,
+        transaction_type="Retirada",
+        amount=amount,
+        result="Confirmada"
+    )
+    db.session.add(new_transaction)
     db.session.commit()
 
     #dinero retirado con exito y actualizacion del saldo
@@ -77,6 +96,7 @@ def withdraw_funds():
         "message": f"Has retirado {amount}€. Tu nuevo saldo es {user.balance}€.",
         "new_balance": user.balance
     }), 200
+
 
 #RUTA REDIRIGIR SI EL PAGO HA SIDO REALIZADO
 @transaction.route('/success')
@@ -88,3 +108,13 @@ def payment_success():
 def payment_cancel():
     return "<h1>Has cancelado el proceso de pago.</h1><p>Vuelve a intentarlo cuando estés listo.</p>"
 
+#RUTA PARA VER LAS TRANSACCIONES
+@transaction.route('/transaction-history', methods=['GET'])
+def get_transaction_history():
+    user_id = session.get('user_id')
+    if not user_id:
+        return jsonify({"error": "No tienes acceso, debes iniciar sesión"}), 403
+    
+    transactions = TransactionHistory.query.filter_by(user_id=user_id).all()
+    serialized_transactions = [t.serialize() for t in transactions]
+    return jsonify(serialized_transactions), 200

@@ -56,4 +56,6 @@ if __name__ == '__main__':
 app.config['SECRET_KEY'] = 'ClaveTopSecret'  # Clave secreta 
 app.config['SESSION_TYPE'] = 'filesystem'  # Usar sistema de archivos para manejar sesiones
 app.config['SESSION_PERMANENT'] = False #que la sesion se cierre con el navegador
+app.config['SESSION_COOKIE_HTTPONLY'] = True  # Asegúrate de que la cookie es segura
+
 Session(app)
