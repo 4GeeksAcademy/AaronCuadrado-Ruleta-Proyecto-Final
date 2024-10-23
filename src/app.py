@@ -6,6 +6,12 @@ from api.models import db
 from api.routes import api  # Importar el blueprint
 from api.admin import setup_admin
 from api.commands import setup_commands
+from api.auth import auth
+from api.transaction import transaction
+from api.bets import bets
+from api.webhook import webhook
+from api.users import users
+
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
@@ -30,7 +36,11 @@ setup_admin(app)
 setup_commands(app)
 
 # Registrar el blueprint para las rutas
-app.register_blueprint(api, url_prefix='/api')
+app.register_blueprint(auth, url_prefix='/api')
+app.register_blueprint(transaction, url_prefix='/api')
+app.register_blueprint(bets, url_prefix='/api')
+app.register_blueprint(webhook, url_prefix='/api')
+app.register_blueprint(users, url_prefix='/api')
 
 # Ruta principal (puedes eliminarla si no es necesaria)
 @app.route('/')

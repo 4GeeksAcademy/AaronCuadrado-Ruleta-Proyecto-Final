@@ -2,11 +2,11 @@ from flask import Blueprint, request, jsonify, session
 import random
 from api.models import db, User
 
-bet = Blueprint('bet', __name__)
+bets = Blueprint('bets', __name__)
 
 
 #APUESTAS Y TIPOS DE APUESTAS/GANANCIAS
-@bet.route('/bet', methods=['POST'])
+@bets.route('/bet', methods=['POST'])
 def bet():
     if 'user_id' not in session:
         return jsonify({"error": "No tienes acceso, debes iniciar sesion"})

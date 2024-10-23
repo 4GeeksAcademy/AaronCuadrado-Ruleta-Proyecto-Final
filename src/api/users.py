@@ -5,7 +5,7 @@ users = Blueprint('users', __name__)
 
 
 #RUTA DE USUARIOS
-@api.route('/users', methods=['GET'])
+@users.route('/users', methods=['GET'])
 def get_users():
     users = User.query.all()
     users_list = [user.serialize() for user in users]

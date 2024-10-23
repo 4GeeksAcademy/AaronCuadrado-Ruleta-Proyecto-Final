@@ -57,7 +57,7 @@ def login():
 
 
 #RUTA PARA COMPROBAR SI ESTA LE SESION INICIADA
-@api.route('/session-info', methods=['GET'])
+@auth.route('/session-info', methods=['GET'])
 def session_info():
     if 'user_id' in session:
         return jsonify({"message": "Sesion activa", "user_id": session['user_id']}), 200
