@@ -24,3 +24,21 @@ class User(db.Model):
             "balance": self.balance,
             # do not serialize the password, its a security breach
         }
+    
+class TransactionHistory(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    transaction_type = db.Column(db.String(50), nullable=False)
+    amount = db.Column(db.Float, nullable=False)
+    result = db.Column(db.String(50), nullable=True)
+    timestamp = db.Column(db.DateTime, default=db.func.current_timestamp())
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "transaction_type": self.transaction_type,
+            "amount": self.amount,
+            "result": self.result,
+            "timestamp": self.timestamp
+        }
