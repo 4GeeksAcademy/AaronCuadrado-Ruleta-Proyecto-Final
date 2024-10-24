@@ -43,15 +43,15 @@ def register():
 @auth.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
-    email = data.get('email')
+    username = data.get('username')
     password = data.get('password')
 
-    if not email or not password:
+    if not username or not password:
         # Si faltan datos, devuelve el error
         return jsonify({"error": "Email y contraseña obligatorios"}), 400
 
     # Verificar si el usuario existe y si la contraseña es correcta
-    user = User.query.filter_by(email=email).first()
+    user = User.query.filter_by(username=username).first()
 
     # Datos equivocados
     if not user or user.password != password:

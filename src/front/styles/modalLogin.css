@@ -1,0 +1,70 @@
+/* modalLogin.css */
+
+/* Estilo del modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+  
+.modal-content {
+    background-color: #1e1e1e; /* Fondo negro */
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 450px;
+    width: 100%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    color: #d4af37; /* Texto en dorado */
+}
+
+h2 {
+    color: #d4af37; /* Títulos dorados */
+    font-size: 26px;
+    text-align: center;
+}
+
+.password-info, .error-message {
+    font-size: 14px;
+    color: #d4af37;
+    margin-bottom: 15px;
+    background-color: #2a2a2a;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #d4af37;
+}
+  
+.btn-submit {
+    background-color: #d4af37; /* Botón dorado */
+    color: #1e1e1e; /* Texto negro */
+    padding: 12px 20px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+  
+.btn-close {
+    background-color: #d4af37; /* Botón de cierre dorado */
+    color: #1e1e1e; /* Texto negro */
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+  
+.btn-close:hover {
+    background-color: #b8860b; /* Dorado más oscuro al pasar el ratón */
+}

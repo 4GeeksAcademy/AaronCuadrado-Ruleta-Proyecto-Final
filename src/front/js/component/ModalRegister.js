@@ -66,7 +66,6 @@ export const ModalRegister = ({ setShowModal }) => {
                     <button type="submit" className="btn-submit">Registrarse</button>
                 </form>
                 <button onClick={() => setShowModal(false)} className="btn-close">
-                    Cerrar
                 </button>
             </div>
             {/* Modal de éxito */}
