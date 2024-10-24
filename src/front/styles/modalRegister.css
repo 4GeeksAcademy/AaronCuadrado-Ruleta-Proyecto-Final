@@ -1,0 +1,89 @@
+/* modalRegister.css */
+
+/* Estilo del modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 450px;
+    width: 100%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    position: relative;
+    font-family: 'Roboto', sans-serif; /* Fuente clara y moderna */
+  }
+  
+  .modal-content h2 {
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 26px;
+    font-weight: 700;
+    color: #333;
+  }
+  
+  /* Cambiar la fuente de los inputs */
+  .modal-content input {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .modal-content form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .modal-content form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .modal-content form .btn-submit {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .modal-content form .btn-submit:hover {
+    background-color: #45a049;
+  }
+  
+  .btn-close {
+    background-color: red;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+  
+  .btn-close:hover {
+    background-color: darkred;
+  }
+  

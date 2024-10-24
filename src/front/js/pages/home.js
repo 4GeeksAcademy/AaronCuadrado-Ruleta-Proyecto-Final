@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Asegúrate de que está importado
+import { Link } from "react-router-dom";
 import logo1 from "../../img/logo1.png";
-import "../../styles/home.css";
+import "../../styles/home.css";  // Estilos generales para la home
+import { ModalRegister } from "../component/ModalRegister";  // Importar el componente ModalRegister
 
 export const Home = () => {
-  const [showModal, setShowModal] = useState(false); // Estado para controlar el modal
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <div className="home-container">
@@ -21,28 +22,8 @@ export const Home = () => {
         </div>
       </div>
 
-      {/* Modal */}
-      {showModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <h2>Registrarse</h2>
-            <form>
-              <label htmlFor="username">Nombre de usuario:</label>
-              <input type="text" id="username" name="username" required />
-
-              <label htmlFor="email">Correo electrónico:</label>
-              <input type="email" id="email" name="email" required />
-
-              <label htmlFor="password">Contraseña:</label>
-              <input type="password" id="password" name="password" required />
-
-              <button type="submit" className="btn-submit">Registrarse</button>
-            </form>
-            <button onClick={() => setShowModal(false)} className="btn-close">
-            </button>
-          </div>
-        </div>
-      )}
+      {/* Mostrar el modal si se ha hecho clic en registrarse */}
+      {showModal && <ModalRegister setShowModal={setShowModal} />}
     </div>
   );
 };
