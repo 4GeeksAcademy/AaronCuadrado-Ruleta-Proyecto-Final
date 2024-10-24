@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "../../styles/modalLogin.css";  // Estilos del modal de login
 
 export const ModalLogin = ({ setShowModal }) => {
-    const [showPasswordInfo, setShowPasswordInfo] = useState(false);  // Estado para mostrar el mensaje de ayuda
     const [showError, setShowError] = useState(false);  // Estado para manejar errores de inicio de sesión
+    const [showSuccessModal, setShowSuccessModal] = useState(false);  // Estado para mostrar el modal de éxito
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,7 +24,7 @@ export const ModalLogin = ({ setShowModal }) => {
 
             if (response.ok) {
                 console.log("Inicio de sesión exitoso");
-                setShowModal(false);  // Cerrar el modal si el inicio de sesión es exitoso
+                setShowSuccessModal(true);  // Mostrar modal de éxito
             } else {
                 const errorData = await response.json();
                 console.error(errorData.error);
@@ -49,9 +49,8 @@ export const ModalLogin = ({ setShowModal }) => {
                         type="password"
                         id="password"
                         name="password"
-                        
+                        required
                     />
-
 
                     {showError && (
                         <p className="error-message">
@@ -62,8 +61,25 @@ export const ModalLogin = ({ setShowModal }) => {
                     <button type="submit" className="btn-submit">Iniciar Sesión</button>
                 </form>
                 <button onClick={() => setShowModal(false)} className="btn-close">
+                    Cerrar
                 </button>
             </div>
+
+            {/* Modal de éxito */}
+            {showSuccessModal && (
+                <div className="success-modal">
+                    <div className="success-modal-content">
+                        <h3>¡Inicio de sesión exitoso!</h3>
+                        <p>Has iniciado sesión correctamente.</p>
+                        <button className="btn-close-success" onClick={() => {
+                            setShowSuccessModal(false);
+                            setShowModal(false);  // Cerrar modal de éxito y modal principal
+                        }}>
+                            Cerrar
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
