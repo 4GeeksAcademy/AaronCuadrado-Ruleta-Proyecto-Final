@@ -1,0 +1,78 @@
+footer {
+    background-image: url(https://previews.dropbox.com/p/thumb/ACY3PRsnXPUca4rHehi2vQWHSubN-4ptyTSUosblfyaDMPCpg-bYavcXbLM4QEcHCh0mT0-tysl95BAlc5a7UpTln3X3GW2RUZ1803b6n902BnSQHsP64EKha0s5zB2_APFf6FrbhBJuxAtYI5D8bWjnSDr8XzCeB9mD7RsXCwYfmAkSEvuwdx6sc9CKeKI6Rb-geeYlVnSJHVTPCpazlYdEWyYLqRAUT5wQBWCVLx1dyT6dl5L7MaptGXXWtL757lfPlVVpcxvzFd1OsFWweQD4EPiveNN6hCsjsLHyLqjdcnFIdprlIMROiIU5h9txhDecFhsMZJtY9C2EpM4cnory/p.jpeg); 
+    background-size: cover;
+    background-position: center;
+    padding: 40px 20px;
+    color: white;
+    font-family: 'Cinzel', serif;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilo de la capa oscura para resaltar el texto sobre la imagen */
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Capa oscura */
+    z-index: -1;
+}
+
+/* Estilo del contenedor de contenido */
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo de los iconos de redes sociales */
+.social-icons {
+    display: flex;
+    justify-content: center; /* Centramos los iconos */
+    gap: 15px;
+}
+
+.social-icons a {
+    color: #d4af37; /* Color dorado */
+    font-size: 24px;
+    transition: transform 0.2s;
+}
+
+.social-icons a:hover {
+    transform: scale(1.1);
+}
+
+/* Estilo para el texto de copyright */
+.copyright {
+    font-size: 16px;
+    margin-top: 10px;
+    color: #d4af37;
+}
+
+/* Estilo para el texto de contacto y dirección */
+.footer-info {
+    text-align: left;
+    color: #d4af37;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer-info {
+        text-align: center;
+    }
+}

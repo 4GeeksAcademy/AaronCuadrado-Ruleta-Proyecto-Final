@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap'); /* Fuente elegante estilo casino */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap'); /* Fuente elegante */
 
-/* Configuración del contenedor principal con el wallpaper */
+/* Configuración del contenedor principal */
 .home-container {
-    background-image: url(https://previews.dropbox.com/p/thumb/ACYuiYEFz9teDRpyf9u_9VTWbxrl_N2Ac7wlVPMms96m6J3iAJbQ2Hlh7Us6I97C9GeRWZ4fGgXcEZGwu5tEMeKjQWlzPu7hMdMIu4mq9ITRRcjj5OVkxpUM5Q4iGIknCFGRWdkyKVEG7cf0Z9yK7dzj9ky822RD6HammhYghHxcxXirk8uNmCorSnos97CYyqskTK3h3la5ORToeWNg-Ggt5grBvyDo-oHDhpwvF1Uwx71F9b4IDdLK9OWIWYmr3JioGLPGSQoLRbmXLxRudm2c1gdYjhDFUYxoYgN8wR3xsfDIX79xb1RGkRXjIiiBI8iKA8quGvaKzmsZLyEUx6aP/p.jpeg?is_prewarmed=true);
+    background-image: url(https://previews.dropbox.com/p/thumb/ACZooK2VdgeueLq75iShqmGLGiqhSUouJwuIZtb2OB5OcUFjaO_r0orI7ACoCvKqke829SlJlaB60K9RPoK3TpkzmEsr0VGAcm1bgFNsK5VQUwp0rsLpvf6EROphuke1cEaxU42cWtwFnP-0VFn282nTehyYkZhSkckYSudRyoweL6_ovT_iGWwxgDLzklC3wGY_d21Zlsu7vo-K9hF-i1SH0ea0aAR09t7BcOpaspdO7oFGv1wB4XI1me_rBWJ2PqKf6tqYa0mivi0fqbL3Fr3DoLlSyO8pQmofcbn2TpTqeVoko2rUvPPIK8c2_91GKat1ZlfV4Ubip9mRuEoCvGU_/p.jpeg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
