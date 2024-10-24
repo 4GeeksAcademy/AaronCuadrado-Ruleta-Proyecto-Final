@@ -3,34 +3,38 @@ from api.models import db, User
 
 auth = Blueprint('auth', __name__)
 
-#RUTA DE REGISTRO
+# RUTA DE REGISTRO
 @auth.route('/register', methods=['POST'])
 def register():
-    data = request.get_json() #Obtener los datos del email y password
+    data = request.get_json()  # Obtener los datos del email, password y username
     email = data.get('email')
     password = data.get('password')
+    username = data.get('username')  # Obtener el nombre de usuario
 
-    if not email or not password:
-        return jsonify({"error": "Email y contraseña son obligatorios"}), 400
-    
-    # si el usuario ya existe
+    if not email or not password or not username:
+        return jsonify({"error": "Email, contraseña y nombre de usuario son obligatorios"}), 400
+
+    # Verificar si el usuario ya existe
     existing_user = User.query.filter_by(email=email).first()
+    existing_username = User.query.filter_by(username=username).first()  # Verificar si el username ya existe
     if existing_user:
-        return jsonify({"error": "El usuario ya existe"}), 400
-    
+        return jsonify({"error": "El correo electrónico ya está registrado"}), 400
+    if existing_username:
+        return jsonify({"error": "El nombre de usuario ya está en uso"}), 400
+
     # Crear usuario con saldo de 200€
-    new_user = User(email=email, password=password, is_active=True, balance=200.00)
+    new_user = User(email=email, password=password, username=username, is_active=True, balance=200.00)
     db.session.add(new_user)
     db.session.commit()
 
-# Usuario se ha registrado y le ha añadido el nuevo saldo
+    # Usuario se ha registrado con éxito
     return jsonify({
-        "message": "Usuario registrado con exito",
+        "message": "Usuario registrado con éxito",
         "balance": new_user.balance
     }), 201
 
 
-#RUTA DE INICIO DE SESION
+# RUTA DE INICIO DE SESIÓN
 @auth.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
@@ -38,33 +42,34 @@ def login():
     password = data.get('password')
 
     if not email or not password:
-        #si faltan datos devuelve el error
+        # Si faltan datos, devuelve el error
         return jsonify({"error": "Email y contraseña obligatorios"}), 400
-    
-    #verificar si el usuario existe y si la contraseña es correcta
+
+    # Verificar si el usuario existe y si la contraseña es correcta
     user = User.query.filter_by(email=email).first()
 
-    #datos equivocados
+    # Datos equivocados
     if not user or user.password != password:
         return jsonify({"error": "Datos incorrectos"}), 400
-    
-    #guardar el id del usuario en la sesion
+
+    # Guardar el id del usuario en la sesión
     session['user_id'] = user.id
-    
-    #se ha iniciado sesion correctamente
+
+    # Se ha iniciado sesión correctamente
     return jsonify({
-        "message": "Inicio de sesion correcto",
+        "message": "Inicio de sesión correcto",
         "user": {
             "id": user.id,
+            "username": user.username,  # Ahora devuelve el username en la respuesta de login
             "email": user.email,
             "balance": user.balance
         }
     }), 200
 
 
-#RUTA PARA COMPROBAR SI ESTA LE SESION INICIADA
+# RUTA PARA COMPROBAR SI LA SESIÓN ESTÁ INICIADA
 @auth.route('/session-info', methods=['GET'])
 def session_info():
     if 'user_id' in session:
-        return jsonify({"message": "Sesion activa", "user_id": session['user_id']}), 200
-    return jsonify({"error": "No hay sesion"}), 403
+        return jsonify({"message": "Sesión activa", "user_id": session['user_id']}), 200
+    return jsonify({"error": "No hay sesión"}), 403

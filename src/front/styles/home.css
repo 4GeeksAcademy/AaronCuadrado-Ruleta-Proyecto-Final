@@ -140,3 +140,80 @@ h1 {
   scrollbar-width: thin;
   scrollbar-color: #3a3a3a #1c1c1c; /* Color del pulgar y del fondo */
 }
+
+
+/* Estilo del modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+  }
+  
+  .modal-content h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 24px;
+  }
+  
+  .modal-content form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .modal-content form label {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .modal-content form input {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+
+.modal-content form input {
+    text-transform: none; /* Esto asegura que el texto se muestra tal como se escribe */
+    font-family: inherit; /* Usa la fuente predeterminada */
+    font-size: 16px; /* Tamaño de fuente para que se vea bien */
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  
+  .btn-close {
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .btn-close:hover {
+    background-color: darkred;
+  }
+  
