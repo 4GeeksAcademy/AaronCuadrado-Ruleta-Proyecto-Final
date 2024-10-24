@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../styles/modalRegister.css";  // Estilos del modal
 
 export const ModalRegister = ({ setShowModal }) => {
+    const [showPasswordInfo, setShowPasswordInfo] = useState(false);  // Estado para mostrar el mensaje de ayuda
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -12,7 +15,7 @@ export const ModalRegister = ({ setShowModal }) => {
     };
 
     try {
-      const response = await fetch('https://your-api-url.com/register', {
+      const response = await fetch('https://organic-succotash-5gvx65ww5x5vcpvg-3001.app.github.dev/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,7 +46,20 @@ export const ModalRegister = ({ setShowModal }) => {
           <input type="email" id="email" name="email" required />
 
           <label htmlFor="password">Contraseña:</label>
-          <input type="password" id="password" name="password" required />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            onFocus={() => setShowPasswordInfo(true)}  // Mostrar información al enfocar
+            onBlur={() => setShowPasswordInfo(false)}  // Ocultar información al desenfocar
+          />
+
+          {showPasswordInfo && (
+            <p className="password-info">
+              La contraseña debe tener al menos 6 caracteres.
+            </p>
+          )}
 
           <button type="submit" className="btn-submit">Registrarse</button>
         </form>

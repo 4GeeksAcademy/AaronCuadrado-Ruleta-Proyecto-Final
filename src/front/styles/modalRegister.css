@@ -33,7 +33,6 @@
     color: #333;
   }
   
-  /* Cambiar la fuente de los inputs */
   .modal-content input {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
@@ -45,6 +44,18 @@
     box-sizing: border-box;
   }
   
+  /* Estilo del mensaje de ayuda para la contraseña */
+  .password-info {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  /* Botones y estilos adicionales */
   .modal-content form {
     display: flex;
     flex-direction: column;

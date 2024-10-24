@@ -11,11 +11,14 @@ from api.transaction import transaction
 from api.bets import bets
 from api.webhook import webhook
 from api.users import users
+from flask_cors import CORS
 
 
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
+
+CORS(app)
 
 # Configuración de la base de datos (SQLite o PostgreSQL)
 db_url = os.getenv("DATABASE_URL")

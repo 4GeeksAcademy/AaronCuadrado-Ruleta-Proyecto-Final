@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify, session
 from api.models import db, User
+import re
 
 auth = Blueprint('auth', __name__)
 
@@ -14,13 +15,17 @@ def register():
     if not email or not password or not username:
         return jsonify({"error": "Email, contraseña y nombre de usuario son obligatorios"}), 400
 
-    # Verificar si el usuario ya existe
+    # Verificar si tanto el email como el usuario ya existe
     existing_user = User.query.filter_by(email=email).first()
     existing_username = User.query.filter_by(username=username).first()  # Verificar si el username ya existe
     if existing_user:
         return jsonify({"error": "El correo electrónico ya está registrado"}), 400
     if existing_username:
         return jsonify({"error": "El nombre de usuario ya está en uso"}), 400
+
+    # Verificar que la contraseña tenga al menos 6 caracteres y contenga al menos un número
+    if len(password) < 6:
+        return jsonify({"error": "La contraseña debe tener al menos 6 caracteres"}), 400
 
     # Crear usuario con saldo de 200€
     new_user = User(email=email, password=password, username=username, is_active=True, balance=200.00)
