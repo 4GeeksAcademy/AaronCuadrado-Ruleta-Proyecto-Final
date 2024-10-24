@@ -1,20 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import titulo from "../../img/titulo.jpg";
+import logo1 from "../../img/logo1.png";
 import "../../styles/home.css";
 
 export const Home = () => {
 	return (
 	  <div className="home-container">
 		<div className="overlay">
-		  <img src={titulo} alt="Casino Logo" className="logo" />
-		  <h1>¡Bienvenido al Casino!</h1>
+		  <img src={logo1} alt="Casino Logo" className="logo" />
+		  <h1>¡Bienvenido a la ruleta!</h1>
 		  <div className="buttons-container">
 			<Link to="/register" className="btn register-btn">
-			  Registro
+			  Registrarse
 			</Link>
 			<Link to="/login" className="btn login-btn">
-			  Inicio de Sesión
+			  Iniciar Sesion
 			</Link>
 		  </div>
 		</div>

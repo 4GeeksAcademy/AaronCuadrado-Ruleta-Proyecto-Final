@@ -1,44 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap'); /* Fuente elegante estilo casino */
+
+/* Configuración del contenedor principal con el wallpaper */
 .home-container {
-    background-image:url(https://previews.dropbox.com/p/thumb/ACYy8WrvW6Xe84Z0q-aOyb30ffTDSePecctCChX-fKpoM8KUFlcTTvD_8BFSpY2HlGQ7wgaLQnnTBa2YXPGh8YgtGK2akqeDXcHFpHhuEezqeoQFWlcD-O3GsVQbJxM-DESqSvTpYYcGhlqLKvZ_UKbrV1lObDJ9obiteBsxaGBUG7IuGBxeFYwcx_9j_Tr2YsUpA-N-j3j-5ET1NGAzMXwvjz0WsO17WGQZHOlUHcxOqXo-EjLczF0ds1v2aobabn2_OHLOTOe981LcSFvU3IvX3Uov3zQAU6RhTXlHf6la4cI6iYDOqTNwc5hEPdfNS4c/p.png);
-    background-size: cover;   /* La imagen cubrirá todo el espacio de la pantalla */
-    background-position: center; /* La imagen se centrará */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-attachment: fixed; /* Mantén la imagen fija al hacer scroll */
-    height: 100vh; /* Asegúrate de que ocupe toda la altura de la ventana */
-    width: 100vw; /* Asegúrate de que ocupe todo el ancho de la ventana */
+    background-image: url(https://previews.dropbox.com/p/thumb/ACYuiYEFz9teDRpyf9u_9VTWbxrl_N2Ac7wlVPMms96m6J3iAJbQ2Hlh7Us6I97C9GeRWZ4fGgXcEZGwu5tEMeKjQWlzPu7hMdMIu4mq9ITRRcjj5OVkxpUM5Q4iGIknCFGRWdkyKVEG7cf0Z9yK7dzj9ky822RD6HammhYghHxcxXirk8uNmCorSnos97CYyqskTK3h3la5ORToeWNg-Ggt5grBvyDo-oHDhpwvF1Uwx71F9b4IDdLK9OWIWYmr3JioGLPGSQoLRbmXLxRudm2c1gdYjhDFUYxoYgN8wR3xsfDIX79xb1RGkRXjIiiBI8iKA8quGvaKzmsZLyEUx6aP/p.jpeg?is_prewarmed=true);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+    width: 100vw;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     text-align: center;
     max-width: 100%;
-  }
-  
-  .overlay {
-    background-color: rgba(0, 0, 0, 0.5); /* Añadir una capa oscura para el texto si es necesario */
-    padding: 20px;
-    border-radius: 10px;
-  }
-  
-  .logo {
-    max-width: 200px; /* Ajusta el tamaño del logo */
+    font-family: 'Cinzel', serif; /* Fuente para la temática de casino */
+}
+
+/* Estilo del overlay */
+.overlay {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.85); /* Fondo negro más oscuro */
+    padding: 40px 60px; /* Ajuste de padding para que no sea tan grande */
+    border-radius: 15px;
+    text-align: center;
+    max-width: 60%; /* Tamaño más pequeño del cuadro */
+    margin-bottom: 50px; /* Distancia del borde inferior */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Sombra más marcada */
+}
+
+/* Estilo del logo */
+.logo {
+    max-width: 300px;
     margin-bottom: 20px;
-  }
-  
-  .buttons-container {
+}
+
+/* Texto principal */
+h1 {
+    font-size: 48px;
+    color: #d4af37; /* Dorado principal */
+    text-transform: uppercase; /* Texto en mayúsculas para mayor impacto */
+    letter-spacing: 2px; /* Espacio entre letras para más elegancia */
+    margin-bottom: 20px;
+}
+
+/* Contenedor de los botones */
+.buttons-container {
     display: flex;
-    gap: 20px; /* Espacio entre los botones */
-  }
-  
-  .btn {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
+    justify-content: center;
+    gap: 30px; /* Espacio entre botones */
+    margin-top: 20px;
+}
+
+/* Estilo de los botones */
+.btn {
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #d4af37; /* Dorado principal */
+    color: black; /* Texto en negro */
+    border: 2px solid black; /* Borde negro */
+    border-radius: 8px;
     text-decoration: none;
-  }
-  
-  .btn:hover {
-    background-color: #0056b3;
-  }
+    font-family: 'Cinzel', serif;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más elegante */
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn:hover {
+    background-color: #b8860b; /* Un dorado más oscuro para el hover */
+    transform: translateY(-5px); /* Efecto de elevación al pasar el ratón */
+}
+
+/* Hacer el diseño responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+    .overlay {
+        max-width: 80%; /* Aumenta el tamaño del cuadro en pantallas pequeñas */
+        padding: 30px 40px;
+    }
+
+    h1 {
+        font-size: 36px; /* Ajuste del tamaño de fuente en pantallas pequeñas */
+        margin-bottom: 15px;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
+}
+
+/* Ajustes adicionales para pantallas muy pequeñas (móviles) */
+@media (max-width: 480px) {
+    .overlay {
+        max-width: 90%; /* Casi toda la pantalla en móviles */
+        padding: 20px 30px;
+    }
+
+    .logo {
+        max-width: 200px; /* Ajustar el tamaño del logo para móviles */
+    }
+
+    h1 {
+        font-size: 28px; /* Tamaño más pequeño de texto en móviles */
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .buttons-container {
+        flex-direction: column; /* Los botones se alinean uno debajo del otro */
+        gap: 15px;
+    }
+}

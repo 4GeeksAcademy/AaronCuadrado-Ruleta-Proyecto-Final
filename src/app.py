@@ -14,7 +14,7 @@ from api.users import users
 
 
 
-app = Flask(__name__, static_folder="../front")
+app = Flask(__name__)
 app.url_map.strict_slashes = False
 
 # Configuración de la base de datos (SQLite o PostgreSQL)
