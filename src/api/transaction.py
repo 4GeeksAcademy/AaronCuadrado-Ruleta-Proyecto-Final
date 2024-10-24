@@ -115,6 +115,7 @@ def get_transaction_history():
     if not user_id:
         return jsonify({"error": "No tienes acceso, debes iniciar sesión"}), 403
     
+    
     transactions = TransactionHistory.query.filter_by(user_id=user_id).all()
     serialized_transactions = [t.serialize() for t in transactions]
     return jsonify(serialized_transactions), 200

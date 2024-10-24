@@ -1,57 +1,44 @@
 .home-container {
-    background-image: url('../img/inicio.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
+    background-image:url(https://previews.dropbox.com/p/thumb/ACYy8WrvW6Xe84Z0q-aOyb30ffTDSePecctCChX-fKpoM8KUFlcTTvD_8BFSpY2HlGQ7wgaLQnnTBa2YXPGh8YgtGK2akqeDXcHFpHhuEezqeoQFWlcD-O3GsVQbJxM-DESqSvTpYYcGhlqLKvZ_UKbrV1lObDJ9obiteBsxaGBUG7IuGBxeFYwcx_9j_Tr2YsUpA-N-j3j-5ET1NGAzMXwvjz0WsO17WGQZHOlUHcxOqXo-EjLczF0ds1v2aobabn2_OHLOTOe981LcSFvU3IvX3Uov3zQAU6RhTXlHf6la4cI6iYDOqTNwc5hEPdfNS4c/p.png);
+    background-size: cover;   /* La imagen cubrirá todo el espacio de la pantalla */
+    background-position: center; /* La imagen se centrará */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-attachment: fixed; /* Mantén la imagen fija al hacer scroll */
+    height: 100vh; /* Asegúrate de que ocupe toda la altura de la ventana */
+    width: 100vw; /* Asegúrate de que ocupe todo el ancho de la ventana */
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    max-width: 100%;
   }
   
   .overlay {
-    background-color: rgba(0, 0, 0, 0.7); /* Oscurecer para que el texto resalte */
-    padding: 40px;
-    text-align: center;
-    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.5); /* Añadir una capa oscura para el texto si es necesario */
+    padding: 20px;
+    border-radius: 10px;
   }
   
   .logo {
-    width: 150px;
+    max-width: 200px; /* Ajusta el tamaño del logo */
     margin-bottom: 20px;
-  }
-  
-  h1 {
-    color: white;
-    margin-bottom: 40px;
-    font-size: 2.5rem;
   }
   
   .buttons-container {
     display: flex;
-    gap: 20px;
-    justify-content: center;
+    gap: 20px; /* Espacio entre los botones */
   }
   
   .btn {
     padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
     color: white;
-    background-color: #ff6347; /* Cambia el color a gusto */
     border: none;
     border-radius: 5px;
     text-decoration: none;
-    font-size: 1.2rem;
-    transition: background-color 0.3s ease;
   }
   
   .btn:hover {
-    background-color: #e5533d;
+    background-color: #0056b3;
   }
-  
-  .register-btn {
-    background-color: #28a745; /* Verde para resaltar */
-  }
-  
-  .login-btn {
-    background-color: #007bff; /* Azul */
-  }
-  
