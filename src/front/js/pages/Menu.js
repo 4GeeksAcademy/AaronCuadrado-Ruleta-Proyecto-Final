@@ -1,10 +1,12 @@
 import React from "react";
+import "../../styles/menu.css";
 
 export const Menu = () => {
     return (
-        <div clasName="menu-container">
-            <h1>Bienvenido</h1>
-            <p>a la ruleta</p>
+        <div className="menu-container">
+            <div className="button-container">
+                <button className="play-button">JUGAR</button>
+            </div>
         </div>
     );
 };
