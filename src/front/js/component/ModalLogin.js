@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/modalLogin.css";
-import { Context } from "../store/appContext";  // Importa el contexto
+import { Context } from "../store/appContext"; 
 
 export const ModalLogin = ({ setShowModal }) => {
     const { actions } = useContext(Context);  // Accede a las acciones de flux
@@ -75,7 +75,7 @@ export const ModalLogin = ({ setShowModal }) => {
                             setShowModal(false);
                             navigate("/menu");  // Redirigir a la página de menú
                         }}>
-                            Acceder
+                            Acceder a la web
                         </button>
                     </div>
                 </div>
