@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../styles/modalLogin.css";  // Estilos del modal de login
+import "../../styles/modalLogin.css";  
 
 export const ModalLogin = ({ setShowModal }) => {
     const [showError, setShowError] = useState(false);  // Estado para manejar errores de inicio de sesión
@@ -8,18 +8,19 @@ export const ModalLogin = ({ setShowModal }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        //Recoger los valores de los campos del formulario y convertirlos en formData
         const formData = {
             username: e.target.username.value,
             password: e.target.password.value,
         };
-
+        //Realizar la solicitud de inicio de sesion a /login
         try {
             const response = await fetch('https://organic-succotash-5gvx65ww5x5vcpvg-3001.app.github.dev/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify(formData),//convertir el formData en JSON
             });
 
             if (response.ok) {
@@ -61,7 +62,6 @@ export const ModalLogin = ({ setShowModal }) => {
                     <button type="submit" className="btn-submit">Iniciar Sesión</button>
                 </form>
                 <button onClick={() => setShowModal(false)} className="btn-close">
-                    Cerrar
                 </button>
             </div>
 

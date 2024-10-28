@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo1 from "../../img/logo1.png";
-import "../../styles/home.css";  // Estilos generales para la home
-import { ModalRegister } from "../component/ModalRegister"; // Importar el componente ModalRegister
-import { ModalLogin } from "../component/ModalLogin"; // Importar el componente ModalLogin
+import "../../styles/home.css";
+import { ModalRegister } from "../component/ModalRegister";
+import { ModalLogin } from "../component/ModalLogin"; 
 
 export const Home = () => {
-  const [showRegisterModal, setShowRegisterModal] = useState(false);  // Estado para modal de registro
-  const [showLoginModal, setShowLoginModal] = useState(false);  // Estado para modal de login
+  const [showRegisterModal, setShowRegisterModal] = useState(false);  // Estado para el modal de registro
+  const [showLoginModal, setShowLoginModal] = useState(false);  // Estado para el modal de login
 
   return (
     <div className="home-container">
