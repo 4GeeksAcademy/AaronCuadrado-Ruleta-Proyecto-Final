@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import getState from "./flux.js";
 
-// Don't change, here is where we initialize our context, by default it's just going to be null.
+// Inicializamos el contexto global en null.
 export const Context = React.createContext(null);
 
-// This function injects the global store to any view/component where you want to use it, we will inject the context to layout.js, you can see it here:
-// https://github.com/4GeeksAcademy/react-hello-webapp/blob/master/src/js/layout.js#L35
+// Función para inyectar el contexto global en cualquier componente. Se usa en `Layout.js`.
 const injectContext = PassedComponent => {
 	const StoreWrapper = props => {
-		//this will be passed as the contenxt value
+		// Estado para almacenar `store` y `actions`, definidos en `flux.js`
 		const [state, setState] = useState(
 			getState({
 				getStore: () => state.store,
@@ -22,18 +21,12 @@ const injectContext = PassedComponent => {
 		);
 
 		useEffect(() => {
-			/**
-			 * EDIT THIS!
-			 * This function is the equivalent to "window.onLoad", it only runs once on the entire application lifetime
-			 * you should do your ajax requests or fetch api requests here. Do not use setState() to save data in the
-			 * store, instead use actions, like this:
-			 **/
-			state.actions.getMessage(); // <---- calling this function from the flux.js actions
+			// Este código se ejecuta solo una vez en la vida de la aplicación (similar a window.onload)
+			// Aquí puedes realizar solicitudes API iniciales si es necesario
+			state.actions.getMessage(); // Ejemplo de llamada a una acción en `flux.js`
 		}, []);
 
-		// The initial value for the context is not null anymore, but the current state of this component,
-		// the context will now have a getStore, getActions and setStore functions available, because they were declared
-		// on the state of this component
+		// Se proporciona `state` como valor del contexto, incluyendo `store`, `actions` y `setStore`
 		return (
 			<Context.Provider value={state}>
 				<PassedComponent {...props} />

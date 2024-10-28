@@ -1,35 +1,39 @@
-import React, { useState } from "react";
-import "../../styles/modalLogin.css";  
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import "../../styles/modalLogin.css";
+import { Context } from "../store/appContext";  // Importa el contexto
 
 export const ModalLogin = ({ setShowModal }) => {
-    const [showError, setShowError] = useState(false);  // Estado para manejar errores de inicio de sesión
-    const [showSuccessModal, setShowSuccessModal] = useState(false);  // Estado para mostrar el modal de éxito
+    const { actions } = useContext(Context);  // Accede a las acciones de flux
+    const [showError, setShowError] = useState(false);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        //Recoger los valores de los campos del formulario y convertirlos en formData
         const formData = {
             username: e.target.username.value,
             password: e.target.password.value,
         };
-        //Realizar la solicitud de inicio de sesion a /login
+
         try {
             const response = await fetch('https://organic-succotash-5gvx65ww5x5vcpvg-3001.app.github.dev/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData),//convertir el formData en JSON
+                body: JSON.stringify(formData),
             });
 
             if (response.ok) {
-                console.log("Inicio de sesión exitoso");
-                setShowSuccessModal(true);  // Mostrar modal de éxito
+                const data = await response.json(); // Obtener datos de saldo
+                actions.login(data.balance); // Llama a la acción login para actualizar el estado global
+                setShowSuccessModal(true);  // Muestra el modal de éxito
             } else {
                 const errorData = await response.json();
                 console.error(errorData.error);
-                setShowError(true);  // Mostrar mensaje de error
+                setShowError(true);
             }
         } catch (error) {
             console.error("Error:", error);
@@ -46,12 +50,7 @@ export const ModalLogin = ({ setShowModal }) => {
                     <input type="text" id="username" name="username" required />
 
                     <label htmlFor="password">Contraseña:</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        required
-                    />
+                    <input type="password" id="password" name="password" required />
 
                     {showError && (
                         <p className="error-message">
@@ -73,9 +72,10 @@ export const ModalLogin = ({ setShowModal }) => {
                         <p>Has iniciado sesión correctamente.</p>
                         <button className="btn-close-success" onClick={() => {
                             setShowSuccessModal(false);
-                            setShowModal(false);  // Cerrar modal de éxito y modal principal
+                            setShowModal(false);
+                            navigate("/menu");  // Redirigir a la página de menú
                         }}>
-                            Cerrar
+                            Acceder
                         </button>
                     </div>
                 </div>
