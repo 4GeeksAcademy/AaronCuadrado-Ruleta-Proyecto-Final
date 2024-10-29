@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/navbar.css";
+import { Context } from "../store/appContext";
 
 export const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false); //Estado para controlar si el menu esta abierto o cerrado
+    const { store } = useContext(Context); //obtener el balance
     const navigate = useNavigate(); //Hook de navegacion para redirigir a otras rutas
 
     //Funcion para alternar la visibilidad del menu de navegacion
@@ -24,6 +26,13 @@ export const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="navbar-logo">La Ruleta Dorada</div>
+            <button className="menu-button" onClick={() => navigate("/menu")}>
+                Menu Principal
+            </button>
+            <div className="balance-display">
+                Balance: {store.balance} €
+            </div>
+
             <div className="navbar-hamburger" onClick={toggleMenu}>
             ☰
             </div>
