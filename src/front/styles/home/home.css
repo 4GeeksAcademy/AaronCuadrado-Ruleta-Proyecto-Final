@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap'); /* Importa la fuente "Cinzel" para un estilo elegante */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
 /* Configuración del contenedor principal */
 .home-container {
@@ -14,5 +14,5 @@
     align-items: flex-end; /* Alinea el contenido al final del contenedor */
     text-align: center; /* Centra el texto dentro del contenedor */
     max-width: 100%; /* Asegura que el contenedor no se desborde */
-    font-family: 'Cinzel', serif; /* Aplica la fuente Cinzel al texto */
+    font-family: 'Poppins', sans-serif; /* Aplica la fuente Cinzel al texto */
 }

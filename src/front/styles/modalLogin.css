@@ -20,7 +20,7 @@
     width: 100%; /* Ancho completo dentro de su contenedor */
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); /* Sombra para profundidad */
     position: relative; /* Posiciona elementos hijos como el botón de cierre */
-    font-family: 'Roboto', sans-serif; /* Fuente del texto */
+    font-family: 'Poppins', sans-serif; /* Fuente del texto */
     color: #d4af37; /* Texto en dorado */
 }
 
