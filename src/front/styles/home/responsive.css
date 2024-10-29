@@ -1,0 +1,43 @@
+/* Diseño responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+    .overlay {
+        max-width: 80%;
+        padding: 30px 40px;
+    }
+
+    h1 {
+        font-size: 36px;
+        margin-bottom: 15px;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas (móviles) */
+@media (max-width: 480px) {
+    .overlay {
+        max-width: 90%;
+        padding: 20px 30px;
+    }
+
+    .logo {
+        max-width: 200px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .buttons-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+}

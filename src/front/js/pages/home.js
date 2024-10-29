@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import logo1 from "../../img/logo1.png";
-import "../../styles/home.css";
+import "../../styles/home/home.css";
+import "../../styles/home/overlay.css";
+import "../../styles/home/buttons.css";
+import "../../styles/home/responsive.css";
+import "../../styles/home/scrollbar.css";
+import "../../styles/home/modals.css";
 import { ModalRegister } from "../component/ModalRegister";
 import { ModalLogin } from "../component/ModalLogin";
 

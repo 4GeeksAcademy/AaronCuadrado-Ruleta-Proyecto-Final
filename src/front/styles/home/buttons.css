@@ -1,0 +1,26 @@
+/* Contenedor de los botones */
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+/* Estilo de los botones */
+.btn {
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #d4af37;
+    color: black;
+    border: 2px solid black;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn:hover {
+    background-color: #b8860b;
+    transform: translateY(-5px);
+}
