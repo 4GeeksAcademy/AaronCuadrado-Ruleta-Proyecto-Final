@@ -1,26 +1,27 @@
 /* Contenedor de los botones */
 .buttons-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 20px;
+    display: flex; /* Utiliza flexbox para organizar los botones en fila */
+    justify-content: center; /* Centra los botones horizontalmente */
+    gap: 30px; /* Espacio entre cada botón */
+    margin-top: 20px; /* Espaciado superior para separar el contenedor de otros elementos */
 }
 
 /* Estilo de los botones */
 .btn {
-    padding: 15px 30px;
-    font-size: 18px;
-    background-color: #d4af37;
-    color: black;
-    border: 2px solid black;
-    border-radius: 8px;
-    text-decoration: none;
-    font-family: 'Cinzel', serif;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s, background-color 0.2s;
+    padding: 15px 30px; /* Espaciado interno del botón */
+    font-size: 18px; /* Tamaño de fuente del texto */
+    background-color: #d4af37; /* Color de fondo dorado */
+    color: black; /* Color del texto en negro */
+    border: 2px solid black; /* Borde negro */
+    border-radius: 8px; /* Bordes redondeados */
+    text-decoration: none; /* Elimina el subrayado en botones que son enlaces */
+    font-family: 'Cinzel', serif; /* Fuente elegante para el texto */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidad */
+    transition: transform 0.2s, background-color 0.2s; /* Transiciones suaves para transformaciones y fondo */
 }
 
+/* Efecto hover en los botones */
 .btn:hover {
-    background-color: #b8860b;
-    transform: translateY(-5px);
+    background-color: #b8860b; /* Fondo dorado oscuro en hover */
+    transform: translateY(-5px); /* Efecto de elevación al hacer hover */
 }

@@ -1,43 +1,43 @@
 /* Diseño responsive para pantallas pequeñas */
 @media (max-width: 768px) {
     .overlay {
-        max-width: 80%;
-        padding: 30px 40px;
+        max-width: 80%; /* Aumenta el ancho máximo del overlay */
+        padding: 30px 40px; /* Reduce el espaciado interno para ajustarse a pantallas pequeñas */
     }
 
     h1 {
-        font-size: 36px;
-        margin-bottom: 15px;
+        font-size: 36px; /* Reduce el tamaño de fuente del título */
+        margin-bottom: 15px; /* Reduce el espaciado inferior del título */
     }
 
     .btn {
-        padding: 12px 25px;
-        font-size: 16px;
+        padding: 12px 25px; /* Ajusta el espaciado interno del botón */
+        font-size: 16px; /* Reduce el tamaño de fuente del botón */
     }
 }
 
 /* Ajustes para pantallas muy pequeñas (móviles) */
 @media (max-width: 480px) {
     .overlay {
-        max-width: 90%;
-        padding: 20px 30px;
+        max-width: 90%; /* Ancho casi completo del overlay en móviles */
+        padding: 20px 30px; /* Menor espaciado interno */
     }
 
     .logo {
-        max-width: 200px;
+        max-width: 200px; /* Reduce el tamaño máximo del logo */
     }
 
     h1 {
-        font-size: 28px;
+        font-size: 28px; /* Disminuye el tamaño del título para móviles */
     }
 
     .btn {
-        padding: 10px 20px;
-        font-size: 14px;
+        padding: 10px 20px; /* Ajusta el espaciado interno del botón */
+        font-size: 14px; /* Disminuye el tamaño de fuente del botón */
     }
 
     .buttons-container {
-        flex-direction: column;
-        gap: 15px;
+        flex-direction: column; /* Organiza los botones en columna */
+        gap: 15px; /* Espaciado entre los botones */
     }
 }

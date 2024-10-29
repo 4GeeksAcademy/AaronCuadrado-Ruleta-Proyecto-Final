@@ -1,46 +1,47 @@
 /* Fondo de imagen en pantalla completa */
 .menu-container {
-    background-image: url(https://previews.dropbox.com/p/thumb/ACcvOtK4B0iLZTcvca-cX1YnjEkJJC3Dqz4yhoPK-Wk3mmwFwC7k1jYOwM08CvriNr1Y8LoLW8HxVnpfoA_06nYZ4KF52zxoSF9mLtTXhdQzZssXFIwaUpCNWOk_zBKO2nfanOWaZ40742ILsGvLfmFovLT5PlZSOTA420BJShdaPU9mLoMvkwMf2GHTqHvwdAeEf_zxweEHWup8-kWK-hAZPGtlmOQQasrp4ymE2TyoXjcRKR5QXpMTzqjGpQ7GyJYjK2IMg3tTUfdrix6F9zZmFved8a0dRnJhkc57vghIi0p6CSTAy9RdX-LQZ_bxiw4/p.jpeg); /* Reemplaza con la ruta de tu imagen */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
+    background-image: url(https://previews.dropbox.com/p/thumb/ACcvOtK4B0iLZTcvca-cX1YnjEkJJC3Dqz4yhoPK-Wk3mmwFwC7k1jYOwM08CvriNr1Y8LoLW8HxVnpfoA_06nYZ4KF52zxoSF9mLtTXhdQzZssXFIwaUpCNWOk_zBKO2nfanOWaZ40742ILsGvLfmFovLT5PlZSOTA420BJShdaPU9mLoMvkwMf2GHTqHvwdAeEf_zxweEHWup8-kWK-hAZPGtlmOQQasrp4ymE2TyoXjcRKR5QXpMTzqjGpQ7GyJYjK2IMg3tTUfdrix6F9zZmFved8a0dRnJhkc57vghIi0p6CSTAy9RdX-LQZ_bxiw4/p.jpeg); /* Imagen de fondo para el menú */
+    background-size: cover; /* Ajusta la imagen para cubrir toda el área */
+    background-position: center; /* Centra la imagen de fondo */
+    background-repeat: no-repeat; /* Evita la repetición de la imagen */
+    display: flex; /* Configura un contenedor flex */
+    flex-direction: column; /* Organiza los elementos en columna */
+    justify-content: center; /* Centra los elementos verticalmente */
+    align-items: center; /* Centra los elementos horizontalmente */
+    height: 100vh; /* Altura completa de la ventana */
+    width: 100vw; /* Ancho completo de la ventana */
+    overflow: hidden; /* Oculta cualquier desbordamiento */
 }
 
 /* Contenedor del botón para centrarlo */
 .button-container {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    flex: 1; /* Ocupa todo el espacio disponible en el contenedor flex */
+    display: flex; /* Configura un contenedor flex */
+    justify-content: center; /* Centra el botón horizontalmente */
+    align-items: center; /* Centra el botón verticalmente */
 }
 
 /* Botón de estilo clásico */
 .play-button {
     background-color: #333; /* Fondo oscuro */
     color: #ffd700; /* Texto dorado */
-    font-size: 2.5em;
-    padding: 20px 60px;
+    font-size: 2.5em; /* Tamaño de fuente grande */
+    padding: 20px 60px; /* Espaciado interior */
     border: 2px solid #ffd700; /* Borde dorado */
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3), inset 0px 0px 5px rgba(255, 215, 0, 0.3);
-    transition: transform 0.3s, box-shadow 0.3s, color 0.3s, background-color 0.3s;
+    border-radius: 8px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor a puntero al pasar sobre el botón */
+    font-weight: bold; /* Texto en negrita */
+    text-transform: uppercase; /* Convierte el texto a mayúsculas */
+    letter-spacing: 2px; /* Espaciado entre letras */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); /* Sombra del texto para profundidad */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3), inset 0px 0px 5px rgba(255, 215, 0, 0.3); /* Sombra exterior e interior */
+    transition: transform 0.3s, box-shadow 0.3s, color 0.3s, background-color 0.3s; /* Transición suave en transformaciones */
 }
 
+/* Efecto hover para el botón */
 .play-button:hover {
     background-color: #ffd700; /* Fondo dorado en hover */
-    color: #333; /* Texto oscuro */
-    box-shadow: 0px 5px 20px rgba(255, 215, 0, 0.5), inset 0px 0px 10px rgba(0, 0, 0, 0.3);
-    transform: scale(1.05);
+    color: #333; /* Texto oscuro al pasar sobre el botón */
+    box-shadow: 0px 5px 20px rgba(255, 215, 0, 0.5), inset 0px 0px 10px rgba(0, 0, 0, 0.3); /* Aumenta la sombra en hover */
+    transform: scale(1.05); /* Escala un poco el botón en hover */
 }

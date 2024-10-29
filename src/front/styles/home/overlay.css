@@ -1,24 +1,26 @@
 /* Estilo del overlay */
 .overlay {
-    position: relative;
-    background-color: rgba(0, 0, 0, 0.85);
-    padding: 40px 60px;
-    border-radius: 15px;
-    text-align: center;
-    max-width: 60%;
-    margin-bottom: 50px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    position: relative; /* Posiciona el overlay relativo a otros elementos */
+    background-color: rgba(0, 0, 0, 0.85); /* Fondo oscuro semi-transparente */
+    padding: 40px 60px; /* Espaciado interno para dar margen a los contenidos */
+    border-radius: 15px; /* Bordes redondeados */
+    text-align: center; /* Centra el texto dentro del overlay */
+    max-width: 60%; /* Ancho máximo del overlay */
+    margin-bottom: 50px; /* Espaciado inferior */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidad */
 }
 
+/* Estilo del logo dentro del overlay */
 .logo {
-    max-width: 300px;
-    margin-bottom: 20px;
+    max-width: 300px; /* Ancho máximo del logo */
+    margin-bottom: 20px; /* Espaciado inferior */
 }
 
+/* Estilo del título principal */
 h1 {
-    font-size: 48px;
-    color: #d4af37;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
+    font-size: 48px; /* Tamaño grande para el título */
+    color: #d4af37; /* Color dorado */
+    text-transform: uppercase; /* Convierte el texto a mayúsculas */
+    letter-spacing: 2px; /* Espacio entre letras para más impacto */
+    margin-bottom: 20px; /* Espaciado inferior */
 }

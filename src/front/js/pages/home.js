@@ -10,14 +10,16 @@ import { ModalRegister } from "../component/ModalRegister";
 import { ModalLogin } from "../component/ModalLogin";
 
 export const Home = () => {
-    const [showRegisterModal, setShowRegisterModal] = useState(false);
-    const [showLoginModal, setShowLoginModal] = useState(false);
-    const [showLogoutModal, setShowLogoutModal] = useState(false);
+    const [showRegisterModal, setShowRegisterModal] = useState(false);//Modal de registro
+    const [showLoginModal, setShowLoginModal] = useState(false);//Modal de inicio de sesion
+    const [showLogoutModal, setShowLogoutModal] = useState(false);//Modal de cierre de sesion
 
+    //useEffect para verificar si se debe mostrar el modal de cierre de sesion al cargar la pagina
     useEffect(() =>{
+        //si showLogoutModal esta en localStorage, muestra el modal de cierre de sesion y luego lo elimina
         if (localStorage.getItem("showLogoutModal") === "true") {
-            setShowLogoutModal(true);
-            localStorage.removeItem("showLogoutModal");
+            setShowLogoutModal(true); //Muestra el modal de cierre de sesion
+            localStorage.removeItem("showLogoutModal"); //Elimina el indicador de localStorage
         
         }
     }, []);
@@ -36,10 +38,11 @@ export const Home = () => {
                     </button>
                 </div>
             </div>
-
+            {/* Modal de registro */}
             {showRegisterModal && <ModalRegister setShowModal={setShowRegisterModal} />}
+            {/* Modal de inicio de sesion */}
             {showLoginModal && <ModalLogin setShowModal={setShowLoginModal} />}
-
+            {/* Modal de cierre de sesion, mostrado solo si showlogout es verdadero */}
             {showLogoutModal && (
                 <>
                     <div className="modal-logout-overlay"></div>

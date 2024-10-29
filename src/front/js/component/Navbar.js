@@ -3,18 +3,21 @@ import { Link, useNavigate } from "react-router-dom";
 import "../../styles/navbar.css";
 
 export const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const navigate = useNavigate();
+    const [isOpen, setIsOpen] = useState(false); //Estado para controlar si el menu esta abierto o cerrado
+    const navigate = useNavigate(); //Hook de navegacion para redirigir a otras rutas
 
+    //Funcion para alternar la visibilidad del menu de navegacion
     const toggleMenu = () => {
-        setIsOpen(!isOpen);
+        setIsOpen(!isOpen); //Cambia el estado entre abierto y cerrado
     };
 
+    //Funcion para manejar el cierre de sesion
     const handleLogout = () => {
-        localStorage.removeItem("token");
+        localStorage.removeItem("token"); //Elimina el token de sesion del almacenamiento local
 
+        //Marca en localStorage para mostrar el modal de cierre de sesion en la pagina principal
         localStorage.setItem("showLogoutModal", "true");
-        navigate("/");
+        navigate("/"); //Redirige al usuario a la pagina de inicio
         
     };
     

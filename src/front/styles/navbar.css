@@ -1,81 +1,81 @@
 /* Estilo principal del navbar */
 .navbar {
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparente negro */
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente negro */
     color: #ffd700; /* Texto dorado */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    display: flex; /* Contenedor flex para organizar elementos en fila */
+    justify-content: space-between; /* Espacio entre el logo y el menú hamburguesa */
+    align-items: center; /* Alinea verticalmente los elementos */
+    padding: 15px 30px; /* Espaciado interior */
+    position: fixed; /* Fija el navbar en la parte superior */
+    width: 100%; /* Ocupa el ancho completo de la pantalla */
+    top: 0; /* Alinea el navbar en la parte superior */
+    z-index: 1000; /* Coloca el navbar por encima de otros elementos */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidad */
 }
 
 /* Logo del navbar */
 .navbar-logo {
-    font-size: 1.5em;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #ffd700;
+    font-size: 1.5em; /* Tamaño de fuente grande para el logo */
+    font-weight: bold; /* Texto en negrita */
+    text-transform: uppercase; /* Convierte el texto a mayúsculas */
+    letter-spacing: 2px; /* Espacio entre letras */
+    color: #ffd700; /* Color dorado */
 }
 
 /* Icono de menú hamburguesa */
 .navbar-hamburger {
-    font-size: 1.5em;
-    color: #ffd700;
-    cursor: pointer;
+    font-size: 1.5em; /* Tamaño grande para el icono de menú */
+    color: #ffd700; /* Color dorado */
+    cursor: pointer; /* Cambia el cursor a puntero al pasar sobre el icono */
 }
 
 /* Estilo del menú desplegable */
 .navbar-menu {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.9);
-    width: 200px;
-    border-radius: 0 0 8px 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
-    padding: 10px 0;
-    z-index: 1001; /* Asegura que el menú esté sobre otros elementos */
+    position: absolute; /* Posiciona el menú sobre otros elementos */
+    top: 100%; /* Alinea el menú justo debajo del navbar */
+    right: 0; /* Alinea el menú a la derecha */
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo negro oscuro */
+    width: 200px; /* Ancho del menú desplegable */
+    border-radius: 0 0 8px 8px; /* Bordes redondeados en la parte inferior */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidad */
+    padding: 10px 0; /* Espaciado interior superior e inferior */
+    z-index: 1001; /* Coloca el menú sobre otros elementos */
 }
 
 /* Estilo de los elementos del menú */
 .navbar-item {
-    display: block;
-    padding: 10px 20px;
-    color: #ffd700;
-    font-weight: bold;
-    text-decoration: none;
-    transition: background-color 0.3s, color 0.3s;
-    cursor: pointer; /* Asegura que el cursor cambie a pointer */
+    display: block; /* Cada elemento ocupa toda la fila */
+    padding: 10px 20px; /* Espaciado interno de cada elemento */
+    color: #ffd700; /* Texto dorado */
+    font-weight: bold; /* Texto en negrita */
+    text-decoration: none; /* Sin subrayado en los enlaces */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave al hacer hover */
+    cursor: pointer; /* Cambia el cursor a puntero */
 }
 
-/* Efecto hover en las opciones */
+/* Efecto hover en las opciones del menú */
 .navbar-item:hover {
-    background-color: rgba(255, 215, 0, 0.2); /* Fondo dorado suave */
-    color: #fff; /* Texto blanco */
+    background-color: rgba(255, 215, 0, 0.2); /* Fondo dorado suave en hover */
+    color: #fff; /* Texto blanco en hover */
 }
 
 /* Estilo específico para la opción de "Cerrar Sesión" */
 .logout {
-    color: #ff4c4c; /* Rojo para destacar */
-    cursor: pointer; /* Asegura que el cursor cambie a pointer */
+    color: #ff4c4c; /* Color rojo para destacar la opción */
+    cursor: pointer; /* Cambia el cursor a puntero */
 }
 
 .logout:hover {
-    background-color: rgba(255, 0, 0, 0.2); /* Fondo rojo suave */
-    color: #ff4c4c; /* Mantener el rojo en hover */
+    background-color: rgba(255, 0, 0, 0.2); /* Fondo rojo suave en hover */
+    color: #ff4c4c; /* Mantiene el color rojo en hover */
 }
 
-/* Responsive */
+/* Estilos responsive para pantallas pequeñas */
 @media (max-width: 768px) {
     .navbar-menu {
-        width: 100%;
+        width: 100%; /* Menú ocupa el ancho completo en pantallas pequeñas */
     }
     .navbar-item {
-        text-align: center;
+        text-align: center; /* Centra los elementos en pantallas pequeñas */
     }
 }

@@ -48,8 +48,8 @@ export const ModalRegister = ({ setShowModal }) => {
                 setShowError(true);  // Mostrar mensaje de error
             }
         } catch (error) {
-            console.error("Error:", error);
-            setShowError(true);
+            console.error("Error:", error); //muestra cualquier error en la solicitud
+            setShowError(true); //Muestra el mensaje de error si ocurre una excepcion
         }
     };
 
