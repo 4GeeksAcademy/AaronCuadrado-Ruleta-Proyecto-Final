@@ -39,6 +39,7 @@
     border-radius: 0 0 8px 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
     padding: 10px 0;
+    z-index: 1001; /* Asegura que el menú esté sobre otros elementos */
 }
 
 /* Estilo de los elementos del menú */
@@ -49,6 +50,7 @@
     font-weight: bold;
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
+    cursor: pointer; /* Asegura que el cursor cambie a pointer */
 }
 
 /* Efecto hover en las opciones */
@@ -60,6 +62,7 @@
 /* Estilo específico para la opción de "Cerrar Sesión" */
 .logout {
     color: #ff4c4c; /* Rojo para destacar */
+    cursor: pointer; /* Asegura que el cursor cambie a pointer */
 }
 
 .logout:hover {
@@ -76,4 +79,3 @@
         text-align: center;
     }
 }
-

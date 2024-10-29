@@ -1,12 +1,21 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/navbar.css";
 
 export const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const navigate = useNavigate();
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+
+        localStorage.setItem("showLogoutModal", "true");
+        navigate("/");
+        
     };
     
     return (
@@ -21,7 +30,7 @@ export const Navbar = () => {
                     <Link to="/add-funds" className="navbar-item">Recargar Saldo</Link>
                     <Link to="/withdraw" className="navbar-item">Retirar Fondos</Link>
                     <Link to="/transactions" className="navbar-item">Transacciones Historicas</Link>
-                    <Link to="/logout" className="navbar-item logout">Cerrar Sesion</Link>
+                    <div onClick={handleLogout} className="navbar-item logout">Cerrar Sesion</div>                
                 </div>
             )}
         </nav>
