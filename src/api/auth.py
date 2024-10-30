@@ -71,10 +71,16 @@ def login():
         }
     }), 200
 
+@auth.route('/logout', methods=['POST'])
+def logout():
+    session.clear()  # Limpiar toda la sesión en el servidor
+    return jsonify({"message": "Sesión cerrada"}), 200
+
+
 
 # RUTA PARA COMPROBAR SI LA SESIÓN ESTÁ INICIADA
 @auth.route('/session-info', methods=['GET'])
 def session_info():
     if 'user_id' in session:
-        return jsonify({"message": "Sesión activa", "user_id": session['user_id']}), 200
-    return jsonify({"error": "No hay sesión"}), 403
+        return jsonify({"message": "Sesion activa", "user_id": session['user_id']}), 200
+    return jsonify({"error": "No hay sesion"}), 403
