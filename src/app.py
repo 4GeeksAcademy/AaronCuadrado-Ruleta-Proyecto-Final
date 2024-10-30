@@ -18,7 +18,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
-CORS(app)
+CORS(app, supports_credentials=True)
 
 # Configuración de la base de datos (SQLite o PostgreSQL)
 db_url = os.getenv("DATABASE_URL")

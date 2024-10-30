@@ -4,48 +4,42 @@ import "../../styles/modalLogin.css";
 import { Context } from "../store/appContext"; 
 
 export const ModalLogin = ({ setShowModal }) => {
-    // Accede a las acciones de flux
     const { actions } = useContext(Context); 
-    //Estado para mostrar mensaje de error 
     const [showError, setShowError] = useState(false);
-    //Estado para mostrar modal de exito
     const [showSuccessModal, setShowSuccessModal] = useState(false);
-    //Hook para navegar a diferentes rutas
     const navigate = useNavigate();
 
-    //Manejar el envio del formulario de inicio de sesion
     const handleSubmit = async (e) => {
-        e.preventDefault(); //prevenir el comportamiento predeterminado del formulario
+        e.preventDefault();
 
-        //Recoger los datos del formulario para el inicio de sesion
         const formData = {
             username: e.target.username.value,
             password: e.target.password.value,
         };
 
         try {
-            // Realizar la peticion de inicio de sesion a la API /login
+            // Realizar la solicitud de inicio de sesión a la API con las credenciales incluidas
             const response = await fetch('https://organic-succotash-5gvx65ww5x5vcpvg-3001.app.github.dev/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData), //convertir los datos a JSON para enviarlos
+                credentials: 'include',  // Incluir las cookies en la solicitud
+                body: JSON.stringify(formData),
             });
             
-            //verificar si la respuesta de la API es exitosa
             if (response.ok) {
-                const data = await response.json(); // Obtener datos de saldo
-                actions.login(data.balance); // Llama a la acción login para actualizar el estado global
-                setShowSuccessModal(true);  // Muestra el modal de éxito
+                const data = await response.json();
+                actions.login(data.balance); // Actualizar el estado global con el balance del usuario
+                setShowSuccessModal(true);  // Mostrar el modal de éxito
             } else {
-                const errorData = await response.json(); //Si hay un error, obtiene el mensaje de error
+                const errorData = await response.json();
                 console.error(errorData.error);
-                setShowError(true); //Muestra el mensaje de error en la interfaz
+                setShowError(true); // Mostrar mensaje de error
             }
         } catch (error) {
-            console.error("Error:", error); //Captura y muestra cualquier error que ocurra
-            setShowError(true); //Muestra el mensaje de error si falla la conexion
+            console.error("Error:", error);
+            setShowError(true); // Mostrar mensaje de error si ocurre una excepción
         }
     };
 
@@ -60,7 +54,7 @@ export const ModalLogin = ({ setShowModal }) => {
                     <label htmlFor="password">Contraseña:</label>
                     <input type="password" id="password" name="password" required />
                     
-                    {/* Modal de error por añadir credenciales incorrectas */}
+                    {/* Modal de error por credenciales incorrectas */}
                     {showError && (
                         <p className="error-message">
                             Usuario o contraseña incorrectos.
@@ -69,7 +63,7 @@ export const ModalLogin = ({ setShowModal }) => {
 
                     <button type="submit" className="btn-submit">Iniciar Sesión</button>
                 </form>
-                {/* Boton para cerrar el modal con la X */}
+                {/* Botón para cerrar el modal */}
                 <button onClick={() => setShowModal(false)} className="btn-close">
                 </button>
             </div>
@@ -81,8 +75,8 @@ export const ModalLogin = ({ setShowModal }) => {
                         <h3>¡Inicio de sesión exitoso!</h3>
                         <p>Has iniciado sesión correctamente.</p>
                         <button className="btn-close-success" onClick={() => {
-                            setShowSuccessModal(false); //Oculta el modal de exito
-                            setShowModal(false); //Cierra el modal de inicio de sesion
+                            setShowSuccessModal(false); // Ocultar el modal de éxito
+                            setShowModal(false); // Cerrar el modal de inicio de sesión
                             navigate("/menu");  // Redirigir a la página de menú
                         }}>
                             Acceder a la web
