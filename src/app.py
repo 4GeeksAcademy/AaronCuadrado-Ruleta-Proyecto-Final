@@ -51,6 +51,7 @@ app.register_blueprint(users, url_prefix='/api')
 def home():
     return "Bienvenido al casino online!"
 
+
 # Ejecutar la aplicación si se ejecuta directamente
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3001, debug=True)

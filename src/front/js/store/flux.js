@@ -16,6 +16,12 @@ const getState = ({ getStore, getActions, setStore }) => {
                 setStore({ isAuthenticated: false, userBalance: 0 });
             },
 
+            // Acción para actualizar solo el balance
+            updateBalance: (newBalance) => {
+                console.log("Actualizando balance en el contexto:", newBalance);
+                setStore({ userBalance: newBalance });
+            },
+
             getMessage: async () => {
                 try {
                     const resp = await fetch(process.env.BACKEND_URL + "/api/hello");
