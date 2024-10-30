@@ -1,71 +1,122 @@
 /* Fondo de imagen en pantalla completa */
 .transactions-page {
-    background-image: url(https://previews.dropbox.com/p/thumb/ACcvOtK4B0iLZTcvca-cX1YnjEkJJC3Dqz4yhoPK-Wk3mmwFwC7k1jYOwM08CvriNr1Y8LoLW8HxVnpfoA_06nYZ4KF52zxoSF9mLtTXhdQzZssXFIwaUpCNWOk_zBKO2nfanOWaZ40742ILsGvLfmFovLT5PlZSOTA420BJShdaPU9mLoMvkwMf2GHTqHvwdAeEf_zxweEHWup8-kWK-hAZPGtlmOQQasrp4ymE2TyoXjcRKR5QXpMTzqjGpQ7GyJYjK2IMg3tTUfdrix6F9zZmFved8a0dRnJhkc57vghIi0p6CSTAy9RdX-LQZ_bxiw4/p.jpeg); /* Reemplaza con la URL de tu imagen */
-    background-size: cover; /* Ajusta el fondo para cubrir toda la pantalla */
-    background-position: center; /* Centra la imagen */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-attachment: fixed; /* Fija el fondo mientras se desplaza */
+    background-image: url(https://previews.dropbox.com/p/thumb/ACcvOtK4B0iLZTcvca-cX1YnjEkJJC3Dqz4yhoPK-Wk3mmwFwC7k1jYOwM08CvriNr1Y8LoLW8HxVnpfoA_06nYZ4KF52zxoSF9mLtTXhdQzZssXFIwaUpCNWOk_zBKO2nfanOWaZ40742ILsGvLfmFovLT5PlZSOTA420BJShdaPU9mLoMvkwMf2GHTqHvwdAeEf_zxweEHWup8-kWK-hAZPGtlmOQQasrp4ymE2TyoXjcRKR5QXpMTzqjGpQ7GyJYjK2IMg3tTUfdrix6F9zZmFved8a0dRnJhkc57vghIi0p6CSTAy9RdX-LQZ_bxiw4/p.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Ocupa toda la altura de la ventana */
+    min-height: 100vh;
 }
 
 /* Contenido de la página */
 .transactions-content {
-    flex: 1; /* Expande para ocupar el espacio restante entre navbar y footer */
-    display: flex; /* Flexbox para centrar horizontal y verticalmente */
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    padding: 20px; /* Espaciado interno */
-    min-height: calc(100vh - 100px); /* Asegura que el contenido ocupe al menos toda la pantalla menos el tamaño del navbar */
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px; /* Reducido para ajustar contenido */
+    min-height: calc(100vh - 100px);
 }
 
-/* Contenedor interno ajustado */
+/* Contenedor interno */
 .transactions-inner-container {
-    width: 100%; /* Ocupa todo el ancho disponible */
-    max-width: 800px; /* Ancho máximo para mantener un diseño compacto */
-    background-color: #2a2a2a; /* Fondo gris oscuro para contraste */
-    padding: 20px; /* Espaciado interno alrededor del contenido */
-    border-radius: 10px; /* Bordes redondeados para un aspecto suave */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Sombra para resaltar el contenedor */
+    width: 100%;
+    max-width: 700px; /* Ancho reducido */
+    background-color: #2a2a2a;
+    padding: 15px; /* Reducido para que ocupe menos espacio */
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* Estilo del logo de la página de transacciones */
+/* Estilo del logo */
 .transactions-logo img {
-    max-width: 150px; /* Limita el tamaño del logo */
-    margin: 0 auto 20px; /* Centra horizontalmente y añade espacio debajo */
-    display: block; /* Asegura que el logo sea un bloque */
+    max-width: 120px; /* Tamaño reducido */
+    margin: 0 auto 15px;
+    display: block;
 }
 
-/* Contenedor de las categorías de filtro */
+/* Contenedor de las categorías y botón de orden */
 .transactions-categories {
-    text-align: center; /* Centra el selector */
-    margin-bottom: 20px; /* Espaciado inferior para separar del resto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    text-align: center;
 }
 
 /* Estilo del selector de categorías */
 .transactions-categories select {
-    padding: 10px; /* Espaciado interno para mayor clicabilidad */
-    border: 2px solid #d4af37; /* Borde dorado para destacarlo */
-    border-radius: 5px; /* Bordes redondeados para un diseño uniforme */
-    background-color: #333; /* Fondo oscuro */
-    color: #ffd700; /* Texto en dorado */
+    padding: 8px; /* Reducido */
+    border: 2px solid #d4af37;
+    border-radius: 5px;
+    background-color: #333;
+    color: #ffd700;
+    font-size: 14px; /* Tamaño de fuente más pequeño */
 }
 
-/* Lista de transacciones con fondo ajustado */
+/* Estilo del botón de orden */
+.sort-button {
+    padding: 8px 12px; /* Reducido */
+    border: 2px solid #d4af37;
+    background-color: #333;
+    color: #ffd700;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.sort-button:hover {
+    background-color: #444;
+}
+
+/* Lista de transacciones */
 .transactions-list {
-    width: 100%; /* Ancho completo para ajustarse al contenedor */
-    background-color: #000; /* Fondo negro para un contraste fuerte */
-    padding: 20px; /* Espaciado interno para que las transacciones no toquen los bordes */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Sombra para resaltar el contenedor */
+    width: 100%;
+    max-height: 300px; /* Altura reducida para que el scroll sea más compacto */
+    overflow-y: auto;
+    background-color: #000;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 /* Estilo individual de cada transacción */
 .transaction-item {
-    background-color: #333; /* Fondo gris oscuro */
-    color: #fff; /* Texto blanco para contraste */
-    padding: 15px; /* Espaciado interno en cada transacción */
-    margin-bottom: 10px; /* Espacio entre las transacciones */
-    border-radius: 5px; /* Bordes redondeados */
+    background-color: #333;
+    color: #ffd700;
+    padding: 10px; /* Espaciado interno reducido */
+    margin-bottom: 8px; /* Espacio entre transacciones reducido */
+    border-radius: 5px;
+    border: 1px solid #d4af37;
+    font-size: 14px; /* Tamaño de fuente más pequeño */
+}
+
+/* Paginación */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.page-button {
+    background-color: #444;
+    color: #ffd700;
+    border: none;
+    margin: 0 3px;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.page-button.active {
+    background-color: #ffd700;
+    color: #000;
+}
+
+.page-button:hover {
+    background-color: #555;
 }
