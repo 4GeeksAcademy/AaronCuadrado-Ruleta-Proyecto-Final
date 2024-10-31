@@ -1,0 +1,77 @@
+/* Contenedor principal para la página de retirada de fondos */
+.withdraw-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ocupa toda la pantalla */
+    background-color: #000; /* Fondo negro */
+    color: #FFD700; /* Texto dorado */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Estilo para el título */
+.withdraw-container h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Texto de balance */
+.withdraw-container p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Estilo para el campo de entrada de cantidad */
+.withdraw-container input[type="number"] {
+    width: 80%; /* Ajuste del ancho */
+    max-width: 400px;
+    padding: 10px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    border: 2px solid #FFD700; /* Borde dorado */
+    border-radius: 5px;
+    background-color: #222; /* Fondo oscuro */
+    color: #FFD700; /* Texto dorado */
+    text-align: center;
+}
+
+/* Estilo para el botón */
+.withdraw-container button {
+    width: 80%;
+    max-width: 400px;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: #FFD700; /* Fondo dorado */
+    color: #000; /* Texto negro */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.withdraw-container button:hover {
+    background-color: #e6c200; /* Fondo dorado oscuro en hover */
+}
+
+/* Estilo para el mensaje de error o éxito */
+.withdraw-container .message {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #FFD700;
+    text-align: center;
+}
+
+/* Estilos específicos para pantalla completa y responsividad */
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+

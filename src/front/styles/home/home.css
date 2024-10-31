@@ -2,7 +2,7 @@
 
 /* Configuración del contenedor principal */
 .home-container {
-    background-image: url(https://previews.dropbox.com/p/thumb/ACZooK2VdgeueLq75iShqmGLGiqhSUouJwuIZtb2OB5OcUFjaO_r0orI7ACoCvKqke829SlJlaB60K9RPoK3TpkzmEsr0VGAcm1bgFNsK5VQUwp0rsLpvf6EROphuke1cEaxU42cWtwFnP-0VFn282nTehyYkZhSkckYSudRyoweL6_ovT_iGWwxgDLzklC3wGY_d21Zlsu7vo-K9hF-i1SH0ea0aAR09t7BcOpaspdO7oFGv1wB4XI1me_rBWJ2PqKf6tqYa0mivi0fqbL3Fr3DoLlSyO8pQmofcbn2TpTqeVoko2rUvPPIK8c2_91GKat1ZlfV4Ubip9mRuEoCvGU_/p.jpeg); /* Imagen de fondo para el contenedor principal */
+    background-image: url(https://previews.dropbox.com/p/thumb/ACf_of83oNL43IMnsU26dL05pVFzqsDR3d_2YlevWmQsdwucYz1oi4YJ67hbaGQsIojbX8YkUkavvtcRH4D3bn84JO8Rb8kijOTXdNGuzW4mGTJvFZvVszAtt5wg5QIZdU5YZCSfTmosE4xFrgT7oCET4K0ZLN0BpREgGk6Lemuamav7QLTyah6u7foNKA_HTSnhFyA_5t019RzlNmCsak_fEW3roLnaB8PeBCsxbT8A68QSZdZMELzemws_MEdbBAtqbU1pMsvFhffZdaGQl4h4xIE6KxSNymPnVWGNqU3SVX84vV9tofI54gF5RHmAeZM/p.jpeg); /* Imagen de fondo para el contenedor principal */
     background-size: cover; /* La imagen cubre toda el área del contenedor */
     background-position: center; /* Centra la imagen de fondo */
     background-repeat: no-repeat; /* Evita que la imagen se repita */

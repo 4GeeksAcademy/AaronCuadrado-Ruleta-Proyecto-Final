@@ -1,6 +1,6 @@
 /* Fondo de imagen en pantalla completa */
 .menu-container {
-    background-image: url(https://previews.dropbox.com/p/thumb/ACcvOtK4B0iLZTcvca-cX1YnjEkJJC3Dqz4yhoPK-Wk3mmwFwC7k1jYOwM08CvriNr1Y8LoLW8HxVnpfoA_06nYZ4KF52zxoSF9mLtTXhdQzZssXFIwaUpCNWOk_zBKO2nfanOWaZ40742ILsGvLfmFovLT5PlZSOTA420BJShdaPU9mLoMvkwMf2GHTqHvwdAeEf_zxweEHWup8-kWK-hAZPGtlmOQQasrp4ymE2TyoXjcRKR5QXpMTzqjGpQ7GyJYjK2IMg3tTUfdrix6F9zZmFved8a0dRnJhkc57vghIi0p6CSTAy9RdX-LQZ_bxiw4/p.jpeg); /* Imagen de fondo para el menú */
+    background-image: url(https://previews.dropbox.com/p/thumb/ACfDRsNEsxsEWFCLRQS2X0hrAKc5u7HK2u4HmDfB0iJcRIVqHmiKD62TNi_bOKKQ4FuU4DtMaehH-jgX6dKiHhuaNlxX0JIBxB3aaZQq7ZuEFg6PmkhgfpEnd9fhEJfk6qVamN2dLgPZduftKvudZe-IW-woYe4Toqnuyo_sPfRzSIZv4XT7__oHUc9Hn0kLKqy6JYyc7OgE8SbjfR517qDs3rTJKNmQhewkuMHCoeFALxYjl3iD_iuq-Z_JlAmlnySIhZoqifR9tgZSn42LfUG-KXvucaNcBeF26ABnefDd3q5rjwp4k_pE6KVQzEsWE8Er2HK2GEePzI2NVQBWiW9F/p.jpeg?is_prewarmed=true); /* Imagen de fondo para el menú */
     background-size: cover; /* Ajusta la imagen para cubrir toda el área */
     background-position: center; /* Centra la imagen de fondo */
     background-repeat: no-repeat; /* Evita la repetición de la imagen */

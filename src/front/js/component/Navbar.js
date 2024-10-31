@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../../styles/navbar.css";
+import "../../styles/navbar-options/navbar.css";
 import { Context } from "../store/appContext";
 
 export const Navbar = () => {
@@ -69,7 +69,7 @@ export const Navbar = () => {
                 Menu Principal
             </button>
             <div className="balance-display">
-                Balance: {store.userBalance} €
+            Balance: {store.userBalance !== undefined ? store.userBalance.toFixed(2) : "0.00"} €
             </div>
 
             <div className="navbar-hamburger" onClick={toggleMenu}>

@@ -6,6 +6,7 @@ import injectContext, { Context } from "./store/appContext";
 import { Footer } from "./component/footer";
 import { Menu } from "./pages/Menu";
 import { Transactions } from "./pages/Transactions";
+import { WithdrawFunds } from "./pages/WithdrawFunds";
 
 const Layout = () => {
     const { store } = useContext(Context);
@@ -18,6 +19,7 @@ const Layout = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/menu" element={store.isAuthenticated ? <Menu /> : <Navigate to="/" />} />
                     <Route path="/transactions" element={<Transactions />} />
+                    <Route path="/withdraw" element={<WithdrawFunds />} />
                     <Route path="*" element={<h1>Not found!</h1>} />
                 </Routes>
                 <Footer />
