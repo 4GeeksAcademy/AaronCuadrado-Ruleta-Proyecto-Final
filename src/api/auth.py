@@ -48,7 +48,7 @@ def login():
 
     if not username or not password:
         # Si faltan datos, devuelve el error
-        return jsonify({"error": "Email y contraseña obligatorios"}), 400
+        return jsonify({"error": "Usuario y contraseña obligatorios"}), 400
 
     # Verificar si el usuario existe y si la contraseña es correcta
     user = User.query.filter_by(username=username).first()
@@ -75,17 +75,18 @@ def login():
 @auth.route('/logout', methods=['POST'])
 def logout():
     session.clear()  # Limpiar toda la sesión en el servidor
-    return jsonify({"message": "Sesion cerrada"}), 200
+    return jsonify({"message": "Sesión cerrada"}), 200
 
 
-# RUTA PARA COMPROBAR SI LA SESIÓN ESTÁ INICIADA
+# RUTA PARA COMPROBAR SI LA SESIÓN ESTÁ INICIADA Y OBTENER EL BALANCE ACTUALIZADO
 @auth.route('/session-info', methods=['GET'])
 def session_info():
     if 'user_id' in session:
         user = User.query.get(session['user_id'])
         if user:
+            # Retorna la información de la sesión con el balance actualizado
             return jsonify({
-                "message": "Sesion activa",
+                "message": "Sesión activa",
                 "user": {
                     "id": user.id,
                     "username": user.username,
@@ -94,4 +95,4 @@ def session_info():
                 }
             }), 200
         return jsonify({"error": "Usuario no encontrado"}), 404
-    return jsonify({"error": "No hay sesion"}), 403
+    return jsonify({"error": "No hay sesión"}), 403

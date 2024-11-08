@@ -6,7 +6,7 @@ webhook = Blueprint('webhook', __name__)
 
 stripe.api_key = 'sk_test_51QChOk2LySc2UsGFgu1RKTF6bMDw3S2mVy6XKJXTgHNNAtH1atJLsazX43l1XBR4UqR5zFqqLBY23GKFymypK7Za00NvNwNXaP'
 
-#RUTA PARA AÑADIR STRIPE WEBHOOK
+# RUTA PARA AÑADIR STRIPE WEBHOOK
 @webhook.route('/stripe-webhook', methods=['POST'])
 def stripe_webhook():
     payload = request.get_data(as_text=True)
@@ -24,11 +24,15 @@ def stripe_webhook():
     if event['type'] == 'checkout.session.completed':
         stripe_session = event['data']['object']
         user_id = stripe_session['metadata']['user_id']
-        amount = stripe_session['amount_total'] / 100 #stripe envia el calculo en centimos
+        amount = stripe_session['amount_total'] / 100  # Stripe envía el cálculo en céntimos
 
-        #actualizar saldo en bdd
+        # Obtener el usuario y actualizar su saldo
         user = User.query.get(user_id)
-        user.balance += amount
-        db.session.commit()
+        if user:
+            user.balance += amount
+            db.session.commit()
+            print(f"Saldo actualizado para el usuario {user_id}: {user.balance} €")
+        else:
+            print(f"Usuario con ID {user_id} no encontrado")
 
     return '', 200

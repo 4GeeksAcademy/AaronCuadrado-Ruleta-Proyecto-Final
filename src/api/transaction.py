@@ -4,47 +4,47 @@ import stripe
 
 transaction = Blueprint('transaction', __name__)
 
+# Configuración de la clave de API de Stripe
+stripe.api_key = 'sk_test_51QChOk2LySc2UsGFgu1RKTF6bMDw3S2mVy6XKJXTgHNNAtH1atJLsazX43l1XBR4UqR5zFqqLBY23GKFymypK7Za00NvNwNXaP'
 
-#RUTA INGRESO DE DINERO CON STRIPE
+# RUTA INGRESO DE DINERO CON STRIPE
 @transaction.route('/add-funds', methods=['POST'])
 def add_funds():
     if 'user_id' not in session:
-        return '', 403  #comprobar que el usuario este conectado
+        return '', 403  # Verificar que el usuario esté conectado
     
-    data = request.get_json() #obtener la cantidad a añadir
-    amount= data.get('amount')
+    data = request.get_json()  # Obtener la cantidad a añadir
+    amount = data.get('amount')
 
-    #si es una cantidad no valida, devuelve error
+    # Si es una cantidad no válida, devuelve error
     if not amount or float(amount) <= 0:
-        return jsonify({"error": "Cantidad no valida"}), 400
+        return jsonify({"error": "Cantidad no válida"}), 400
 
-    #obtiene el usuario de la base de datos
+    # Obtiene el usuario de la base de datos
     user = User.query.get(session['user_id'])
 
-    #crear una sesion de pago en Stripe
+    # Crear una sesión de pago en Stripe
     stripe_session = stripe.checkout.Session.create(
         payment_method_types=['card'],
         line_items=[{
-            'price_data':{
+            'price_data': {
                 'currency': 'eur',
                 'product_data': {
                     'name': 'Recarga de saldo',
                 },
-                'unit_amount': int(float(amount) * 100), #convierte la cifra en centimos 1€ = 100cent
+                'unit_amount': int(float(amount) * 100),  # convierte la cifra en céntimos 1€ = 100 cent
             },
             'quantity': 1,
         }],
-        mode='payment', #definir modo de pago
-        success_url='https://organic-succotash-5gvx65ww5x5vcpvg-3001.app.github.dev/success',
-        cancel_url='https://organic-succotash-5gvx65ww5x5vcpvg-3001.app.github.dev/cancel',
+        mode='payment',
+        success_url='https://organic-succotash-5gvx65ww5x5vcpvg-3000.app.github.dev/add-funds/success',  # Redirige al puerto correcto del frontend
+        cancel_url='https://organic-succotash-5gvx65ww5x5vcpvg-3000.app.github.dev/add-funds/cancel',
         metadata={
             'user_id': user.id
         }
     )
 
-    stripe_payment_url = "https://buy.stripe.com/test_14k9ACdnx2DQ6U8aEF"
-
-#Guardar transaccion en el historial
+    # Guardar transacción en el historial
     new_transaction = TransactionHistory(
         user_id=user.id,
         transaction_type="Recarga de saldo",
@@ -56,32 +56,31 @@ def add_funds():
 
     return jsonify({
         "message": "Redirigiendo a Stripe para procesar el pago",
-        "stripe_url": stripe_session.url #url para que el usuario haga el ingreso
+        "stripe_url": stripe_session.url  # URL para que el usuario haga el ingreso
     }), 200
 
-
-#RETIRADA DE SALDO
+# RUTA PARA RETIRADA DE SALDO
 @transaction.route('/withdraw-funds', methods=['POST'])
 def withdraw_funds():
     if 'user_id' not in session:
-        return '', 403  #verificar que el usuario esta conectado
+        return '', 403  # Verificar que el usuario está conectado
     
     data = request.get_json()
     amount = data.get('amount')
 
-    #si indica una cantidad no valida
-    if not amount or float(amount) <=0:
-        return jsonify({"error": "Cantidad no valida"}), 400
+    # Si indica una cantidad no válida
+    if not amount or float(amount) <= 0:
+        return jsonify({"error": "Cantidad no válida"}), 400
     
     user = User.query.get(session['user_id'])
 
-    #verificar si tiene saldo suficiente
+    # Verificar si tiene saldo suficiente
     if user.balance < float(amount):
         return jsonify({"error": "Saldo insuficiente"}), 400
     
     user.balance -= float(amount)
 
-    #Guardar transaccion en el historial
+    # Guardar transacción en el historial
     new_transaction = TransactionHistory(
         user_id=user.id,
         transaction_type="Retirada",
@@ -91,30 +90,28 @@ def withdraw_funds():
     db.session.add(new_transaction)
     db.session.commit()
 
-    #dinero retirado con exito y actualizacion del saldo
+    # Dinero retirado con éxito y actualización del saldo
     return jsonify({
         "message": f"Has retirado {amount}€. Tu nuevo saldo es {user.balance}€.",
         "new_balance": user.balance
     }), 200
 
-
-#RUTA REDIRIGIR SI EL PAGO HA SIDO REALIZADO
+# RUTA REDIRIGIR SI EL PAGO HA SIDO REALIZADO
 @transaction.route('/success')
 def payment_success():
     return "<h1>¡Pago completado con éxito!</h1><p>Tu saldo ha sido recargado.</p>"
 
-#RUTA PARA REDIRIGIR SI EL PAGO HA SIDO RECHAZADO
+# RUTA PARA REDIRIGIR SI EL PAGO HA SIDO RECHAZADO
 @transaction.route('/cancel')
 def payment_cancel():
     return "<h1>Has cancelado el proceso de pago.</h1><p>Vuelve a intentarlo cuando estés listo.</p>"
 
-#RUTA PARA VER LAS TRANSACCIONES
+# RUTA PARA VER LAS TRANSACCIONES
 @transaction.route('/transaction-history', methods=['GET'])
 def get_transaction_history():
     user_id = session.get('user_id')
     if not user_id:
         return jsonify({"error": "No tienes acceso, debes iniciar sesión"}), 403
-    
     
     transactions = TransactionHistory.query.filter_by(user_id=user_id).all()
     serialized_transactions = [t.serialize() for t in transactions]

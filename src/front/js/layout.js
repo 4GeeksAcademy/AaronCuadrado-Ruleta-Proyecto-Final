@@ -7,6 +7,9 @@ import { Footer } from "./component/footer";
 import { Menu } from "./pages/Menu";
 import { Transactions } from "./pages/Transactions";
 import { WithdrawFunds } from "./pages/WithdrawFunds";
+import { AddFunds } from "./pages/AddFunds";
+import { Success } from "./pages/Success";
+import { Cancel } from "./pages/Cancel";
 
 const Layout = () => {
     const { store } = useContext(Context);
@@ -20,6 +23,9 @@ const Layout = () => {
                     <Route path="/menu" element={store.isAuthenticated ? <Menu /> : <Navigate to="/" />} />
                     <Route path="/transactions" element={<Transactions />} />
                     <Route path="/withdraw" element={<WithdrawFunds />} />
+                    <Route path="/add-funds" element={<AddFunds />} />
+                    <Route path="/add-funds/success" element={<Success />} />
+                    <Route path="/add-funds/cancel" element={<Cancel />} />
                     <Route path="*" element={<h1>Not found!</h1>} />
                 </Routes>
                 <Footer />

@@ -23,8 +23,8 @@ const injectContext = PassedComponent => {
 		useEffect(() => {
 			// Este código se ejecuta solo una vez en la vida de la aplicación (similar a window.onload)
 			// Aquí puedes realizar solicitudes API iniciales si es necesario
-			state.actions.getMessage(); // Ejemplo de llamada a una acción en `flux.js`
-		}, []);
+			// Por ejemplo: state.actions.updateBalance();
+		}, []); // Array de dependencias vacío para ejecutar solo una vez
 
 		// Se proporciona `state` como valor del contexto, incluyendo `store`, `actions` y `setStore`
 		return (

@@ -1,9 +1,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
-            isAuthenticated: false,  // Estado de autenticación del usuario
-            userBalance: 0,  // Saldo del usuario
-            message: null
+            isAuthenticated: false,
+            userBalance: 0,
         },
         actions: {
             // Acción para iniciar sesión y actualizar autenticación y saldo
@@ -16,20 +15,27 @@ const getState = ({ getStore, getActions, setStore }) => {
                 setStore({ isAuthenticated: false, userBalance: 0 });
             },
 
-            // Acción para actualizar solo el balance
-            updateBalance: (newBalance) => {
-                console.log("Actualizando balance en el contexto:", newBalance);
-                setStore({ userBalance: newBalance });
-            },
-
-            getMessage: async () => {
+            // Acción para actualizar el balance desde el backend
+            updateBalance: async () => {
+                console.log("Consultando el balance actualizado desde el backend");
                 try {
-                    const resp = await fetch(process.env.BACKEND_URL + "/api/hello");
-                    const data = await resp.json();
-                    setStore({ message: data.message });
-                    return data;
+                    const response = await fetch("https://organic-succotash-5gvx65ww5x5vcpvg-3001.app.github.dev/api/session-info", {
+                        method: "GET",
+                        credentials: "include",
+                    });
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data && data.user && typeof data.user.balance !== 'undefined') {
+                            console.log("Balance actualizado:", data.user.balance);
+                            setStore({ userBalance: data.user.balance, isAuthenticated: true });
+                        } else {
+                            console.log("Estructura de respuesta inesperada:", data);
+                        }
+                    } else {
+                        console.log("No se pudo obtener el balance del backend");
+                    }
                 } catch (error) {
-                    console.log("Error loading message from backend", error);
+                    console.error("Error al consultar el balance:", error);
                 }
             }
         }
