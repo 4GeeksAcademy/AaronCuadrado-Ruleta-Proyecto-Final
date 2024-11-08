@@ -10,6 +10,7 @@ import { WithdrawFunds } from "./pages/WithdrawFunds";
 import { AddFunds } from "./pages/AddFunds";
 import { Success } from "./pages/Success";
 import { Cancel } from "./pages/Cancel";
+import { Roulette } from "./pages/Roulette";
 
 const Layout = () => {
     const { store } = useContext(Context);
@@ -26,6 +27,7 @@ const Layout = () => {
                     <Route path="/add-funds" element={<AddFunds />} />
                     <Route path="/add-funds/success" element={<Success />} />
                     <Route path="/add-funds/cancel" element={<Cancel />} />
+                    <Route path="/roulette" element={<Roulette />} />
                     <Route path="*" element={<h1>Not found!</h1>} />
                 </Routes>
                 <Footer />
