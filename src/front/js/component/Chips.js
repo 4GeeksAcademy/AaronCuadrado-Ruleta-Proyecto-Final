@@ -1,38 +1,29 @@
-// src/component/Chips.js
-import React from "react";
-import "../../styles/roulette/Chips.css";
+// /components/chips.js
+import React, { useState } from 'react';
+import '../../styles/roulette/Chips.css';
 
-export const Chips = ({ onAmountSelect }) => {
-    const handleChipClick = (amount) => {
-        onAmountSelect(amount);
-    };
+const chipValues = [0.2, 0.5, 1, 2, 5, 10, 25, 50, 100];
 
-    const chips = [
-        { value: 0.2, color: "#C0C0C0" }, // Plateado
-        { value: 0.5, color: "#808080" }, // Gris
-        { value: 1, color: "#D4AF37" }, // Dorado
-        { value: 2, color: "#32CD32" }, // Verde
-        { value: 5, color: "#1E90FF" }, // Azul
-        { value: 10, color: "#FF4500" }, // Naranja/Rojo
-        { value: 25, color: "#800080" }, // Púrpura
-        { value: 50, color: "#FFD700" }, // Amarillo dorado
-        { value: 100, color: "#8B4513" }, // Marrón
-    ];
+const Chips = () => {
+  const [selectedChip, setSelectedChip] = useState(null);
 
-    return (
-        <div className="chips-container">
-            {chips.map((chip, index) => (
-                <button
-                    key={index}
-                    className="chip"
-                    style={{ backgroundColor: chip.color }}
-                    onClick={() => handleChipClick(chip.value)}
-                >
-                    {chip.value}€
-                </button>
-            ))}
+  const handleChipSelect = (value) => {
+    setSelectedChip(value);
+  };
+
+  return (
+    <div className="chips-container">
+      {chipValues.map((value) => (
+        <div
+          key={value}
+          className={`chip ${selectedChip === value ? 'selected' : ''}`}
+          onClick={() => handleChipSelect(value)}
+        >
+          €{value}
         </div>
-    );
+      ))}
+    </div>
+  );
 };
 
 export default Chips;
