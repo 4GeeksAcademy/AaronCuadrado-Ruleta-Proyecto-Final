@@ -19,7 +19,7 @@ export const WithdrawFunds = () => {
 
         try{
             //solicitud al backend para la retirada
-            const response = await fetch("https://organic-succotash-5gvx65ww5x5vcpvg-3001.app.github.dev/api/withdraw-funds", 
+            const response = await fetch("https://cuddly-space-capybara-4jqw46xx6v46fvv7-3001.app.github.dev/api/withdraw-funds", 
                 {
                 method: "POST",
                 headers: {"Content-Type": "application/json" },

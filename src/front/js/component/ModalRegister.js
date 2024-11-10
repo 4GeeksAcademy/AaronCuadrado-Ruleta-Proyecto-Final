@@ -30,7 +30,7 @@ export const ModalRegister = ({ setShowModal }) => {
 
         try {
             // Realizar la solicitud de registro a /register en el backend
-            const response = await fetch('https://organic-succotash-5gvx65ww5x5vcpvg-3001.app.github.dev/api/register', {
+            const response = await fetch('https://cuddly-space-capybara-4jqw46xx6v46fvv7-3001.app.github.dev/api/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

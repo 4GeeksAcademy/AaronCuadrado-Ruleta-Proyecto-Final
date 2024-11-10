@@ -12,12 +12,12 @@ export const Navbar = () => {
     useEffect(() => {
         const fetchSessionInfo = async () => {
             try {
-                const response = await fetch("https://organic-succotash-5gvx65ww5x5vcpvg-3001.app.github.dev/api/session-info", {
+                const response = await fetch("https://cuddly-space-capybara-4jqw46xx6v46fvv7-3001.app.github.dev/api/session-info", {
                     method: "GET",
                     credentials: "include", // Incluir cookies de sesión
                 });
 
-                if (response.ok) {
+                if (response.ok) {  
                     const data = await response.json();
                     if (data && data.user && typeof data.user.balance !== 'undefined') {
                         console.log("Balance recibido desde el backend:", data.user.balance);
@@ -44,7 +44,7 @@ export const Navbar = () => {
     // Función para manejar el cierre de sesión
     const handleLogout = async () => {
         try {
-            const response = await fetch("https://organic-succotash-5gvx65ww5x5vcpvg-3001.app.github.dev/api/logout", {
+            const response = await fetch("https://cuddly-space-capybara-4jqw46xx6v46fvv7-3001.app.github.dev/api/logout", {
                 method: "POST",
                 credentials: "include",
             });

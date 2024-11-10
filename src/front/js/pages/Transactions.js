@@ -14,7 +14,7 @@ export const Transactions = () => {
     useEffect(() => {
         const fetchTransactions = async () => {
             try {
-                const response = await fetch("https://organic-succotash-5gvx65ww5x5vcpvg-3001.app.github.dev/api/transaction-history", {
+                const response = await fetch("https://cuddly-space-capybara-4jqw46xx6v46fvv7-3001.app.github.dev/api/transaction-history", {
                     method: "GET",
                     credentials: "include", // Incluir cookies de sesión
                 });

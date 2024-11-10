@@ -9,7 +9,7 @@ export const AddFunds = () => {
 
     const handleAddFunds = async () => {
         try {
-            const response = await fetch("https://organic-succotash-5gvx65ww5x5vcpvg-3001.app.github.dev/api/add-funds", {
+            const response = await fetch("https://cuddly-space-capybara-4jqw46xx6v46fvv7-3001.app.github.dev/api/add-funds", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
