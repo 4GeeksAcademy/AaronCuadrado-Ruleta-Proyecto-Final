@@ -37,8 +37,8 @@ def add_funds():
             'quantity': 1,
         }],
         mode='payment',
-        success_url='https://organic-succotash-5gvx65ww5x5vcpvg-3000.app.github.dev/add-funds/success',  # Redirige al puerto correcto del frontend
-        cancel_url='https://organic-succotash-5gvx65ww5x5vcpvg-3000.app.github.dev/add-funds/cancel',
+        success_url='https://cuddly-space-capybara-4jqw46xx6v46fvv7-3000.app.github.dev/add-funds/success',  # Redirige al puerto correcto del frontend
+        cancel_url='https://cuddly-space-capybara-4jqw46xx6v46fvv7-3000.app.github.dev/add-funds/cancel',
         metadata={
             'user_id': user.id
         }
