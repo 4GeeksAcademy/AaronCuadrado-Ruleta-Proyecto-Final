@@ -1,0 +1,41 @@
+/* src/styles/roulette/Chips.css */
+
+.chips-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.chip {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.chip:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.6);
+}
+
+/* Colores para las fichas */
+.chip[data-value="1"] { background-color: #D4AF37; }    /* Dorado para 1€ */
+.chip[data-value="2"] { background-color: #32CD32; }    /* Verde para 2€ */
+.chip[data-value="5"] { background-color: #1E90FF; }    /* Azul para 5€ */
+.chip[data-value="10"] { background-color: #FF4500; }   /* Rojo para 10€ */
+.chip[data-value="25"] { background-color: #800080; }   /* Púrpura para 25€ */
+.chip[data-value="50"] { background-color: #FFD700; }   /* Amarillo para 50€ */
+.chip[data-value="100"] { background-color: #8B4513; }  /* Marrón para 100€ */
+.chip[data-value="0.2"] { background-color: #C0C0C0; }  /* Plateado para 0.2€ */
+.chip[data-value="0.5"] { background-color: #808080; }  /* Gris para 0.5€ */

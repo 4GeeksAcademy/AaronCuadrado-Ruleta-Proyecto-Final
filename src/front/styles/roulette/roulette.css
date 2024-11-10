@@ -1,0 +1,12 @@
+/* src/styles/roulette/Roulette.css */
+.roulette-page {
+    padding-top: 80px; /* Ajusta según el espacio que necesites */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.current-bet {
+    margin-top: 20px;
+    text-align: center;
+}
