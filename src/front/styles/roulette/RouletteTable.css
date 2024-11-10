@@ -1,45 +1,72 @@
 /* src/styles/roulette/RouletteTable.css */
 .roulette-table {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #1A1A1A; /* Negro */
-    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 5px;
+    padding: 10px;
+    background-color: #333;
     border-radius: 10px;
-    border: 2px solid #FFD700; /* Dorado */
-    margin-top: 20px;
+    margin: 20px auto;
+    width: 95%;
+    max-width: 600px;
 }
 
-.row {
+.roulette-cell {
+    width: 40px;
+    height: 40px;
     display: flex;
-}
-
-.cell {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     font-weight: bold;
     color: white;
-    border: 1px solid #333;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: transform 0.2s;
 }
 
-.red {
-    background-color: red;
+.roulette-cell.green {
+    background-color: #3A9A5D;
 }
 
-.black {
-    background-color: black;
+.roulette-cell.red {
+    background-color: #C12A2A;
 }
 
-.green {
-    background-color: green;
+.roulette-cell.black {
+    background-color: #222;
 }
 
-.special-options .cell {
+.roulette-cell:hover {
+    transform: scale(1.1);
+}
+
+.bet-options {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.bet-option {
+    padding: 10px;
+    font-weight: bold;
+    color: #FFD700;
     background-color: #444;
-    color: white;
+    border: 2px solid #FFD700;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.bet-option.red {
+    background-color: #C12A2A;
+}
+
+.bet-option.black {
+    background-color: #222;
+}
+
+.bet-option:hover {
+    background-color: #FFD700;
+    color: #333;
 }
