@@ -1,26 +1,29 @@
-// /components/chips.js
-import React, { useState } from 'react';
+import React from 'react';
 import '../../styles/roulette/Chips.css';
 
-const chipValues = [0.2, 0.5, 1, 2, 5, 10, 25, 50, 100];
+const chipValues = [
+  { value: 0.2, className: 'chip-0-2' },
+  { value: 0.5, className: 'chip-0-5' },
+  { value: 1, className: 'chip-1' },
+  { value: 2, className: 'chip-2' },
+  { value: 5, className: 'chip-5' },
+  { value: 10, className: 'chip-10' },
+  { value: 25, className: 'chip-25' },
+  { value: 50, className: 'chip-50' },
+  { value: 100, className: 'chip-100' }
+];
 
-const Chips = () => {
-  const [selectedChip, setSelectedChip] = useState(null);
-
-  const handleChipSelect = (value) => {
-    setSelectedChip(value);
-  };
-
+const Chips = ({ onSelectAmount }) => {
   return (
     <div className="chips-container">
-      {chipValues.map((value) => (
-        <div
-          key={value}
-          className={`chip ${selectedChip === value ? 'selected' : ''}`}
-          onClick={() => handleChipSelect(value)}
+      {chipValues.map((chip, index) => (
+        <button
+          key={index}
+          className={`chip ${chip.className}`}
+          onClick={() => onSelectAmount(chip.value)}
         >
-          €{value}
-        </div>
+          {chip.value}€
+        </button>
       ))}
     </div>
   );

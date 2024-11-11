@@ -10,7 +10,7 @@ import { WithdrawFunds } from "./pages/WithdrawFunds";
 import { AddFunds } from "./pages/AddFunds";
 import { Success } from "./pages/Success";
 import { Cancel } from "./pages/Cancel";
-import Roulette from "./pages/Roulette";
+import { Roulette } from "./pages/Roulette";
 
 const Layout = () => {
     const { store } = useContext(Context);
