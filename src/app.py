@@ -3,7 +3,6 @@ from flask import Flask, session
 from flask_session import Session
 from flask_migrate import Migrate
 from api.models import db
-# from api.routes import api  # Importar el blueprint
 from api.admin import setup_admin
 from api.commands import setup_commands
 from api.auth import auth

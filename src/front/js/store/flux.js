@@ -19,7 +19,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             updateBalance: async () => {
                 console.log("Consultando el balance actualizado desde el backend");
                 try {
-                    const response = await fetch("https://cuddly-space-capybara-4jqw46xx6v46fvv7-3001.app.github.dev/api/session-info", {
+                    const response = await fetch("https://ominous-fishstick-g4x796gg6wr4fwp47-3001.app.github.dev/api/session-info", {
                         method: "GET",
                         credentials: "include",
                     });
