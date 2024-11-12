@@ -7,7 +7,7 @@ from api.admin import setup_admin
 from api.commands import setup_commands
 from api.auth import auth
 from api.transaction import transaction
-from api.blackjack import blackjack as bets
+from api.blackjack import blackjack
 from api.webhook import webhook
 from api.users import users
 from flask_cors import CORS
@@ -41,7 +41,7 @@ setup_commands(app)
 # Registrar el blueprint para las rutas
 app.register_blueprint(auth, url_prefix='/api')
 app.register_blueprint(transaction, url_prefix='/api')
-app.register_blueprint(bets, url_prefix='/api')
+app.register_blueprint(blackjack, url_prefix='/api')
 app.register_blueprint(webhook, url_prefix='/api')
 app.register_blueprint(users, url_prefix='/api')
 
