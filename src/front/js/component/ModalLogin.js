@@ -30,12 +30,13 @@ export const ModalLogin = ({ setShowModal }) => {
             
             if (response.ok) {
                 const data = await response.json();
-                actions.login(data.balance); // Actualizar el estado global con el balance del usuario
+                actions.login(data.user); // Actualizar el estado global con el usuario y su balance
                 setShowSuccessModal(true);  // Mostrar el modal de éxito
+                setShowError(false); // Asegurarse de que el mensaje de error esté oculto si fue exitoso
             } else {
                 const errorData = await response.json();
                 console.error(errorData.error);
-                setShowError(true); // Mostrar mensaje de error
+                setShowError(true); // Mostrar mensaje de error si la respuesta no es 200 OK
             }
         } catch (error) {
             console.error("Error:", error);
@@ -65,6 +66,7 @@ export const ModalLogin = ({ setShowModal }) => {
                 </form>
                 {/* Botón para cerrar el modal */}
                 <button onClick={() => setShowModal(false)} className="btn-close">
+                    Cerrar
                 </button>
             </div>
 

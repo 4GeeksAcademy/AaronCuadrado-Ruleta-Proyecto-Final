@@ -7,15 +7,19 @@
     background-color: #2a2a2a;
     color: #ffd700;
     padding: 20px;
+    font-family: 'Poppins', sans-serif; /* Fuente elegante */
+    text-align: center;
 }
 
 .success-container h2 {
     font-size: 2rem;
+    font-weight: bold;
     margin-bottom: 1rem;
 }
 
 .success-container p {
     font-size: 1.2rem;
+    max-width: 80%; /* Limita el ancho del texto */
     margin-bottom: 20px;
 }
 
@@ -27,8 +31,12 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 1.1rem;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra para profundidad */
 }
 
 .success-container button:hover {
     background-color: #e6c200;
+    transform: scale(1.05); /* Escala el botón en hover */
 }

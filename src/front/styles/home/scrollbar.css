@@ -23,3 +23,10 @@
   scrollbar-width: thin; /* Barra de desplazamiento delgada */
   scrollbar-color: #3a3a3a #1c1c1c; /* Color del pulgar y del track en Firefox */
 }
+
+/* Responsividad: Ajuste de tamaño en dispositivos móviles */
+@media (max-width: 600px) {
+  ::-webkit-scrollbar {
+    width: 8px; /* Ancho menor en pantallas pequeñas */
+  }
+}

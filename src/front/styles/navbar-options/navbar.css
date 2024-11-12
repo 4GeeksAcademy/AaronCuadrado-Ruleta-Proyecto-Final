@@ -1,112 +1,115 @@
 /* Estilo principal del navbar */
 .navbar {
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo negro semi-transparente */
-    color: #ffd700; /* Texto en dorado */
-    display: flex; /* Flexbox para alinear los elementos */
-    justify-content: space-between; /* Distribuye los elementos en los extremos */
-    align-items: center; /* Centra verticalmente los elementos */
-    padding: 15px 30px; /* Espaciado interno para mayor clicabilidad */
-    position: fixed; /* Navbar fijo en la parte superior de la pantalla */
-    width: 100%; /* Ocupa todo el ancho de la pantalla */
-    top: 0; /* Alineado en la parte superior */
-    z-index: 1000; /* Asegura que el navbar esté siempre sobre otros elementos */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Sombra para resaltar el navbar */
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #ffd700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 /* Contenedor para el balance y el botón de menú principal */
 .navbar-right-section {
-    display: flex; /* Alinea el balance y el botón en fila */
-    align-items: center; /* Centra verticalmente ambos elementos */
-    gap: 15px; /* Espacio entre el balance y el botón */
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 /* Balance actual en € */
 .balance-display {
-    color: #ffd700; /* Texto en dorado */
-    font-weight: bold; /* Negrita para hacer el texto más visible */
+    color: #ffd700;
+    font-weight: bold;
 }
 
 /* Botón de Menú Principal fuera del menú desplegable */
 .menu-button {
-    background-color: #333; /* Fondo oscuro para integrar con el navbar */
-    color: #ffd700; /* Texto en dorado para que destaque */
-    padding: 8px 15px; /* Espaciado interno para hacerlo clicable */
-    border: 2px solid #ffd700; /* Borde dorado para dar más estilo */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cambia el cursor a pointer */
-    font-weight: bold; /* Negrita para el texto */
-    transition: background-color 0.3s, color 0.3s; /* Suaviza el cambio de color en hover */
+    background-color: #333;
+    color: #ffd700;
+    padding: 8px 15px;
+    border: 2px solid #ffd700;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-/* Efecto hover en el botón de Menú Principal */
 .menu-button:hover {
-    background-color: #ffd700; /* Fondo dorado en hover */
-    color: #333; /* Texto negro en hover */
+    background-color: #ffd700;
+    color: #333;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 /* Logo del navbar */
 .navbar-logo {
-    font-size: 1.5em; /* Tamaño de fuente para hacerlo visible */
-    font-weight: bold; /* Negrita para destacar el logo */
-    text-transform: uppercase; /* Todo en mayúsculas para uniformidad */
-    letter-spacing: 2px; /* Espaciado entre letras para elegancia */
-    color: #ffd700; /* Color dorado en coherencia con el tema */
+    font-size: 1.5em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ffd700;
 }
 
 /* Icono de menú hamburguesa */
 .navbar-hamburger {
-    font-size: 1.5em; /* Tamaño de fuente para hacerlo claramente visible */
-    color: #ffd700; /* Color dorado para el icono */
-    cursor: pointer; /* Cambia el cursor a pointer para indicar clicabilidad */
+    font-size: 1.5em;
+    color: #ffd700;
+    cursor: pointer;
 }
 
 /* Estilo del menú desplegable */
 .navbar-menu {
-    position: absolute; /* Posiciona el menú sobre otros elementos */
-    top: 100%; /* Coloca el menú justo debajo del navbar */
-    right: 0; /* Alineado al borde derecho */
-    background-color: rgba(0, 0, 0, 0.9); /* Fondo negro oscuro */
-    width: 200px; /* Ancho fijo para el menú */
-    border-radius: 0 0 8px 8px; /* Bordes redondeados en la parte inferior */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Sombra para hacer el menú visible */
-    padding: 10px 0; /* Espaciado interno vertical */
-    z-index: 1001; /* Asegura que el menú esté sobre otros elementos */
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 200px;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    padding: 10px 0;
+    z-index: 1001;
 }
 
 /* Estilo de los elementos del menú */
 .navbar-item {
-    display: block; /* Cada elemento ocupa toda la línea */
-    padding: 10px 20px; /* Espaciado interno para mayor clicabilidad */
-    color: #ffd700; /* Color dorado para los elementos */
-    font-weight: bold; /* Negrita para hacerlos destacar */
-    text-decoration: none; /* Sin subrayado para el texto */
-    transition: background-color 0.3s, color 0.3s; /* Suaviza los cambios de color */
-    cursor: pointer; /* Cursor pointer para indicar que es clicable */
+    display: block;
+    padding: 10px 20px;
+    color: #ffd700;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
 }
 
-/* Efecto hover en las opciones del menú */
 .navbar-item:hover {
-    background-color: rgba(255, 215, 0, 0.2); /* Fondo dorado suave en hover */
-    color: #fff; /* Texto blanco para mayor contraste en hover */
+    background-color: rgba(255, 215, 0, 0.2);
+    color: #fff;
 }
 
 /* Estilo específico para la opción de "Cerrar Sesión" */
 .logout {
-    color: #ff4c4c; /* Rojo para destacar la opción de cerrar sesión */
-    cursor: pointer; /* Cambia el cursor a pointer */
+    color: #ff4c4c;
+    cursor: pointer;
 }
 
 .logout:hover {
-    background-color: rgba(255, 0, 0, 0.2); /* Fondo rojo suave en hover */
-    color: #ff4c4c; /* Mantiene el color rojo en hover */
+    background-color: rgba(255, 0, 0, 0.2);
+    color: #ff4c4c;
 }
 
 /* Responsive para dispositivos móviles */
 @media (max-width: 768px) {
     .navbar-menu {
-        width: 100%; /* El menú ocupa todo el ancho de la pantalla */
+        width: 100%;
     }
     .navbar-item {
-        text-align: center; /* Centra el texto en cada elemento */
+        text-align: center;
+    }
+    .navbar-logo, .balance-display, .menu-button {
+        font-size: 1.2em;
     }
 }

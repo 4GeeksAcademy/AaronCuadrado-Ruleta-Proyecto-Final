@@ -3,36 +3,37 @@ import { Context } from "../store/appContext";
 import "../../styles/navbar-options/withdraw.css";
 import { Navbar } from "../component/Navbar";
 
-//Componente de retirada de fondos
+// Componente de retirada de fondos
 export const WithdrawFunds = () => {
-    const { store, actions } = useContext(Context);//Obtener estado global y las acciones
-    const [amount, setAmount] = useState("");//Estado para almacenar la cantidad que el usuario quiere retirar
-    const [message, setMessage] = useState("");//Estado para mostrar mensajes al usuario
+    const { store, actions } = useContext(Context); // Obtener estado global y las acciones
+    const [amount, setAmount] = useState(""); // Estado para almacenar la cantidad que el usuario quiere retirar
+    const [message, setMessage] = useState(""); // Estado para mostrar mensajes al usuario
 
-    //Funcion que se ejecuta al hacer clic en el boton de retirada
+    // Función que se ejecuta al hacer clic en el botón de retirada
     const handleWithdraw = async () => {
-        //Validacion para verificar que la cantidad sea positiva y no supere el balance del usuario
-        if (amount <=0 || amount > store.userBalance) {
-            setMessage("Cantidad no valida o saldo insuficiente");
+        const parsedAmount = parseFloat(amount);
+
+        // Validación para verificar que la cantidad sea positiva y no supere el balance del usuario
+        if (parsedAmount <= 0 || parsedAmount > store.userBalance) {
+            setMessage("Cantidad no válida o saldo insuficiente");
             return;
         }
 
-        try{
-            //solicitud al backend para la retirada
-            const response = await fetch("https://ominous-fishstick-g4x796gg6wr4fwp47-3001.app.github.dev/api/withdraw-funds", 
-                {
+        try {
+            // Solicitud al backend para la retirada
+            const response = await fetch("https://ominous-fishstick-g4x796gg6wr4fwp47-3001.app.github.dev/api/withdraw-funds", {
                 method: "POST",
-                headers: {"Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json" },
                 credentials: "include",
-                body: JSON.stringify({ amount })
-             });
+                body: JSON.stringify({ amount: parsedAmount })
+            });
 
-            //si la respuesta es exitosa
+            // Si la respuesta es exitosa
             if (response.ok) {
-                const data = await response.json(); //convierte la respuesta en JSON
-                setMessage(data.message); //Muestra el mensaje de exito
-                actions.updateBalance(data.new_balance);//Actualiza el balance
-                setAmount("");//Limpia el campo de cantidad
+                const data = await response.json(); // Convierte la respuesta en JSON
+                setMessage(data.message); // Muestra el mensaje de éxito
+                actions.updateBalance(data.new_balance); // Actualiza el balance
+                setAmount(""); // Limpia el campo de cantidad
             } else {
                 const errorData = await response.json();
                 setMessage(errorData.error || "Error en la retirada");
@@ -42,19 +43,25 @@ export const WithdrawFunds = () => {
         }
     };
 
-    return(
+    return (
         <div>
-            <Navbar/>
-        <div className="withdraw-container">
-            <h2>Retirar Fondos</h2>
-            <p>Saldo disponible: {store.userBalance} €</p>
+            <Navbar />
+            <div className="withdraw-container">
+                <h2>Retirar Fondos</h2>
+                <p>Saldo disponible: {store.userBalance.toFixed(2)} €</p>
 
-            <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)}
-            placeholder="Cantidad a retirar"/>
+                <input
+                    type="number"
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    placeholder="Cantidad a retirar"
+                    min="0"
+                    step="0.01"
+                />
 
-            <button onClick={handleWithdraw}>Confirmar retirada</button>
-            {message && <p className="message">{message}</p>}
-        </div>
+                <button onClick={handleWithdraw}>Confirmar retirada</button>
+                {message && <p className="message">{message}</p>}
+            </div>
         </div>
     );
 };

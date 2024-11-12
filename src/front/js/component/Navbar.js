@@ -4,24 +4,22 @@ import "../../styles/navbar-options/navbar.css";
 import { Context } from "../store/appContext";
 
 export const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false); // Estado para el menú
-    const { store, actions } = useContext(Context); // Obtener el balance del contexto y acciones
+    const [isOpen, setIsOpen] = useState(false);
+    const { store, actions } = useContext(Context);
     const navigate = useNavigate();
 
-    // useEffect para obtener el balance una sola vez al montar el componente
     useEffect(() => {
         const fetchSessionInfo = async () => {
             try {
                 const response = await fetch("https://ominous-fishstick-g4x796gg6wr4fwp47-3001.app.github.dev/api/session-info", {
                     method: "GET",
-                    credentials: "include", // Incluir cookies de sesión
+                    credentials: "include",
                 });
 
-                if (response.ok) {  
+                if (response.ok) {
                     const data = await response.json();
                     if (data && data.user && typeof data.user.balance !== 'undefined') {
-                        console.log("Balance recibido desde el backend:", data.user.balance);
-                        actions.updateBalance(data.user.balance); // Actualizar el balance en el contexto
+                        actions.updateBalance(data.user.balance);
                     } else {
                         console.log("La estructura de datos no contiene 'user' o 'balance'.", data);
                     }
@@ -33,15 +31,13 @@ export const Navbar = () => {
             }
         };
 
-        fetchSessionInfo(); // Llamar a la función al montar el componente
-    }, []); // <--- Array de dependencias vacío para ejecutar solo una vez
+        fetchSessionInfo();
+    }, []);
 
-    // Función para alternar el menú
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
 
-    // Función para manejar el cierre de sesión
     const handleLogout = async () => {
         try {
             const response = await fetch("https://ominous-fishstick-g4x796gg6wr4fwp47-3001.app.github.dev/api/logout", {
@@ -50,10 +46,9 @@ export const Navbar = () => {
             });
 
             if (response.ok) {
-                console.log("Sesión cerrada en el backend");
-                localStorage.setItem("showLogoutModal", "true"); // Marca en localStorage para que Home.js lo detecte
-                actions.logout(); // Actualiza el estado global al cerrar sesión
-                navigate("/"); // Redirige al usuario a la página de inicio
+                localStorage.setItem("showLogoutModal", "true");
+                actions.logout();
+                navigate("/");
             } else {
                 console.error("Error al cerrar sesión en el backend.");
             }
@@ -64,24 +59,25 @@ export const Navbar = () => {
 
     return (
         <nav className="navbar">
-            <div className="navbar-logo">La Ruleta Dorada</div>
+            <div className="navbar-logo" onClick={() => navigate("/menu")}>
+                La Ruleta Dorada
+            </div>
             <button className="menu-button" onClick={() => navigate("/menu")}>
                 Menu Principal
             </button>
             <div className="balance-display">
-            Balance: {store.userBalance !== undefined ? store.userBalance.toFixed(2) : "0.00"} €
+                Balance: {store.userBalance !== undefined ? store.userBalance.toFixed(2) : "0.00"} €
             </div>
-
             <div className="navbar-hamburger" onClick={toggleMenu}>
                 ☰
             </div>
             {isOpen && (
-                <div className="navbar-menu">
+                <div className="navbar-menu" onClick={() => setIsOpen(false)}>
                     <Link to="/profile" className="navbar-item">Mi Perfil</Link>
                     <Link to="/add-funds" className="navbar-item">Recargar Saldo</Link>
                     <Link to="/withdraw" className="navbar-item">Retirar Fondos</Link>
                     <Link to="/transactions" className="navbar-item">Transacciones Históricas</Link>
-                    <div onClick={handleLogout} className="navbar-item logout">Cerrar Sesión</div>                
+                    <div onClick={handleLogout} className="navbar-item logout">Cerrar Sesión</div>
                 </div>
             )}
         </nav>

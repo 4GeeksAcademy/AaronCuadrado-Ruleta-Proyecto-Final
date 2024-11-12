@@ -11,7 +11,7 @@
     align-items: center; /* Centra verticalmente el contenido */
     z-index: 1000; /* Coloca el modal en una capa superior */
 }
-  
+
 .modal-content {
     background-color: #1e1e1e; /* Fondo negro */
     padding: 30px; /* Espaciado interno del modal */
@@ -50,6 +50,7 @@ h2, h3 {
     border-radius: 8px; /* Bordes redondeados */
     cursor: pointer; /* Cambia el cursor a puntero */
     font-size: 16px; /* Tamaño de fuente del botón */
+    transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
 }
   
 .btn-close {
@@ -62,6 +63,7 @@ h2, h3 {
     position: absolute; /* Posiciona el botón en una esquina */
     top: 15px; /* Espaciado desde la parte superior */
     right: 15px; /* Espaciado desde la derecha */
+    transition: background-color 0.3s ease; /* Suaviza el cambio de color */
 }
   
 .btn-close:hover {
@@ -99,8 +101,18 @@ h2, h3 {
     border: none; /* Sin borde */
     border-radius: 5px; /* Bordes redondeados */
     cursor: pointer; /* Cambia el cursor a puntero */
+    transition: background-color 0.3s ease; /* Suaviza el cambio de color */
 }
   
 .btn-close-success:hover {
     background-color: #b8860b; /* Fondo dorado más oscuro en hover */
+}
+
+/* Estilos responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+    .modal-content,
+    .success-modal-content {
+        max-width: 90%; /* Ajusta el ancho para pantallas pequeñas */
+        padding: 20px; /* Reduce el padding en dispositivos móviles */
+    }
 }

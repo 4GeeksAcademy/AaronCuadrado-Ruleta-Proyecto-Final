@@ -4,6 +4,7 @@
     justify-content: center; /* Centra los botones horizontalmente */
     gap: 30px; /* Espacio entre cada botón */
     margin-top: 20px; /* Espaciado superior para separar el contenedor de otros elementos */
+    flex-wrap: wrap; /* Permite que los botones se envuelvan en múltiples filas en pantallas pequeñas */
 }
 
 /* Estilo de los botones */
@@ -24,4 +25,16 @@
 .btn:hover {
     background-color: #b8860b; /* Fondo dorado oscuro en hover */
     transform: translateY(-5px); /* Efecto de elevación al hacer hover */
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 600px) {
+    .btn {
+        padding: 12px 20px; /* Reduce el tamaño del botón en pantallas pequeñas */
+        font-size: 16px; /* Reduce ligeramente el tamaño de fuente en pantallas pequeñas */
+    }
+    
+    .buttons-container {
+        gap: 15px; /* Reduce el espacio entre botones en pantallas pequeñas */
+    }
 }

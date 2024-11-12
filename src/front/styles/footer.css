@@ -1,81 +1,80 @@
+/* Estilos del footer */
 footer {
-    /* Imagen de fondo para el footer con estilo de cobertura total */
     background-image: url(https://previews.dropbox.com/p/thumb/ACdwze_zCLOI_WaEJBWnASz6xOhog5Iu_bsiszCU_91QsYfT9SE4bVkWkb6WkF9LSozXBhnRK_MY7Gw1mnp-hwK79yVTIWuaVt4wNvGiINPHIlHYJZclIXCsoeuXYNSH2TkoHqX9NCMlEk0-nSe8UmvCpiizmPlOqZ2P5-ZXV0IzWLqhDTigbmRxqdCQHuNMgU8rbkm_aq80z-4DjyyXFuUV6hu1SZ_Dphp7uf9soUZIeO4e46nlYjTclz1ygfHxHk5SBrWqQV4v_zgg_zHD7N-HYYLJ6UH1ZNQNhn7oz34o06W--bv4qhPwy_mM0cbgkifQUv-5dMhH7z3I3PSax8KT2ieLWpT8oPrv7gm86jtJaw/p.jpeg);
-    background-size: cover; /* Ajusta la imagen para cubrir todo el footer */
-    background-position: center; /* Centra la imagen de fondo */
-    padding: 40px 20px; /* Espaciado interior del footer */
-    color: white; /* Color de texto en blanco */
-    font-family: 'Poppins', sans-serif; /* Fuente elegante para el texto */
-    text-align: center; /* Centra el texto dentro del footer */
-    position: relative; /* Posiciona el footer relativo a otros elementos */
-    z-index: 1; /* Asegura que el footer esté por encima de otros elementos */
-    width: 100%; /* Ancho completo del contenedor */
-    box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidad */
+    background-size: cover;
+    background-position: center;
+    padding: 40px 20px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.5);
 }
 
 /* Contenedor principal del footer */
 .footer-container {
-    display: flex; /* Organiza los elementos en fila */
-    justify-content: space-between; /* Distribuye el espacio entre elementos */
-    align-items: flex-start; /* Alinea los elementos al inicio en el eje vertical */
-    padding: 20px; /* Añade espacio interior al contenedor */
-    color: #ffffff; /* Color de texto en blanco */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    color: #ffffff;
 }
 
-/* Estilo para las columnas dentro del footer */
+/* Columnas del footer */
 .footer-column {
-    flex: 1; /* Cada columna ocupa el mismo espacio */
-    margin: 0 20px; /* Espacio horizontal entre columnas */
+    flex: 1;
+    margin: 0 20px;
 }
 
-/* Capa oscura en el fondo del footer para mejorar la visibilidad del texto */
+/* Capa oscura de fondo */
 footer::before {
-    content: ''; /* Inserta un elemento vacío */
-    position: absolute; /* Coloca la capa en posición absoluta */
-    top: 0; left: 0; right: 0; bottom: 0; /* Cubre toda el área del footer */
-    background-color: rgba(0, 0, 0, 0.7); /* Capa negra semi-transparente */
-    z-index: -1; /* Coloca la capa detrás del contenido */
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: -1;
 }
 
-/* Contenedor de iconos de redes sociales */
+/* Redes sociales */
 .social-icons {
-    display: flex; /* Organiza los iconos en fila */
-    justify-content: center; /* Centra los iconos */
-    gap: 15px; /* Espacio entre cada icono */
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
 
 .social-icons a {
-    color: #d4af37; /* Color dorado para los iconos */
-    font-size: 24px; /* Tamaño de los iconos */
-    transition: transform 0.2s; /* Suaviza el efecto de hover */
+    color: #d4af37;
+    font-size: 24px;
+    transition: transform 0.2s;
 }
 
-/* Efecto de hover en los iconos de redes sociales */
 .social-icons a:hover {
-    transform: scale(1.1); /* Aumenta el tamaño del icono en hover */
+    transform: scale(1.1);
 }
 
-/* Sección de copyright en el footer */
+/* Texto de copyright */
 .copyright {
-    text-align: center; /* Centra el texto */
-    font-size: 16px; /* Tamaño del texto de copyright */
-    margin-top: 20px; /* Espaciado superior */
-    color: #d4af37; /* Color dorado para el copyright */
+    text-align: center;
+    font-size: 16px;
+    margin-top: 20px;
+    color: #d4af37;
 }
 
-/* Estilos responsive para pantallas pequeñas */
+/* Responsive */
 @media (max-width: 768px) {
     .footer-container {
-        flex-direction: column; /* Organiza elementos en columna en pantallas pequeñas */
-        align-items: center; /* Centra los elementos en la columna */
+        flex-direction: column;
+        align-items: center;
     }
 
     .footer-column {
-        margin-bottom: 20px; /* Espacio entre columnas en móviles */
-        text-align: center; /* Centra el texto dentro de cada columna */
+        margin-bottom: 20px;
+        text-align: center;
     }
 
     .copyright {
-        margin-top: 10px; /* Ajusta el espacio superior del copyright */
+        margin-top: 10px;
     }
 }
