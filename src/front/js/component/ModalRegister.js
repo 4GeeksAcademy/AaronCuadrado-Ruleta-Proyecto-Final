@@ -43,7 +43,7 @@ export const ModalRegister = ({ setShowModal }) => {
 
         try {
             // Realizar la solicitud de registro a /register en el backend
-            const response = await fetch('https://ominous-fishstick-g4x796gg6wr4fwp47-3001.app.github.dev/api/register', {
+            const response = await fetch('https://ideal-guacamole-v6pq4wxxw5w4hrxj-3001.app.github.dev/api/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

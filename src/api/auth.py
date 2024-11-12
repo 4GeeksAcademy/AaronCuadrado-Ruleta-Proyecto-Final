@@ -38,7 +38,9 @@ def register():
         return jsonify({"error": "Debes ser mayor de 18 años para registrarte"}), 400
 
     # Crear el usuario con un saldo inicial de 200€
-    new_user = User(email=email, password=password, username=username, is_active=True, balance=200.00, birthdate=birthdate)
+    new_user = User(email=email, username=username, is_active=True, balance=200.00, birthdate=birthdate)
+    new_user.set_password(password)  # Establecer la contraseña encriptada
+
     db.session.add(new_user)
     db.session.commit()
 
@@ -61,10 +63,14 @@ def login():
     if not username or not password:
         return jsonify({"error": "Usuario y contraseña obligatorios"}), 400
 
-    # Verificar si el usuario existe y si la contraseña es correcta
+    # Verificar si el usuario existe
     user = User.query.filter_by(username=username).first()
-    if not user or user.password != password:
-        # Datos equivocados
+    if not user:
+        # Si no se encuentra el usuario
+        return jsonify({"error": "Datos incorrectos"}), 400
+
+    # Verificar si la contraseña es correcta utilizando el método check_password
+    if not user.check_password(password):  # Usamos el método check_password
         return jsonify({"error": "Datos incorrectos"}), 400
 
     # Iniciar sesión: guardar el id del usuario en la sesión
@@ -80,6 +86,7 @@ def login():
             "balance": user.balance
         }
     }), 200
+
 
 
 # RUTA DE CIERRE DE SESIÓN

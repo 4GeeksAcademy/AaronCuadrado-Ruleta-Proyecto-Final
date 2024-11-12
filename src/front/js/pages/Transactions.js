@@ -14,7 +14,7 @@ export const Transactions = () => {
     useEffect(() => {
         const fetchTransactions = async () => {
             try {
-                const response = await fetch("https://ominous-fishstick-g4x796gg6wr4fwp47-3001.app.github.dev/api/transaction-history", {
+                const response = await fetch("https://ideal-guacamole-v6pq4wxxw5w4hrxj-3001.app.github.dev/api/transaction-history", {
                     method: "GET",
                     credentials: "include", // Incluir cookies de sesión
                 });

@@ -13,7 +13,7 @@ const Blackjack = () => {
 
     // Obtener el balance al cargar el componente
     useEffect(() => {
-        fetch("https://ominous-fishstick-g4x796gg6wr4fwp47-3001.app.github.dev/api/get_balance", {
+        fetch("https://ideal-guacamole-v6pq4wxxw5w4hrxj-3001.app.github.dev/api/get_balance", {
             method: "GET",
             credentials: "include",
         })
@@ -23,7 +23,7 @@ const Blackjack = () => {
     }, []);
 
     const handleBet = () => {
-        fetch("https://ominous-fishstick-g4x796gg6wr4fwp47-3001.app.github.dev/api/bet", {
+        fetch("https://ideal-guacamole-v6pq4wxxw5w4hrxj-3001.app.github.dev/api/bet", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             credentials: "include",
@@ -46,7 +46,7 @@ const Blackjack = () => {
     };
 
     const handleHit = () => {
-        fetch("https://ominous-fishstick-g4x796gg6wr4fwp47-3001.app.github.dev/api/hit", {
+        fetch("https://ideal-guacamole-v6pq4wxxw5w4hrxj-3001.app.github.dev/api/hit", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             credentials: "include",
@@ -63,7 +63,7 @@ const Blackjack = () => {
     };
 
     const handleStand = () => {
-        fetch("https://ominous-fishstick-g4x796gg6wr4fwp47-3001.app.github.dev/api/stand", { // URL corregida aquí
+        fetch("https://ideal-guacamole-v6pq4wxxw5w4hrxj-3001.app.github.dev/api/stand", { // URL corregida aquí
             method: "POST",
             headers: { "Content-Type": "application/json" },
             credentials: "include",
@@ -81,7 +81,7 @@ const Blackjack = () => {
     };
 
     const handleDoubleDown = () => {
-        fetch("https://ominous-fishstick-g4x796gg6wr4fwp47-3001.app.github.dev/api/double", {
+        fetch("https://ideal-guacamole-v6pq4wxxw5w4hrxj-3001.app.github.dev/api/double", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             credentials: "include",

@@ -21,7 +21,7 @@ export const WithdrawFunds = () => {
 
         try {
             // Solicitud al backend para la retirada
-            const response = await fetch("https://ominous-fishstick-g4x796gg6wr4fwp47-3001.app.github.dev/api/withdraw-funds", {
+            const response = await fetch("https://ideal-guacamole-v6pq4wxxw5w4hrxj-3001.app.github.dev/api/withdraw-funds", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",

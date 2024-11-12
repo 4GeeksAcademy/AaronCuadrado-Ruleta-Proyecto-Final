@@ -11,7 +11,7 @@ export const Navbar = () => {
     useEffect(() => {
         const fetchSessionInfo = async () => {
             try {
-                const response = await fetch("https://ominous-fishstick-g4x796gg6wr4fwp47-3001.app.github.dev/api/session-info", {
+                const response = await fetch("https://ideal-guacamole-v6pq4wxxw5w4hrxj-3001.app.github.dev/api/session-info", {
                     method: "GET",
                     credentials: "include",
                 });
@@ -40,7 +40,7 @@ export const Navbar = () => {
 
     const handleLogout = async () => {
         try {
-            const response = await fetch("https://ominous-fishstick-g4x796gg6wr4fwp47-3001.app.github.dev/api/logout", {
+            const response = await fetch("https://ideal-guacamole-v6pq4wxxw5w4hrxj-3001.app.github.dev/api/logout", {
                 method: "POST",
                 credentials: "include",
             });
