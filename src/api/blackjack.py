@@ -13,8 +13,10 @@ def get_card():
 # Rango de apuestas válidas
 VALID_BETS = [0.20, 0.50, 1.00, 2.00, 5.00, 10.00, 25.00, 50.00, 100.00]
 
+# RUTA DE APUESTA INICIAL
 @blackjack.route('/bet', methods=['POST'])
 def place_bet():
+    # Verificar si el usuario está autenticado
     if 'user_id' not in session:
         return jsonify({"error": "No tienes acceso, debes iniciar sesión"}), 401
     
@@ -25,33 +27,32 @@ def place_bet():
     if not amount or float(amount) not in VALID_BETS:
         return jsonify({"error": "Cantidad de apuesta no válida"}), 400
 
+    # Obtener el usuario y verificar el saldo
     user = User.query.get(session['user_id'])
-    
-    # Verificación de saldo
     if user.balance < float(amount):
         return jsonify({"error": "Saldo insuficiente"}), 400
     
-    # Inicialización del juego
+    # Reducir el balance del usuario por la cantidad apostada
     user.balance -= float(amount)
     db.session.commit()
 
+    # Iniciar manos de jugador y dealer
     player_hand = [get_card(), get_card()]
     dealer_hand = [get_card(), get_card()]
 
-    # Comprobar si el jugador tiene un blackjack natural
+    # Comprobar si el jugador tiene un Blackjack natural (21)
     player_score = sum(player_hand)
     dealer_score = sum(dealer_hand)
-
     message = ""
     if player_score == 21:
-        winnings = float(amount) * 2.5  # Blackjack paga 2.5 veces la apuesta
+        winnings = float(amount) * 2.5  # Paga 2.5 veces la apuesta en caso de Blackjack
         user.balance += winnings
         message = f"¡Blackjack! Has ganado {winnings}€."
     else:
         winnings = 0
         message = "Apuesta realizada. Puedes pedir otra carta o plantarte."
 
-    # Registrar la transacción
+    # Registrar la transacción en el historial
     new_transaction = TransactionHistory(
         user_id=user.id,
         transaction_type="blackjack_bet",
@@ -64,13 +65,15 @@ def place_bet():
     return jsonify({
         "message": message,
         "player_hand": player_hand,
-        "dealer_hand": [dealer_hand[0], "hidden"],
+        "dealer_hand": [dealer_hand[0], "hidden"],  # Mostrar solo una carta del dealer
         "player_score": player_score,
         "new_balance": user.balance
     }), 200
 
+# RUTA PARA PEDIR CARTA (HIT)
 @blackjack.route('/hit', methods=['POST'])
 def hit():
+    # Verificar si el usuario está autenticado
     if 'user_id' not in session:
         return jsonify({"error": "No tienes acceso, debes iniciar sesión"}), 401
     
@@ -100,18 +103,19 @@ def hit():
         "message": "Carta añadida."
     }), 200
 
+# RUTA PARA PLANTARSE (STAND)
 @blackjack.route('/stand', methods=['POST'])
 def stand():
+    # Verificar si el usuario está autenticado
     if 'user_id' not in session:
         return jsonify({"error": "No tienes acceso, debes iniciar sesión"}), 401
     
     data = request.get_json()
     player_hand = data.get('player_hand')
     dealer_hand = data.get('dealer_hand')
-
     player_score = sum(player_hand)
 
-    # Reglas del dealer
+    # Lógica del dealer: pedir cartas hasta tener al menos 17
     while sum(dealer_hand) < 17:
         dealer_hand.append(get_card())
 
@@ -120,7 +124,7 @@ def stand():
     amount = request.get_json().get("amount")
     winnings = 0
 
-    # Resultados del juego
+    # Determinar el resultado de la partida
     if dealer_score > 21 or player_score > dealer_score:
         winnings = float(amount) * 2
         user.balance += winnings
@@ -132,7 +136,7 @@ def stand():
     else:
         message = f"Has perdido la apuesta de {amount}€."
 
-    # Registrar resultado en historial
+    # Registrar resultado en el historial
     result = "Ganancia" if winnings > 0 else "Perdida"
     new_transaction = TransactionHistory(
         user_id=user.id,
@@ -151,8 +155,10 @@ def stand():
         "new_balance": user.balance
     }), 200
 
+# RUTA PARA DUPLICAR LA APUESTA (DOUBLE)
 @blackjack.route('/double', methods=['POST'])
 def double_down():
+    # Verificar si el usuario está autenticado
     if 'user_id' not in session:
         return jsonify({"error": "No tienes acceso, debes iniciar sesión"}), 401
 
@@ -161,15 +167,16 @@ def double_down():
     amount = data.get("amount")
     player_hand = data.get("player_hand")
 
-    # Verificar saldo para duplicar la apuesta
+    # Verificar si el usuario tiene suficiente saldo para duplicar la apuesta
     if user.balance < float(amount):
         return jsonify({"error": "Saldo insuficiente para duplicar la apuesta."}), 400
 
+    # Duplicar la apuesta y actualizar el balance del usuario
     user.balance -= float(amount)
     player_hand.append(get_card())
     player_score = sum(player_hand)
 
-    # Comprobar si el jugador se pasa de 21
+    # Comprobar si el jugador se pasa de 21 después de duplicar la apuesta
     if player_score > 21:
         message = "Te has pasado de 21. Has perdido la apuesta."
         db.session.commit()

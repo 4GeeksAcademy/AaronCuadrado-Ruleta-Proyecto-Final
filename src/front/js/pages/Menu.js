@@ -7,7 +7,7 @@ export const Menu = () => {
     const navigate = useNavigate();
 
     const handlePlayButtonClick = () => {
-        navigate("/roulette");
+        navigate("/blackjack");
     };
 
     return (

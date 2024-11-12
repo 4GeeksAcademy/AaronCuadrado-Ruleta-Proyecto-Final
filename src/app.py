@@ -7,7 +7,7 @@ from api.admin import setup_admin
 from api.commands import setup_commands
 from api.auth import auth
 from api.transaction import transaction
-from api.bets import bets
+from api.blackjack import blackjack as bets
 from api.webhook import webhook
 from api.users import users
 from flask_cors import CORS
