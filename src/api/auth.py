@@ -88,7 +88,6 @@ def login():
     }), 200
 
 
-
 # RUTA DE CIERRE DE SESIÓN
 @auth.route('/logout', methods=['POST'])
 def logout():

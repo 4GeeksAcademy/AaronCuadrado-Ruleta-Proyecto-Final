@@ -19,7 +19,8 @@ export const Navbar = () => {
                 if (response.ok) {
                     const data = await response.json();
                     if (data && data.user && typeof data.user.balance !== 'undefined') {
-                        actions.updateBalance(data.user.balance);
+                        // Asegúrate de convertir el balance a un número
+                        actions.updateBalance(Number(data.user.balance));
                     } else {
                         console.log("La estructura de datos no contiene 'user' o 'balance'.", data);
                     }
@@ -66,7 +67,7 @@ export const Navbar = () => {
                 Menu Principal
             </button>
             <div className="balance-display">
-                Balance: {store.userBalance !== undefined ? store.userBalance.toFixed(2) : "0.00"} €
+                Balance: {typeof store.userBalance === 'number' ? store.userBalance.toFixed(2) : "0.00"} €
             </div>
             <div className="navbar-hamburger" onClick={toggleMenu}>
                 ☰

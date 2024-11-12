@@ -21,10 +21,12 @@ class User(db.Model):
 
     # Método para establecer la contraseña encriptada
     def set_password(self, password):
+        """Establece la contraseña encriptada."""
         self.password_hash = generate_password_hash(password)
 
     # Método para verificar la contraseña en la autenticación
     def check_password(self, password):
+        """Verifica si la contraseña ingresada coincide con el hash almacenado."""
         return check_password_hash(self.password_hash, password)
 
     # Método para serializar los datos del usuario en un formato adecuado para API
@@ -36,7 +38,6 @@ class User(db.Model):
             "balance": self.balance,
             # No serializar la contraseña, es una violación de seguridad
         }
-
 
 # Clase TransactionHistory para almacenar el historial de transacciones del usuario
 class TransactionHistory(db.Model):

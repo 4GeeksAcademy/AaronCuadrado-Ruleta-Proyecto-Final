@@ -1,8 +1,8 @@
-"""empty message
+"""Inicialización de base de datos y modelos
 
-Revision ID: 308688e644cb
+Revision ID: df2781f8ea53
 Revises: 
-Create Date: 2024-11-12 16:18:40.059934
+Create Date: 2024-11-12 17:46:39.177259
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '308688e644cb'
+revision = 'df2781f8ea53'
 down_revision = None
 branch_labels = None
 depends_on = None
