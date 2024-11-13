@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Navbar } from "../component/Navbar";
-import "../../styles/navbar-options/transactions.css";
 import logo1 from "../../img/logo1.png";
 
 export const Transactions = () => {

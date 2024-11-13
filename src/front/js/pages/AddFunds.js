@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/navbar-options/add-funds.css";
 
 export const AddFunds = () => {
     const { actions } = useContext(Context);

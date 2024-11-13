@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { Navbar } from "../component/Navbar";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
-import "../../styles/navbar-options/profile.css";
 
 export const Profile = () => {
     const { store, actions } = useContext(Context); // Acceder a store para obtener datos del usuario

@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/navbar-options/withdraw.css";
 import { Navbar } from "../component/Navbar";
 
 // Componente de retirada de fondos
