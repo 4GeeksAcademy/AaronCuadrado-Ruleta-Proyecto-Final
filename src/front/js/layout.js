@@ -5,6 +5,7 @@ import { Home } from "./pages/home";
 import injectContext, { Context } from "./store/appContext";
 import { Footer } from "./component/footer";
 import { NavbarWrapper } from "./component/NavbarWrapper";
+import { Vehicles } from "./pages/Vehicles";
 
 const Layout = () => {
     const { store } = useContext(Context);
@@ -16,6 +17,7 @@ const Layout = () => {
                 <NavbarWrapper />
                 <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/vehicles" element={<Vehicles />} />
                     <Route path="*" element={<h1>Not found!</h1>} />
                 </Routes>
                 <Footer />

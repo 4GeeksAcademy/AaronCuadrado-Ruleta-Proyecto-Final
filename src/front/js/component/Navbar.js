@@ -8,19 +8,23 @@ import { ModalLogin } from "../component/ModalLogin";
 export const Navbar = () => {
     const [showRegisterModal, setShowRegisterModal] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false);
-    const [isMounted, setIsMounted] = useState(true);
 
+    // Cleanup automático para evitar actualizaciones en componentes desmontados
     useEffect(() => {
-        setIsMounted(true);
-        return () => setIsMounted(false);
+        let isMounted = true;
+
+        return () => {
+            isMounted = false;
+        };
     }, []);
 
+    // Manejo de apertura de modales
     const openLoginModal = () => {
-        if (isMounted) setShowLoginModal(true);
+        setShowLoginModal(true);
     };
 
     const openRegisterModal = () => {
-        if (isMounted) setShowRegisterModal(true);
+        setShowRegisterModal(true);
     };
 
     return (
