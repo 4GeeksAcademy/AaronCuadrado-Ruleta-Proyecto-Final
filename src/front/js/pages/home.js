@@ -1,62 +1,62 @@
-import React, { useState, useEffect } from "react";
-import logo1 from "../../img/logo1.png";
+import React from "react";
 import "../../styles/home/home.css";
-import "../../styles/home/overlay.css";
-import "../../styles/home/buttons.css";
-import "../../styles/home/scrollbar.css";
-import "../../styles/home/modals.css";
-import { ModalRegister } from "../component/ModalRegister";
-import { ModalLogin } from "../component/ModalLogin";
+import giulia from "../../img/giulia.jpeg";
+import mustang from "../../img/mustang.jpg";
+import panamera from "../../img/panamera.jpg";
+
 
 export const Home = () => {
-    const [showRegisterModal, setShowRegisterModal] = useState(false); // Modal de registro
-    const [showLoginModal, setShowLoginModal] = useState(false); // Modal de inicio de sesión
-    const [showLogoutModal, setShowLogoutModal] = useState(false); // Modal de cierre de sesión
-
-    // Verifica si se debe mostrar el modal de cierre de sesión al cargar la página
-    useEffect(() => {
-        if (localStorage.getItem("showLogoutModal") === "true") {
-            setShowLogoutModal(true); // Muestra el modal de cierre de sesión
-            localStorage.removeItem("showLogoutModal"); // Elimina el indicador de localStorage
-        }
-    }, []);
-
     return (
-        <div className="home-container">
-            <div className="overlay">
-                <img src={logo1} alt="Casino Logo" className="logo" />
-                <h1>¡Bienvenido a la ruleta!</h1>
-                <div className="buttons-container">
-                    <button
-                        onClick={() => setShowRegisterModal(true)}
-                        className="btn register-btn"
-                        aria-label="Abrir modal de registro"
-                    >
-                        Registrarse
-                    </button>
-                    <button
-                        onClick={() => setShowLoginModal(true)}
-                        className="btn login-btn"
-                        aria-label="Abrir modal de inicio de sesión"
-                    >
-                        Iniciar Sesión
-                    </button>
+        <div className="home">
+            {/* Hero Section */}
+            <div className="hero-section">
+                <div className="hero-text">
+                    <h1>Conduce con libertad</h1>
+                    <p>Encuentra el coche perfecto con Veloce Renting. ¡Sin preocupaciones, solo disfruta!</p>
+                    <a href="/vehicles" className="btn-explore">Explorar Vehiculos</a>
                 </div>
             </div>
-            {/* Modal de registro */}
-            {showRegisterModal && <ModalRegister setShowModal={setShowRegisterModal} />}
-            {/* Modal de inicio de sesión */}
-            {showLoginModal && <ModalLogin setShowModal={setShowLoginModal} />}
-            {/* Modal de cierre de sesión, mostrado solo si showLogoutModal es verdadero */}
-            {showLogoutModal && (
-                <>
-                    <div className="modal-logout-overlay"></div>
-                    <div className="modal-logout">
-                        <p>Has cerrado la sesión correctamente</p>
-                        <button onClick={() => setShowLogoutModal(false)}>Cerrar</button>
+
+            {/* Seccion de informacion */}
+            <div className="info-section">
+                <h2>¿Como funciona?</h2>
+                <div className="info-cards">
+                    <div className="info-card">
+                        <h3>Variedad de modelos</h3>
+                        <p>Disponemos de coches para todos los gustos y necesidades.</p>
                     </div>
-                </>
-            )}
+                    <div className="info-card">
+                        <h3>Pagos seguros</h3>
+                        <p>Renta facilmente y de manera segura con nuestro sistema de pagos</p>
+                    </div>
+                    <div className="info-card">
+                        <h3>Mantenimiento incluido</h3>
+                        <p>Olvidate de los problemas. Nosotros nos encargamos de todo</p>
+                    </div>
+                </div>
+            </div>
+
+            {/* Galeria de vehiculos */}
+            <div className="gallery-section">
+                <h2>Vehiculos Destacados</h2>
+                <div className="vehicle-cards">
+                    <div className="vehicle-card">
+                        <img src={giulia} alt="giulia" />
+                        <h3>Alfa Romeo Giulia</h3>
+                        <p>Desde 15€/dia</p>
+                    </div>
+                    <div className="vehicle-card">
+                        <img src={mustang} alt="mustang" />
+                        <h3>Ford Mustang</h3>
+                        <p>Desde 20€/dia</p>
+                    </div>
+                    <div className="vehicle-card">
+                        <img src={panamera} alt="panamera" />
+                        <h3>Porsche Panamera</h3>
+                        <p>Desde 40€/dia</p>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

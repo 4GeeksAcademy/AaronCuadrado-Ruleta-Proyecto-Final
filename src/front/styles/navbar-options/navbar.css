@@ -1,0 +1,52 @@
+/* navbar.css */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente */
+    display: flex;
+    justify-content: space-between; /* Espaciado entre logo y botones */
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    z-index: 1000; /* Asegurar que esté por encima del contenido */
+}
+
+.navbar-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-logo img {
+    height: 70px; /* Aumenta la altura del logo */
+    max-width: none; /* Permite que el logo crezca en proporción */
+    object-fit: contain; /* Asegura que el logo mantenga sus proporciones */
+    margin-right: auto;
+}
+
+
+.navbar-buttons {
+    display: flex;
+    gap: 15px; /* Espaciado entre los botones */
+}
+
+.navbar-link {
+    text-decoration: none;
+    color: #007bff; /* Azul agradable */
+    font-size: 16px;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar-link:hover {
+    background-color: #007bff; /* Fondo azul en hover */
+    color: white; /* Texto blanco en hover */
+}
+
+.logo {
+    margin-right: auto;
+}
