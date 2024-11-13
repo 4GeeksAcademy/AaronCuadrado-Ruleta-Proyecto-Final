@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import "../../styles/vehicles.css"; // Archivo CSS para personalizar el diseño
+import "../../styles/vehicles.css"; 
+import { useNavigate } from "react-router-dom";
 
 export const Vehicles = () => {
     const [vehicles, setVehicles] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchVehicles = async () => {
@@ -27,6 +29,10 @@ export const Vehicles = () => {
 
         fetchVehicles();
     }, []);
+
+    const handleReserveClick = (vehicle) => {
+        navigate("/reserve", { state: { vehicle } });
+    };
 
     if (loading) {
         return <p>Cargando vehículos...</p>;
@@ -52,6 +58,10 @@ export const Vehicles = () => {
                             <p>Color: {vehicle.color}</p>
                             <p>Año: {vehicle.year}</p>
                             <p>Precio mensual: {vehicle.monthly_price}€</p>
+                            <button className="reserve-button" onClick={() => handleReserveClick(vehicle)}
+                            >
+                                Reservar
+                            </button>
                         </div>
                     </div>
                 ))}
