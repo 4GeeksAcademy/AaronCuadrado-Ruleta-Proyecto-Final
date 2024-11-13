@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/navbar-options/navbar.css";
 import logo from "../../img/logo1.png";
+import { ModalRegister } from "../component/ModalRegister";
+// import { ModalLogin } from "../component/ModalLogin";
 
 export const Navbar = () => {
+    const [showRegisterModal, setShowRegisterModal] = useState(false);
+    const [showLoginModal, setShowLoginModal] = useState(false);
+
     return (
         <div className="navbar">
             <div className="navbar-container">
@@ -20,14 +25,21 @@ export const Navbar = () => {
                     <Link to="/vehicles" className="navbar-link">
                     Ver Vehiculos
                     </Link>
-                    <Link to="/register" className="navbar-link">
-                    Registro
-                    </Link>
-                    <Link to="/login" className="navbar-link">
-                    Iniciar Sesion
-                    </Link>
+                    <button className="navbar-link" onClick={() => setShowRegisterModal(true)}>
+                        Registrarse
+                    </button>
+                    <button className="navbar-link" onClick={() => setShowLoginModal(true)}>
+                        Iniciar Sesion
+                    </button>
                 </div>
             </div>
+            {/* Modales */}
+            {showRegisterModal && (
+                <ModalRegister onClose={() => setShowRegisterModal(false)} />
+            )}
+            {showLoginModal && (
+                <ModalLogin onClose={() => setShowLoginModal(false)} />
+            )}
         </div>
     );
 };   

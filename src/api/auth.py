@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify, session
-from api.models import db, User
+from api.models import db, User, Vehicle
 from werkzeug.security import generate_password_hash
+from datetime import datetime
 
 auth = Blueprint('auth', __name__)
 
@@ -10,11 +11,17 @@ def register():
     username = data.get('username')
     email = data.get('email')
     password = data.get('password')
-    birthdate = data.get('birthdate')  # Formato: YYYY-MM-DD
+    birthdate_str = data.get('birthdate')  # Formato: YYYY-MM-DD
 
     # Verificación de datos obligatorios
-    if not username or not email or not password or not birthdate:
+    if not username or not email or not password or not birthdate_str:
         return jsonify({"error": "Todos los campos son obligatorios"}), 400
+
+    # Convertir el string birthdate en un objeto datetime.date
+    try:
+        birthdate = datetime.strptime(birthdate_str, "%Y-%m-%d").date()
+    except ValueError:
+        return jsonify({"error": "Formato de fecha no válido. Debe ser YYYY-MM-DD"}), 400
 
     # Verificar si el correo o username ya están registrados
     if User.query.filter((User.email == email) | (User.username == username)).first():

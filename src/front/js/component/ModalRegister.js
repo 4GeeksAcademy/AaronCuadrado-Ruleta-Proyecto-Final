@@ -1,117 +1,155 @@
 import React, { useState } from "react";
-import "../../styles/modal/modalregister.css"; // Archivo de estilos específico para el modal
+import "../../styles/navbar-options/modalRegister.css";
 
-// Componente funcional para el modal de registro
 export const ModalRegister = ({ onClose }) => {
-    // Estado para manejar los datos del formulario
-    const [formData, setFormData] = useState({
-        username: "",
-        email: "",
-        password: "",
-        confirmPassword: ""
-    });
-
-    // Estado para almacenar los mensajes de error
+    // Estados para los campos del formulario
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [birthdate, setBirthdate] = useState("");
     const [errors, setErrors] = useState({});
+    const [successMessage, setSuccessMessage] = useState("");
 
-    // Maneja los cambios en los campos del formulario
-    const handleInputChange = (e) => {
-        setFormData({
-            ...formData, // Mantiene los valores actuales
-            [e.target.name]: e.target.value // Actualiza el campo correspondiente
-        });
-    };
-
-    // Función para validar los datos del formulario
+    // Validar el formulario antes de enviarlo
     const validateForm = () => {
-        const errors = {}; // Objeto para almacenar los errores
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Expresión regular para validar el email
+        const newErrors = {};
+        if (!username) newErrors.username = "El nombre de usuario es obligatorio.";
+        if (!email.includes("@")) newErrors.email = "Introduce un email válido.";
+        if (password.length < 6)
+            newErrors.password = "La contraseña debe tener al menos 6 caracteres.";
+        if (password !== confirmPassword)
+            newErrors.confirmPassword = "Las contraseñas no coinciden.";
+        if (!birthdate) newErrors.birthdate = "La fecha de nacimiento es obligatoria.";
 
-        if (!formData.username) errors.username = "El nombre de usuario es obligatorio"; // Validación del nombre de usuario
-        if (!formData.email || !emailRegex.test(formData.email)) errors.email = "Email inválido"; // Validación del email
-        if (formData.password.length < 6)
-            errors.password = "La contraseña debe tener al menos 6 caracteres"; // Validación de longitud mínima de la contraseña
-        if (formData.password !== formData.confirmPassword)
-            errors.confirmPassword = "Las contraseñas no coinciden"; // Validación de coincidencia de contraseñas
-
-        return errors; // Devuelve los errores encontrados
+        return newErrors;
     };
 
-    // Maneja el envío del formulario
-    const handleSubmit = (e) => {
-        e.preventDefault(); // Evita que la página se recargue
-        const validationErrors = validateForm(); // Llama a la función de validación
-        if (Object.keys(validationErrors).length > 0) {
-            // Si hay errores, los almacena en el estado
-            setErrors(validationErrors);
-        } else {
-            // Si no hay errores, procesa los datos
-            console.log("Formulario enviado", formData);
-            setErrors({}); // Limpia los errores
-            // Aquí puedes enviar los datos al backend
-            onClose(); // Cierra el modal
+    // Manejar el envío del formulario
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setErrors({}); // Limpiar errores previos
+        setSuccessMessage(""); // Limpiar mensaje de éxito
+
+        const formErrors = validateForm();
+        if (Object.keys(formErrors).length > 0) {
+            setErrors(formErrors);
+            return;
+        }
+
+        try {
+            // Realizar la solicitud al backend
+            const response = await fetch("https://ideal-guacamole-v6pq4wxxw5w4hrxj-3001.app.github.dev/api/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials:"include",
+                body: JSON.stringify({
+                    username,
+                    email,
+                    password,
+                    birthdate,
+                }),
+            });
+
+            // Manejar la respuesta del backend
+            if (response.ok) {
+                setSuccessMessage("¡Registro exitoso! Ahora puedes iniciar sesión.");
+                setTimeout(() => {
+                    onClose(); // Cerrar el modal después de unos segundos
+                }, 2000);
+            } else {
+                const data = await response.json();
+                setErrors({ general: data.error || "Error al registrar. Inténtalo de nuevo." });
+            }
+        } catch (error) {
+            console.error("Error al conectar con el backend:", error);
+            setErrors({ general: "Error al conectar con el servidor." });
         }
     };
 
-    // Renderiza el modal
     return (
         <div className="modal-overlay">
             <div className="modal-content">
-                {/* Botón para cerrar el modal */}
                 <button className="close-button" onClick={onClose}>
                     &times;
                 </button>
-                <h2>Registro</h2>
-                {/* Formulario de registro */}
+                <h2>Crear Cuenta</h2>
+                {errors.general && <p className="error-message general">{errors.general}</p>}
+                {successMessage && <p className="success-message">{successMessage}</p>}
                 <form onSubmit={handleSubmit}>
+                    {/* Campo de Usuario */}
                     <div className="form-group">
-                        <label htmlFor="username">Nombre de Usuario:</label>
+                        <label>Nombre de Usuario</label>
                         <input
                             type="text"
-                            id="username"
-                            name="username"
-                            value={formData.username}
-                            onChange={handleInputChange}
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            placeholder="Introduce tu nombre de usuario"
                         />
-                        {/* Muestra el mensaje de error si existe */}
-                        {errors.username && <p className="error-message">{errors.username}</p>}
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="email">Email:</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleInputChange}
-                        />
-                        {errors.email && <p className="error-message">{errors.email}</p>}
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Contraseña:</label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleInputChange}
-                        />
-                        {errors.password && <p className="error-message">{errors.password}</p>}
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="confirmPassword">Confirmar Contraseña:</label>
-                        <input
-                            type="password"
-                            id="confirmPassword"
-                            name="confirmPassword"
-                            value={formData.confirmPassword}
-                            onChange={handleInputChange}
-                        />
-                        {errors.confirmPassword && (
-                            <p className="error-message">{errors.confirmPassword}</p>
+                        {errors.username && (
+                            <span className="error-message">{errors.username}</span>
                         )}
                     </div>
-                    <button type="submit" className="submit-button">
+
+                    {/* Campo de Email */}
+                    <div className="form-group">
+                        <label>Email</label>
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Introduce tu email"
+                        />
+                        {errors.email && (
+                            <span className="error-message">{errors.email}</span>
+                        )}
+                    </div>
+
+                    {/* Campo de Contraseña */}
+                    <div className="form-group">
+                        <label>Contraseña</label>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Introduce tu contraseña"
+                        />
+                        {errors.password && (
+                            <span className="error-message">{errors.password}</span>
+                        )}
+                    </div>
+
+                    {/* Campo de Confirmar Contraseña */}
+                    <div className="form-group">
+                        <label>Repite la Contraseña</label>
+                        <input
+                            type="password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            placeholder="Repite tu contraseña"
+                        />
+                        {errors.confirmPassword && (
+                            <span className="error-message">{errors.confirmPassword}</span>
+                        )}
+                    </div>
+
+                    {/* Campo de Fecha de Nacimiento */}
+                    <div className="form-group">
+                        <label>Fecha de Nacimiento</label>
+                        <input
+                            type="date"
+                            value={birthdate}
+                            onChange={(e) => setBirthdate(e.target.value)}
+                        />
+                        {errors.birthdate && (
+                            <span className="error-message">{errors.birthdate}</span>
+                        )}
+                    </div>
+
+                    {/* Botón de Enviar */}
+                    <button type="submit" className="btn-submit">
                         Registrarse
                     </button>
                 </form>

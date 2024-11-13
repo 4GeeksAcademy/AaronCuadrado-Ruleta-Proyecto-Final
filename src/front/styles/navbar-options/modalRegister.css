@@ -1,103 +1,88 @@
-/* Fondo semitransparente del modal */
+/* Fondo oscuro del modal */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8); /* Fondo negro semitransparente */
+    background-color: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
 
-/* Contenido principal del modal */
+/* Contenedor del modal */
 .modal-content {
-    background: #ffffff; /* Fondo blanco */
-    padding: 20px;
+    background-color: #ffffff;
+    padding: 20px 30px;
     border-radius: 10px;
-    width: 400px; /* Ancho fijo */
-    max-width: 90%; /* Ancho máximo en pantallas pequeñas */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra */
-    text-align: center;
-    position: relative; /* Necesario para el botón de cierre */
-    font-family: 'Poppins', sans-serif;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    position: relative;
 }
 
-/* Botón para cerrar el modal */
+/* Botón de cierre */
 .close-button {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 18px;
+    top: 15px;
+    right: 15px;
     background: none;
     border: none;
-    color: #333;
+    font-size: 24px;
     cursor: pointer;
-    transition: color 0.3s ease; /* Transición suave */
-}
-
-.close-button:hover {
-    color: red; /* Color rojo al pasar el cursor */
+    color: #333333;
 }
 
 /* Título del modal */
 h2 {
-    font-size: 24px;
-    color: #0c2a40; /* Azul oscuro */
+    text-align: center;
+    color: #004aad;
     margin-bottom: 20px;
 }
 
-/* Estilo para los grupos de formulario */
+/* Estilo de cada campo del formulario */
 .form-group {
     margin-bottom: 15px;
-    text-align: left;
 }
 
-/* Etiquetas de los campos */
-label {
+.form-group label {
     display: block;
-    font-size: 14px;
-    color: #333;
     margin-bottom: 5px;
+    font-weight: bold;
+    color: #333333;
 }
 
-/* Campos de entrada */
-input {
+.form-group input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #cccccc;
     border-radius: 5px;
     font-size: 14px;
-    font-family: 'Poppins', sans-serif;
 }
 
-input:focus {
-    outline: none;
-    border-color: #0c2a40; /* Azul oscuro */
+/* Botón de envío */
+.btn-submit {
+    background-color: #004aad;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: #003a8c;
 }
 
 /* Mensajes de error */
 .error-message {
-    font-size: 12px;
     color: red;
+    font-size: 12px;
     margin-top: 5px;
-}
-
-/* Botón de envío */
-.submit-button {
-    background-color: #0c2a40; /* Azul oscuro */
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-family: 'Poppins', sans-serif;
-}
-
-.submit-button:hover {
-    background-color: #09568d; /* Azul más claro */
+    display: block;
 }

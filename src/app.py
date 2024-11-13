@@ -10,6 +10,7 @@ from api.users import users
 from api.vehicles import vehicles
 from api.reservations import reservations
 from api.maintenance import maintenance
+from api.auth import auth
 from flask_cors import CORS
 
 
