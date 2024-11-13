@@ -24,7 +24,7 @@ db_url = os.getenv("DATABASE_URL")
 if db_url is not None:
     app.config['SQLALCHEMY_DATABASE_URI'] = db_url.replace("postgres://", "postgresql://")
 else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///ruleta_database.db"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///renting.db"
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
