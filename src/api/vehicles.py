@@ -2,7 +2,10 @@ from flask import Blueprint, jsonify, request, session
 from api.models import db, Vehicle
 from werkzeug.exceptions import NotFound
 
-vehicles = Blueprint('vehicles', methods=['GET'])
+vehicles = Blueprint('vehicles', __name__)
+
+#Ruta para ver todos los vehiculos disponibles
+@vehicles.route('/vehicles', methods=['GET'])
 def get_vehicles():
     #obtener los vehiculos disponibles
     vehicles = Vehicle.query.filter_by(availability=True).all()
@@ -43,6 +46,14 @@ def create_vehicle():
     if not brand or not model or not year or not color or not daily_price:
         return jsonify({"error": "Todos los campos son obligatorios"}), 400
     
+    #Verificar que el daily_price sea un valor positibo
+    if daily_price <= 0:
+        return jsonify({"error":"El precio diario debe ser mayor que cero"}), 400
+    
+    #Validar que el año sea un valor logico
+    if year > datetime.now().year:
+        return jsonify({"error": "El año del vehiculo no puede ser futuro al actual"}), 400
+
     #Crear el nuevo vehiculo
     new_vehicle = Vehicle(
         brand=brand,
@@ -62,7 +73,7 @@ def create_vehicle():
 
 #Ruta para actualizar el vehiculo
 @vehicles.route('/vehicles/<int:vehicle_id>', methods=['PUT'])
-def uptade_vehicule(vehicle_id):
+def uptade_vehicle(vehicle_id):
     if 'user_id' not in session:
         return jsonify({"error":"Acceso no autorizado"}), 403
     
