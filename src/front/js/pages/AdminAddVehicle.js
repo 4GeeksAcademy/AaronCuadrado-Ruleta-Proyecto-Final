@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../../styles/adminAddVehicle.css";
 
 export const AdminAddVehicle = () => {
     const [vehicleData, setVehicleData] = useState({
@@ -60,54 +61,68 @@ export const AdminAddVehicle = () => {
             {message && <p className="success-message">{message}</p>}
             {error && <p className="error-message">{error}</p>}
             <form onSubmit={handleSubmit}>
-                <label>Marca:</label>
-                <input
-                    type="text"
-                    name="brand"
-                    value={vehicleData.brand}
-                    onChange={handleChange}
-                    required
-                />
-                <label>Modelo:</label>
-                <input
-                    type="text"
-                    name="model"
-                    value={vehicleData.model}
-                    onChange={handleChange}
-                    required
-                />
-                <label>Año:</label>
-                <input
-                    type="number"
-                    name="year"
-                    value={vehicleData.year}
-                    onChange={handleChange}
-                    required
-                />
-                <label>Color:</label>
-                <input
-                    type="text"
-                    name="color"
-                    value={vehicleData.color}
-                    onChange={handleChange}
-                    required
-                />
-                <label>Precio Mensual (€):</label>
-                <input
-                    type="number"
-                    name="daily_rate"
-                    value={vehicleData.daily_rate}
-                    onChange={handleChange}
-                    required
-                />
-                <label>URL de Imagen:</label>
-                <input
-                    type="text"
-                    name="image_url"
-                    value={vehicleData.image_url}
-                    onChange={handleChange}
-                />
-                <button type="submit">Agregar Vehículo</button>
+                <div className="form-group">
+                    <label>Marca:</label>
+                    <input
+                        type="text"
+                        name="brand"
+                        value={vehicleData.brand}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Modelo:</label>
+                    <input
+                        type="text"
+                        name="model"
+                        value={vehicleData.model}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Año:</label>
+                    <input
+                        type="number"
+                        name="year"
+                        value={vehicleData.year}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Color:</label>
+                    <input
+                        type="text"
+                        name="color"
+                        value={vehicleData.color}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Precio Mensual (€):</label>
+                    <input
+                        type="number"
+                        name="monthly_rate"
+                        value={vehicleData.monthly_rate}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label>URL de Imagen:</label>
+                    <input
+                        type="text"
+                        name="image_url"
+                        value={vehicleData.image_url}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="form-group form-submit">
+                    <button type="submit">Agregar Vehículo</button>
+                </div>
             </form>
         </div>
     );

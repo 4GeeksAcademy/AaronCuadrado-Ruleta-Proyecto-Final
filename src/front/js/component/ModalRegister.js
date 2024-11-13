@@ -51,7 +51,6 @@ export const ModalRegister = ({ onClose }) => {
                     email,
                     password,
                     birthdate,
-                    is_admin: isAdmin,
                 }),
             });
 
@@ -148,17 +147,6 @@ export const ModalRegister = ({ onClose }) => {
                         {errors.birthdate && (
                             <span className="error-message">{errors.birthdate}</span>
                         )}
-                    </div>
-                    {/* Checkbox para administrador */}
-                    <div className="form-group">
-                        <label>
-                            <input
-                                type="checkbox"
-                                checked={isAdmin}
-                                onChange={(e) => setIsAdmin(e.target.checked)}
-                            />
-                            Registrar como administrador
-                        </label>
                     </div>
 
                     {/* Botón de Enviar */}
