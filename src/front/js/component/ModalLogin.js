@@ -66,7 +66,7 @@ export const ModalLogin = ({ setShowModal }) => {
                 </form>
                 {/* Botón para cerrar el modal */}
                 <button onClick={() => setShowModal(false)} className="btn-close">
-                    Cerrar
+                    
                 </button>
             </div>
 

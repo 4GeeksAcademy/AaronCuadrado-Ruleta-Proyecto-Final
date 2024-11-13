@@ -1,18 +1,23 @@
 const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
-            isAuthenticated: false,
-            userBalance: 0,
+            isAuthenticated: false,  // Inicialización del estado de autenticación
+            user: null,              // Aquí guardamos los datos del usuario
+            userBalance: 0,          // Balance del usuario
         },
         actions: {
-            // Acción para iniciar sesión y actualizar autenticación y saldo
-            login: (balance) => {
-                setStore({ isAuthenticated: true, userBalance: balance });
+            // Acción para iniciar sesión y actualizar autenticación y balance
+            login: (user) => {
+                setStore({
+                    isAuthenticated: true,
+                    user: user,         // Almacena el objeto completo del usuario
+                    userBalance: user.balance
+                });
             },
 
             // Acción para cerrar sesión
             logout: () => {
-                setStore({ isAuthenticated: false, userBalance: 0 });
+                setStore({ isAuthenticated: false, user: null, userBalance: 0 });
             },
 
             // Acción para actualizar el balance desde el backend

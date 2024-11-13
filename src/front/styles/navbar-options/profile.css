@@ -1,0 +1,126 @@
+/* Estilos generales para la página de perfil */
+.profile-page {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a; /* Fondo negro */
+    color: #fff; /* Texto blanco */
+    padding: 40px;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-header h1 {
+    font-size: 2rem;
+    color: #d4af37; /* Color dorado */
+}
+
+.profile-content {
+    background-color: #333; /* Fondo gris oscuro */
+    border-radius: 10px;
+    padding: 20px;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.profile-details {
+    margin-bottom: 30px;
+}
+
+.profile-details p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.profile-actions {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Estilos para botones */
+.edit-button, button {
+    background-color: #d4af37; /* Botones dorados */
+    color: #1a1a1a; /* Texto negro */
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.edit-button:hover, button:hover {
+    background-color: #b58c30; /* Botones dorados más oscuros al hacer hover */
+}
+
+/* Estilos para formularios de edición */
+form {
+    margin-top: 20px;
+    text-align: center;
+}
+
+form input {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #888;
+    width: 80%;
+    font-size: 1rem;
+}
+
+form input:focus {
+    outline: none;
+    border-color: #d4af37; /* Dorado cuando el input está seleccionado */
+}
+
+.error-message {
+    color: #f44336; /* Color rojo para errores */
+    font-size: 0.9rem;
+}
+
+/* Modal de éxito */
+.success-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.success-modal-content {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;
+}
+
+.success-modal h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #d4af37; /* Dorado */
+}
+
+.success-modal button {
+    background-color: #d4af37; /* Dorado */
+    color: #1a1a1a; /* Negro */
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.success-modal button:hover {
+    background-color: #b58c30; /* Botón dorado más oscuro al hacer hover */
+}
+
+.success-modal .btn-close-success {
+    background-color: #f44336; /* Rojo para cerrar */
+    color: #fff;
+}

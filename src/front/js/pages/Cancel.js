@@ -9,7 +9,7 @@ export const Cancel = () => {
         <div className="cancel-container">
             <h2>Pago Cancelado</h2>
             <p>Has cancelado el proceso de pago. Vuelve a intentarlo.</p>
-            <button onClick={() => navigate("/add-funds")}>Intentar de Nuevo</button>
+            <button onClick={() => navigate("/menu")}>Volver al menu</button>
         </div>
     );
 };

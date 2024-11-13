@@ -37,8 +37,8 @@ def add_funds():
             'quantity': 1,
         }],
         mode='payment',
-        success_url='https://ominous-fishstick-g4x796gg6wr4fwp47-3000.app.github.dev/add-funds/success',  # URL de éxito actualizada al frontend
-        cancel_url='https://ominous-fishstick-g4x796gg6wr4fwp47-3000.app.github.dev/add-funds/cancel',  # URL de cancelación actualizada al frontend
+        success_url='https://ideal-guacamole-v6pq4wxxw5w4hrxj-3000.app.github.dev/add-funds/success',  # URL de éxito actualizada al frontend
+        cancel_url='https://ideal-guacamole-v6pq4wxxw5w4hrxj-3000.app.github.dev/add-funds/cancel',  # URL de cancelación actualizada al frontend
         metadata={
             'user_id': user.id
         }

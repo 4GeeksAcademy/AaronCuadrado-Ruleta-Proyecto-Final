@@ -85,7 +85,6 @@ export const ModalRegister = ({ setShowModal }) => {
                     <label htmlFor="birthdate">Fecha de nacimiento:</label>
                     <input type="date" id="birthdate" name="birthdate" required />
                     {ageError && <p className="error-message">{ageError}</p>}
-                   
                     {/* Mostrar mensaje de error si el registro falla */}
                     {showError && (
                         <p className="error-message">
@@ -97,7 +96,7 @@ export const ModalRegister = ({ setShowModal }) => {
                 </form>
                 {/* Botón para cerrar el modal de registro */}
                 <button onClick={() => setShowModal(false)} className="btn-close">
-                    Cerrar
+                    
                 </button>
             </div>
 
@@ -106,13 +105,13 @@ export const ModalRegister = ({ setShowModal }) => {
                 <div className="success-modal">
                     <div className="success-modal-content">
                         <h3>¡Registro exitoso!</h3>
-                        <p>Te has registrado correctamente.</p>
+                        <p>Te has registrado correctamente. Ahora puedes iniciar sesión.</p>
                         <button className="btn-close-success" onClick={() => {
                             setShowSuccessModal(false);
                             setShowModal(false);  // Cerrar modal de éxito y modal principal
-                            navigate("/menu");  // Redirigir a la página de menú
+                            navigate("/");  // Redirigir al usuario a la página de inicio de sesión
                         }}>
-                            Acceder a la web
+                            Inicio
                         </button>
                     </div>
                 </div>

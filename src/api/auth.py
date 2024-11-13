@@ -5,7 +5,6 @@ import re
 
 auth = Blueprint('auth', __name__)
 
-# RUTA DE REGISTRO
 @auth.route('/register', methods=['POST'])
 def register():
     # Obtener los datos del email, password, username y fecha de nacimiento
@@ -44,11 +43,15 @@ def register():
     db.session.add(new_user)
     db.session.commit()
 
+    # Establecer la sesión al registrar al usuario
+    session['user_id'] = new_user.id  # Guardar el user_id en la sesión
+
     # Usuario registrado exitosamente
     return jsonify({
         "message": "Usuario registrado con éxito",
         "balance": new_user.balance
     }), 201
+
 
 
 # RUTA DE INICIO DE SESIÓN

@@ -21,6 +21,7 @@ const injectContext = PassedComponent => {
 		);
 
 		useEffect(() => {
+			// Aquí puedes agregar un efecto para cargar datos al principio si es necesario.
 		}, []); // Array de dependencias vacío para ejecutar solo una vez
 
 		// Se proporciona `state` como valor del contexto, incluyendo `store`, `actions` y `setStore`
