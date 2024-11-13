@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../styles/vehicles.css"; 
 import { useNavigate } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export const Vehicles = () => {
+    const { store } = useContext(Context);
     const [vehicles, setVehicles] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -31,7 +34,15 @@ export const Vehicles = () => {
     }, []);
 
     const handleReserveClick = (vehicle) => {
+        if (!store.user) {
+            setShowModal(true);
+            return;
+        }
         navigate("/reserve", { state: { vehicle } });
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
     };
 
     if (loading) {
@@ -58,7 +69,9 @@ export const Vehicles = () => {
                             <p>Color: {vehicle.color}</p>
                             <p>Año: {vehicle.year}</p>
                             <p>Precio mensual: {vehicle.monthly_price}€</p>
-                            <button className="reserve-button" onClick={() => handleReserveClick(vehicle)}
+                            <button
+                                className="reserve-button"
+                                onClick={() => handleReserveClick(vehicle)}
                             >
                                 Reservar
                             </button>
@@ -66,6 +79,14 @@ export const Vehicles = () => {
                     </div>
                 ))}
             </div>
+            {showModal && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <p>Hace falta iniciar sesión para reservar.</p>
+                        <button onClick={closeModal}>Cerrar</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

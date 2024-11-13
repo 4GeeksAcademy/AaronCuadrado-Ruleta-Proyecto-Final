@@ -3,13 +3,14 @@
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente */
+    background: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
     display: flex;
     justify-content: space-between; /* Espaciado entre logo y botones */
     align-items: center;
     padding: 10px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
     z-index: 1000; /* Asegurar que esté por encima del contenido */
+    transition: padding 0.3s ease; /* Animación al cambiar tamaño */
 }
 
 .navbar-container {
@@ -17,6 +18,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap; /* Permite que los elementos salten de línea en pantallas pequeñas */
 }
 
 .navbar-title {
@@ -25,16 +27,14 @@
     color: #003366; /* Color azul profundo para combinar con el tema */
     font-family: 'Poppins', sans-serif; /* Fuente moderna */
     white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    margin-left: 10px; /* Espaciado entre logo y título */
 }
-
 
 .navbar-logo img {
-    height: 70px; /* Aumenta la altura del logo */
-    max-width: none; /* Permite que el logo crezca en proporción */
-    object-fit: contain; /* Asegura que el logo mantenga sus proporciones */
+    height: 60px; /* Ajusta el tamaño del logo */
+    object-fit: contain; /* Mantén las proporciones */
     margin-right: auto;
 }
-
 
 .navbar-buttons {
     display: flex;
@@ -60,8 +60,77 @@
     color: white; /* Texto blanco en hover */
 }
 
-
 .logo {
     margin-right: auto;
 }
 
+/* Media Query para dispositivos móviles */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px 10px; /* Reduce el padding */
+    }
+
+    .navbar-logo img {
+        height: 50px; /* Ajusta el tamaño del logo en móviles */
+    }
+
+    .navbar-title {
+        font-size: 1.2rem; /* Reduce el tamaño del título */
+        margin-left: 5px; /* Reduce el espaciado */
+    }
+
+    .navbar-buttons {
+        display: none; /* Oculta botones en la vista normal */
+    }
+
+    .hamburger-menu {
+        display: flex; /* Activa el menú hamburguesa */
+    }
+}
+
+/* Estilos para el menú hamburguesa en móviles */
+.hamburger-menu {
+    display: none; /* Oculta en pantallas grandes */
+}
+
+.hamburger-icon {
+    font-size: 24px;
+    color: #007bff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.hamburger-icon:hover {
+    color: #0056b3;
+}
+
+.hamburger-dropdown {
+    position: absolute;
+    top: 70px; /* Ajusta la posición relativa al navbar */
+    right: 10px;
+    background-color: #ffffff; /* Fondo blanco */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espaciado entre enlaces */
+}
+
+.hamburger-dropdown .navbar-link {
+    color: #003366; /* Azul oscuro */
+    font-size: 14px;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.hamburger-dropdown .navbar-link:hover {
+    background-color: #e6f2ff; /* Fondo azul claro */
+    color: #007bff;
+}

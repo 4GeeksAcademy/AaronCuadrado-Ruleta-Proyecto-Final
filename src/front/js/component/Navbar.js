@@ -8,6 +8,7 @@ import { ModalLogin } from "../component/ModalLogin";
 export const Navbar = () => {
     const [showRegisterModal, setShowRegisterModal] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false);
+    const [showHamburgerMenu, setShowHamburgerMenu] = useState(false);
 
     // Cleanup automático para evitar actualizaciones en componentes desmontados
     useEffect(() => {
@@ -27,6 +28,10 @@ export const Navbar = () => {
         setShowRegisterModal(true);
     };
 
+    const toggleHamburgerMenu = () => {
+        setShowHamburgerMenu(!showHamburgerMenu);
+    };
+
     return (
         <div className="navbar">
             <div className="navbar-container">
@@ -38,7 +43,7 @@ export const Navbar = () => {
                     <span className="navbar-title">Veloce Renting</span>
                 </div>
 
-                {/* Botones del navbar */}
+                {/* Botones del navbar
                 <div className="navbar-buttons">
                     <Link to="/vehicles" className="navbar-link">
                         Ver Vehículos
@@ -49,10 +54,37 @@ export const Navbar = () => {
                     <button className="navbar-link" onClick={openLoginModal}>
                         Iniciar Sesión
                     </button>
-                </div>
+                </div> */}
+
+                {/* Menú hamburguesa */}
+                <button className="hamburger-icon" onClick={toggleHamburgerMenu}>
+                    &#9776;
+                </button>
+                {showHamburgerMenu && (
+                    <div className="hamburger-dropdown">
+                        <Link to="/vehicles" className="navbar-link" onClick={toggleHamburgerMenu}>
+                            Ver Vehículos
+                        </Link>
+                        <button className="navbar-link" onClick={() => {
+                            openRegisterModal();
+                            toggleHamburgerMenu();
+                        }}>
+                            Registrarse
+                        </button>
+                        <button className="navbar-link" onClick={() => {
+                            openLoginModal();
+                            toggleHamburgerMenu();
+                        }}>
+                            Iniciar Sesión
+                        </button>
+                    </div>
+                )}
             </div>
+
             {/* Modales */}
-            {showRegisterModal && <ModalRegister onClose={() => setShowRegisterModal(false)} />}
+            {showRegisterModal && (
+                <ModalRegister onClose={() => setShowRegisterModal(false)} />
+            )}
             {showLoginModal && <ModalLogin onClose={() => setShowLoginModal(false)} />}
         </div>
     );

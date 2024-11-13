@@ -9,6 +9,7 @@ import { Vehicles } from "./pages/Vehicles";
 import { AdminAddVehicle } from "./pages/AdminAddVehicle";
 import { AdminManageVehicles } from "./pages/AdminManageVehicles";
 import { Profile } from "./pages/Profile.js";
+import { Reserve } from "./pages/Reserve.js";
 
 const Layout = () => {
     const { store } = useContext(Context);
@@ -24,6 +25,7 @@ const Layout = () => {
                     <Route path="/admin/add-vehicle" element={<AdminAddVehicle />} />
                     <Route path="/admin/manage-vehicles" element={<AdminManageVehicles />} />
                     <Route path="/profile" element={<Profile />} />
+                    <Route path="/reserve" element={<Reserve />} />
                     <Route path="*" element={<h1>Not found!</h1>} />
                 </Routes>
                 <Footer />
