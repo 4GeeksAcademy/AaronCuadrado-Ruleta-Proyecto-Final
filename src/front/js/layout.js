@@ -12,6 +12,7 @@ import { Success } from "./pages/Success";
 import { Cancel } from "./pages/Cancel";
 import Blackjack  from "./pages/Blackjack";
 import { Profile } from "./pages/Profile";
+import { Navbar } from "./component/Navbar";
 
 const Layout = () => {
     const { store } = useContext(Context);
@@ -20,6 +21,7 @@ const Layout = () => {
     return (
         <BrowserRouter basename={basename}>
             <ScrollToTop>
+                <Navbar/>
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/menu" element={store.isAuthenticated ? <Menu /> : <Navigate to="/" />} />

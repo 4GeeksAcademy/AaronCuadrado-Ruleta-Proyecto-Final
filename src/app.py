@@ -7,6 +7,9 @@ from api.admin import setup_admin
 from api.commands import setup_commands
 from api.webhook import webhook
 from api.users import users
+from api.vehicles import vehicles
+from api.reservations import reservations
+from api.maintenance import maintenance
 from flask_cors import CORS
 
 
@@ -36,21 +39,16 @@ setup_admin(app)
 setup_commands(app)
 
 # Registrar el blueprint para las rutas
-app.register_blueprint(auth, url_prefix='/api')
-app.register_blueprint(transaction, url_prefix='/api')
-app.register_blueprint(blackjack, url_prefix='/api')
-app.register_blueprint(webhook, url_prefix='/api')
 app.register_blueprint(users, url_prefix='/api')
+app.register_blueprint(vehicles, url_prefix='/api')
+app.register_blueprint(reservations, url_prefix='/api')
+app.register_blueprint(maintenance, url_prefix='/api')
+app.register_blueprint(webhook, url_prefix='/api')
 
 # Ruta principal (puedes eliminarla si no es necesaria)
 @app.route('/')
 def home():
-    return "Bienvenido al casino online!"
-
-
-# Ejecutar la aplicación si se ejecuta directamente
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=3001, debug=True)
+    return "Bienvenido al sistema de renting de vehiculos"
 
 # Configurar la clave secreta y el tipo de sesión
 app.config['SECRET_KEY'] = 'ClaveTopSecret'  # Clave secreta 
@@ -59,3 +57,7 @@ app.config['SESSION_PERMANENT'] = False #que la sesion se cierre con el navegado
 app.config['SESSION_COOKIE_HTTPONLY'] = True  # Asegúrate de que la cookie es segura
 
 Session(app)
+
+# Ejecutar la aplicación si se ejecuta directamente
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=3001, debug=True)
