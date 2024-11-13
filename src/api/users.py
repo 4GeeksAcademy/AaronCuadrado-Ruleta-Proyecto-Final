@@ -7,11 +7,7 @@ users = Blueprint('users', __name__)
 # RUTA PARA OBTENER LA LISTA DE USUARIOS
 @users.route('/users', methods=['GET'])
 def get_users():
-    """
-    Devuelve una lista de todos los usuarios registrados en el sistema.
-    Esta ruta debería usarse solo con fines administrativos y estar protegida.
-    """
-    # Verificación de autenticación (se puede mejorar con permisos administrativos)
+    # Verificación de autenticación 
     if 'user_id' not in session:
         return jsonify({"error": "Acceso no autorizado"}), 403
 
@@ -24,9 +20,6 @@ def get_users():
 # RUTA PARA OBTENER LOS DATOS DE UN USUARIO ESPECÍFICO
 @users.route('/users/<int:user_id>', methods=['GET'])
 def get_user(user_id):
-    """
-    Devuelve los datos de un usuario específico.
-    """
     # Verificación de autenticación
     if 'user_id' not in session:
         return jsonify({"error": "Acceso no autorizado"}), 403
@@ -40,9 +33,6 @@ def get_user(user_id):
 
 @users.route('/users/<int:user_id>', methods=['PUT'])
 def update_username(user_id):
-    """
-    Actualiza el nombre de usuario de un usuario específico.
-    """
     # Verificación de autenticación
     if 'user_id' not in session:
         return jsonify({"error": "Acceso no autorizado"}), 403
@@ -75,9 +65,6 @@ def update_username(user_id):
 # RUTA PARA ACTUALIZAR LA CONTRASEÑA
 @users.route('/users/<int:user_id>/update-password', methods=['PUT'])
 def update_password(user_id):
-    """
-    Cambia la contraseña de un usuario específico.
-    """
     # Verificación de autenticación
     if 'user_id' not in session:
         return jsonify({"error": "Acceso no autorizado"}), 403

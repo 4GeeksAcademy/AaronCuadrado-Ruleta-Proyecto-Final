@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash  #Encr
 db = SQLAlchemy()
 
 #Usuario define el modelo de usuario en la base de datos
-class Usuario(db.Model):
+class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)  # ID único para cada usuario
     username = db.Column(db.String(80), unique=True, nullable=False)  # Campo para el nombre de usuario, debe ser único y no puede ser nulo
     email = db.Column(db.String(120), unique=True, nullable=False)  # Email del usuario, debe ser único y no puede ser nulo
@@ -13,16 +13,16 @@ class Usuario(db.Model):
     is_active = db.Column(db.Boolean(), default=True, nullable=False)  # Indica si el usuario está activo o no
     balance = db.Column(db.Float, default=0.00)  # Saldo del usuario
     birthdate = db.Column(db.Date, nullable=False)  # Fecha de nacimiento del usuario, utilizada para verificar la mayoría de edad
-    fecha_registro = db.Column(db.DateTime, default=datetime.utcnow) #Fecha de registro
-    reservas = db.relationship('Reserva', backref='usuario', lazy=True) #Relacion con las reservas de vehiculos
+    registration_date = db.Column(db.DateTime, default=datetime.utcnow) #Fecha de registro
+    bookings = db.relationship('Booking', backref='user', lazy=True) #Relacion con las reservas de vehiculos
 
     # Método para establecer la contraseña encriptada
-    def establecer_contraseña(self, password):
+    def set_password(self, password):
         #Establece la contraseña encriptada
         self.password_hash = generate_password_hash(password)
 
     # Método para verificar la contraseña en la autenticación
-    def verificar_contraseña(self, password):
+    def check_password(self, password):
         #Verifica si la contraseña ingresada coincide con el hash almacenado
         return check_password_hash(self.password_hash, password)
 
@@ -38,71 +38,71 @@ class Usuario(db.Model):
         }
 
 # Clase Vehiculo que define el modelo de vehiculo en la base de datos
-class Vehiculo(db.Model):
+class Vehicle(db.Model):
     id = db.Column(db.Integer, primary_key=True)  # ID único para cada transacción
-    marca = db.Column(db.String(100), nullable=False) #Marca del vehiculo
-    modelo = db.Column(db.String(100), nullable=False) #Modelo
-    año = db.Column(db.Integer, nullable=False)
+    brand = db.Column(db.String(100), nullable=False) #Marca del vehiculo
+    model = db.Column(db.String(100), nullable=False) #Modelo
+    year = db.Column(db.Integer, nullable=False)
     color = db.Column(db.String(50), nullable=False)
-    precio_diario = db.Column(db.Float, nullable=False)
-    disponibilidad = db.Column(db.Boolean, default=True)
-    imagen_url = db.Column(db.String(255))
-    reservas = db.relationship('Reserva', backref='vehiculo', lazy=True)
+    daily_rate = db.Column(db.Float, nullable=False)
+    availability = db.Column(db.Boolean, default=True)
+    image_url = db.Column(db.String(255))
+    bookings = db.relationship('Booking', backref='vehicle', lazy=True)
 
     # Método para serializar los datos del vehiculo en un formato adecuado para API
     def serialize(self):
         return {
             "id": self.id,
-            "marca": self.marca,
-            "modelo": self.modelo,
-            "año": self.año,
+            "brand": self.brand,
+            "model": self.model,
+            "year": self.year,
             "color": self.color,
-            "precio_diario": self.precio_diario,
-            "disponibilidad": self.disponibilidad,
-            "imagen_url": self.imagen_url,
+            "daily_rate": self.daily_rate,
+            "availability": self.availability,
+            "image_url": self.image_url,
         }
     
 # Reserva que define el modelo de reservas de vehculos
-class Reserva(db.Model):
+class Booking(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
-    vehiculo_id = db.Column(db.Integer, db.ForeignKey('vehiculo.id'), nullable=False)
-    fecha_inicio = db.Column(db.DateTime, nullable=False)
-    fecha_fin = db.Column(db.DateTime, nullable=False)
-    estado = db.Column(db.String(50), default="pendiente")
-    pago_realizado =db.Column(db.Boolean, default=False)
-    mantenimiento_reservado = db.Column(db.Boolean, default=False)
-    monto_total =db.Column(db.Float, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    vehicle_id = db.Column(db.Integer, db.ForeignKey('vehicle.id'), nullable=False)
+    start_date = db.Column(db.DateTime, nullable=False)
+    end_date = db.Column(db.DateTime, nullable=False)
+    status = db.Column(db.String(50), default="pending")
+    payment_completed = db.Column(db.Boolean, default=False)
+    maintenance_booked = db.Column(db.Boolean, default=False)
+    total_amount = db.Column(db.Float, nullable=False)
 
     #Serializar los datos de la reserva
-    def serializar(self):
+    def serialize(self):
         return {
             "id": self.id,
-            "usuario_id": self.usuario_id,
-            "vehiculo_id": self.vehiculo_id,
-            "fecha_inicio": self.fecha_inicio,
-            "fecha_fin": self.fecha_fin,
-            "estado": self.estado,
-            "pago_realizado": self.pago_realizado,
-            "mantenimiento_reservado": self.mantenimiento_reservado,
-            "monto_total": self.monto_total,
+            "user_id": self.user_id,
+            "vehicle_id": self.vehicle_id,
+            "start_date": self.start_date,
+            "end_date": self.end_date,
+            "status": self.status,
+            "payment_completed": self.payment_completed,
+            "maintenance_booked": self.maintenance_booked,
+            "total_amount": self.total_amount,
         }
     
-class Mantenimiento(db.Model):
+class Maintenance(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    reserva_id = db.Column(db.Integer, db.ForeignKey('reserva.id'), nullable=False)
-    tipo = db.Column(db.String(100), nullable=False)
-    fecha_reserva = db.Column(db.DateTime, nullable=False)
-    realizado = db.Column(db.Boolean, default=False)
-    comentarios = db.Column(db.String(255))
+    booking_id = db.Column(db.Integer, db.ForeignKey('booking.id'), nullable=False)
+    type = db.Column(db.String(100), nullable=False)
+    reservation_date = db.Column(db.DateTime, nullable=False)
+    completed = db.Column(db.Boolean, default=False)
+    comments = db.Column(db.String(255))
 
     #Serializar mantenimiento
     def serializar(self):
         return{
             "id": self.id,
-            "reserva_id": self.reserva_id,
-            "tipo": self.tipo,
-            "fecha_reserva": self.fecha_reserva,
-            "realizado": self.realizado,
-            "comentarios": self.comentarios,
+            "booking_id": self.booking_id,
+            "type": self.type,
+            "reservation_date": self.reservation_date,
+            "completed": self.completed,
+            "comments": self.comments,
         }
