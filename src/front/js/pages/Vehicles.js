@@ -51,7 +51,7 @@ export const Vehicles = () => {
                             <h3>{`${vehicle.brand} ${vehicle.model}`}</h3>
                             <p>Color: {vehicle.color}</p>
                             <p>Año: {vehicle.year}</p>
-                            <p>Precio por día: {vehicle.daily_rate}€</p>
+                            <p>Precio mensual: {vehicle.monthly_rate}€</p>
                         </div>
                     </div>
                 ))}

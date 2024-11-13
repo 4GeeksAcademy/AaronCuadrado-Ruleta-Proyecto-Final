@@ -88,11 +88,11 @@ def admin_add_vehicle():
     model = data.get('model')
     year = data.get('year')
     color = data.get('color')
-    daily_rate = data.get('daily_rate')
+    monthly_rate = data.get('monthly_rate')
     image_url = data.get('image_url')
 
     # Validar datos obligatorios
-    if not brand or not model or not year or not color or not daily_rate:
+    if not brand or not model or not year or not color or not monthly_rate:
         return jsonify({"error": "Todos los campos son obligatorios"}), 400
 
     # Crear el nuevo vehículo
@@ -101,7 +101,7 @@ def admin_add_vehicle():
         model=model,
         year=year,
         color=color,
-        daily_rate=daily_rate,
+        monthly_rate=monthly_rate,
         image_url=image_url
     )
 

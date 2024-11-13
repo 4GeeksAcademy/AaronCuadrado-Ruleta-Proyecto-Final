@@ -78,6 +78,10 @@ export const NavbarAfterLogin = () => {
                                 >
                                     Cerrar Sesión
                                 </button>
+                                <Link to="/admin/add-vehicle" className="navbar-link">
+    Agregar Vehículo
+</Link>
+
                             </div>
                         )}
                     </div>

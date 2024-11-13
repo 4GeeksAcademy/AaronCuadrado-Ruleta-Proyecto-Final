@@ -6,6 +6,7 @@ import injectContext, { Context } from "./store/appContext";
 import { Footer } from "./component/footer";
 import { NavbarWrapper } from "./component/NavbarWrapper";
 import { Vehicles } from "./pages/Vehicles";
+import { AdminAddVehicle } from "./pages/AdminAddVehicle";
 
 const Layout = () => {
     const { store } = useContext(Context);
@@ -18,6 +19,7 @@ const Layout = () => {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/vehicles" element={<Vehicles />} />
+                    <Route path="/admin/add-vehicle" element={<AdminAddVehicle />} />
                     <Route path="*" element={<h1>Not found!</h1>} />
                 </Routes>
                 <Footer />

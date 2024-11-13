@@ -38,16 +38,16 @@ def create_vehicle():
     model = data.get('model')
     year = data.get('year')
     color = data.get('color')
-    daily_price = data.get('daily_price')
+    monthly_price = data.get('monthly_price')
     availability = data.get('availability', True)
     image_url = data.get('image_url')
 
     #Verificar si se proporcionan los campos requeridos
-    if not brand or not model or not year or not color or not daily_price:
+    if not brand or not model or not year or not color or not monthly_price:
         return jsonify({"error": "Todos los campos son obligatorios"}), 400
     
     #Verificar que el daily_price sea un valor positibo
-    if daily_price <= 0:
+    if monthly_price <= 0:
         return jsonify({"error":"El precio diario debe ser mayor que cero"}), 400
     
     #Validar que el año sea un valor logico
@@ -60,7 +60,7 @@ def create_vehicle():
         model=model,
         year=year,
         color=color,
-        daily_price=daily_price,
+        monthly_price=monthly_price,
         availability=availability,
         image_url=image_url
     )
@@ -88,7 +88,7 @@ def uptade_vehicle(vehicle_id):
     vehicle.model = data.get('model', vehicle.model)
     vehicle.year = data.get('year', vehicle.year)
     vehicle.color = data.get('color', vehicle.color)
-    vehicle.daily_price = data.get('daily_price', vehicle.daily_price)
+    vehicle.monthly_price = data.get('monthly_price', vehicle.monthly_price)
     vehicle.availability = data.get('availability', vehicle.availability)
     vehicle.image_url = data.get('image_url', vehicle.image_url)
 
