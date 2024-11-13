@@ -44,6 +44,7 @@ app.register_blueprint(vehicles, url_prefix='/api')
 app.register_blueprint(reservations, url_prefix='/api')
 app.register_blueprint(maintenance, url_prefix='/api')
 app.register_blueprint(webhook, url_prefix='/api')
+app.register_blueprint(auth, url_prefix='/api')
 
 # Ruta principal (puedes eliminarla si no es necesaria)
 @app.route('/')

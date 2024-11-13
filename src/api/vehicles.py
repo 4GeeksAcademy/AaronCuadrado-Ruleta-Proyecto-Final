@@ -112,3 +112,5 @@ def delete_vehicle(vehicle_id):
     db.session.commit()
 
     return jsonify({"messsage":"Vehiculo eliminado con exito"}), 200
+
+    
