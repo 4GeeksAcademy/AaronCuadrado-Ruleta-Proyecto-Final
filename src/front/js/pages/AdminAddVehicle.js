@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../styles/adminAddVehicle.css";
+import "../../styles/admin/adminAddVehicle.css";
 
 export const AdminAddVehicle = () => {
     const [vehicleData, setVehicleData] = useState({
@@ -60,7 +60,7 @@ export const AdminAddVehicle = () => {
             <h2>Agregar Vehículo</h2>
             {message && <p className="success-message">{message}</p>}
             {error && <p className="error-message">{error}</p>}
-            <form onSubmit={handleSubmit}>
+            <form className="formulario" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label>Marca:</label>
                     <input

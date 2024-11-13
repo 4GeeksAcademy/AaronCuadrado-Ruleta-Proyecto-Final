@@ -15,7 +15,7 @@
     color: #444;
 }
 
-form {
+.formulario {
     display: grid;
     grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
     gap: 15px; /* Espaciado entre campos */
