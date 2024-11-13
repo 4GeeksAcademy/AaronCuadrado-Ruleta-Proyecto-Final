@@ -47,7 +47,7 @@ class Vehicle(db.Model):
     model = db.Column(db.String(100), nullable=False) #Modelo
     year = db.Column(db.Integer, nullable=False)
     color = db.Column(db.String(50), nullable=False)
-    monthly_rate = db.Column(db.Float, nullable=False)
+    monthly_price = db.Column(db.Float, nullable=False)
     availability = db.Column(db.Boolean, default=True)
     image_url = db.Column(db.String(255))
     bookings = db.relationship('Booking', backref='vehicle', lazy=True)
@@ -60,7 +60,7 @@ class Vehicle(db.Model):
             "model": self.model,
             "year": self.year,
             "color": self.color,
-            "monthly_rate": self.monthly_rate,
+            "monthly_price": self.monthly_price,
             "availability": self.availability,
             "image_url": self.image_url,
         }

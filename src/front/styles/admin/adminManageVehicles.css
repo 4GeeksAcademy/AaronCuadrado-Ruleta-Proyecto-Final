@@ -1,0 +1,98 @@
+.admin-manage-vehicles {
+    padding-top: 120px; /* Espacio suficiente debajo del navbar */
+    min-height: 100vh; /* Altura mínima para ocupar toda la pantalla */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f8f9fa; /* Fondo gris claro */
+    box-sizing: border-box; /* Asegura que el padding y el border no desborden el contenedor */
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #003366; /* Azul oscuro */
+    text-align: center;
+}
+
+.error-message {
+    color: red;
+    font-size: 1.2rem;
+    margin: 15px 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+.success-message {
+    color: green;
+    font-size: 1.2rem;
+    margin: 15px 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+.vehicles-table {
+    width: 95%;
+    max-width: 1200px; /* Limita el ancho en pantallas grandes */
+    border-collapse: collapse;
+    margin: 20px auto;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra más destacada */
+    border-radius: 8px; /* Bordes redondeados */
+    overflow: hidden; /* Para que los bordes redondeados se apliquen correctamente */
+}
+
+.vehicles-table th, .vehicles-table td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 12px;
+    font-size: 1rem;
+}
+
+.vehicles-table th {
+    background-color: #007bff;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center; /* Centra los encabezados */
+}
+
+.vehicles-table td {
+    background-color: #f9f9f9;
+    text-align: center; /* Centra los datos */
+}
+
+.vehicles-table tr:hover {
+    background-color: #e9ecef; /* Efecto hover más claro */
+}
+
+.vehicles-table td button {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.vehicles-table td button:hover {
+    background-color: #0056b3; /* Azul más oscuro en hover */
+}
+
+@media (max-width: 768px) {
+    .vehicles-table {
+        width: 100%; /* Asegura que la tabla ocupe todo el ancho en pantallas pequeñas */
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .vehicles-table th, .vehicles-table td {
+        font-size: 0.9rem; /* Reduce el tamaño del texto en dispositivos pequeños */
+        padding: 10px;
+    }
+}

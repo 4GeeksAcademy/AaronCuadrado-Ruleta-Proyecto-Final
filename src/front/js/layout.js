@@ -7,6 +7,7 @@ import { Footer } from "./component/footer";
 import { NavbarWrapper } from "./component/NavbarWrapper";
 import { Vehicles } from "./pages/Vehicles";
 import { AdminAddVehicle } from "./pages/AdminAddVehicle";
+import { AdminManageVehicles } from "./pages/AdminManageVehicles";
 
 const Layout = () => {
     const { store } = useContext(Context);
@@ -20,6 +21,7 @@ const Layout = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/vehicles" element={<Vehicles />} />
                     <Route path="/admin/add-vehicle" element={<AdminAddVehicle />} />
+                    <Route path="/admin/manage-vehicles" element={<AdminManageVehicles />} />
                     <Route path="*" element={<h1>Not found!</h1>} />
                 </Routes>
                 <Footer />

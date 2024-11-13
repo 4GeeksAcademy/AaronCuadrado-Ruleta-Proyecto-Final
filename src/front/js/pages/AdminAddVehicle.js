@@ -7,7 +7,7 @@ export const AdminAddVehicle = () => {
         model: "",
         year: "",
         color: "",
-        monthly_rate: "",
+        monthly_price: "",
         image_url: "",
     });
     const [message, setMessage] = useState("");
@@ -42,7 +42,7 @@ export const AdminAddVehicle = () => {
                     model: "",
                     year: "",
                     color: "",
-                    monthly_rate: "",
+                    monthly_price: "",
                     image_url: "",
                 });
             } else {
@@ -105,8 +105,8 @@ export const AdminAddVehicle = () => {
                     <label>Precio Mensual (€):</label>
                     <input
                         type="number"
-                        name="monthly_rate"
-                        value={vehicleData.monthly_rate}
+                        name="monthly_price"
+                        value={vehicleData.monthly_price}
                         onChange={handleChange}
                         required
                     />
