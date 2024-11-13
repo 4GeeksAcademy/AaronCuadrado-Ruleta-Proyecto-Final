@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../../styles/navbar-options/navbar.css";
 import logo from "../../img/logo1.png";
 import { ModalRegister } from "../component/ModalRegister";
-// import { ModalLogin } from "../component/ModalLogin";
+import { ModalLogin } from "../component/ModalLogin";
 
 export const Navbar = () => {
     const [showRegisterModal, setShowRegisterModal] = useState(false);
