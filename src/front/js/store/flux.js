@@ -10,9 +10,22 @@ const getState = ({ getStore, setStore }) => {
                 console.log("Inicio de sesión exitoso", user);
             },
 
-            logout: () => {
-                setStore({ isAuthenticated: false, user: null });
-                console.log("Cierre de sesión exitoso");
+            logout: async () => {
+                try {
+                    const response = await fetch("https://ideal-guacamole-v6pq4wxxw5w4hrxj-3001.app.github.dev/api/logout", {
+                        method: "POST",
+                        credentials: "include", // Asegura que las cookies se gestionen correctamente
+                    });
+
+                    if (response.ok) {
+                        setStore({ isAuthenticated: false, user: null });
+                        console.log("Cierre de sesión exitoso");
+                    } else {
+                        console.error("Error al cerrar sesión");
+                    }
+                } catch (error) {
+                    console.error("Error al conectar con el backend para cerrar sesión:", error);
+                }
             },
 
             syncAuth: async () => {
@@ -21,11 +34,11 @@ const getState = ({ getStore, setStore }) => {
                         method: "GET",
                         credentials: "include", // Asegura que las cookies de sesión se envíen
                     });
-            
+
                     if (response.ok) {
                         const data = await response.json();
-                        setStore({ isAuthenticated: true, user: data.user });
-                        console.log("Sesión sincronizada", data.user);
+                        setStore({ isAuthenticated: true, user: data }); // Almacena directamente el usuario
+                        console.log("Sesión sincronizada", data);
                     } else {
                         setStore({ isAuthenticated: false, user: null });
                         console.log("No hay sesión activa");
@@ -34,8 +47,7 @@ const getState = ({ getStore, setStore }) => {
                     console.error("Error al sincronizar sesión:", error);
                     setStore({ isAuthenticated: false, user: null });
                 }
-            }
-            
+            },
         },
     };
 };

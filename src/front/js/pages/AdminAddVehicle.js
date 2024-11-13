@@ -6,7 +6,7 @@ export const AdminAddVehicle = () => {
         model: "",
         year: "",
         color: "",
-        daily_rate: "",
+        monthly_rate: "",
         image_url: "",
     });
     const [message, setMessage] = useState("");
@@ -41,7 +41,7 @@ export const AdminAddVehicle = () => {
                     model: "",
                     year: "",
                     color: "",
-                    daily_rate: "",
+                    monthly_rate: "",
                     image_url: "",
                 });
             } else {
@@ -92,7 +92,7 @@ export const AdminAddVehicle = () => {
                     onChange={handleChange}
                     required
                 />
-                <label>Precio Diario (€):</label>
+                <label>Precio Mensual (€):</label>
                 <input
                     type="number"
                     name="daily_rate"

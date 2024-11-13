@@ -15,6 +15,8 @@ class User(db.Model):
     birthdate = db.Column(db.Date, nullable=False)  # Fecha de nacimiento del usuario, utilizada para verificar la mayoría de edad
     registration_date = db.Column(db.DateTime, default=datetime.utcnow) #Fecha de registro
     bookings = db.relationship('Booking', backref='user', lazy=True) #Relacion con las reservas de vehiculos
+    is_admin = db.Column(db.Boolean, default=False)  # Campo para admin
+
 
     # Método para establecer la contraseña encriptada
     def set_password(self, password):
@@ -34,6 +36,7 @@ class User(db.Model):
             "username": self.username, 
             "email": self.email,
             "balance": self.balance,
+            "is_admin": self.is_admin,
             # No se incluye la contraseña por seguridad
         }
 

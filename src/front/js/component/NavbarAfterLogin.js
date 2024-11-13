@@ -5,16 +5,9 @@ import logo from "../../img/logo1.png";
 import { Context } from "../store/appContext";
 
 export const NavbarAfterLogin = () => {
-    const { actions } = useContext(Context);
+    const { store, actions } = useContext(Context); // Obtener store y actions
     const [showHamburgerMenu, setShowHamburgerMenu] = useState(false);
     const navigate = useNavigate(); // Hook para redirigir
-
-    useEffect(() => {
-        return () => {
-            // Limpieza si es necesario
-            setShowHamburgerMenu(false);
-        };
-    }, []);
 
     const toggleHamburgerMenu = () => {
         setShowHamburgerMenu(!showHamburgerMenu);
@@ -23,10 +16,13 @@ export const NavbarAfterLogin = () => {
     const handleLogout = async () => {
         try {
             // Llamada al backend para cerrar sesión
-            const response = await fetch("https://ideal-guacamole-v6pq4wxxw5w4hrxj-3001.app.github.dev/api/logout", {
-                method: "POST",
-                credentials: "include", // Incluye cookies de sesión
-            });
+            const response = await fetch(
+                "https://ideal-guacamole-v6pq4wxxw5w4hrxj-3001.app.github.dev/api/logout",
+                {
+                    method: "POST",
+                    credentials: "include", // Incluye cookies de sesión
+                }
+            );
 
             if (response.ok) {
                 console.log("Sesión cerrada exitosamente");
@@ -37,7 +33,10 @@ export const NavbarAfterLogin = () => {
                 console.error("Error al cerrar sesión");
             }
         } catch (error) {
-            console.error("Error al conectar con el backend para cerrar sesión:", error);
+            console.error(
+                "Error al conectar con el backend para cerrar sesión:",
+                error
+            );
         }
     };
 
@@ -57,8 +56,21 @@ export const NavbarAfterLogin = () => {
                     <Link to="/vehicles" className="navbar-link">
                         Ver Vehículos
                     </Link>
+                    {store.user?.is_admin && (
+                        <>
+                            <Link to="/admin/add-vehicle" className="navbar-link">
+                                Añadir Vehículo
+                            </Link>
+                            <Link to="/admin/manage-vehicles" className="navbar-link">
+                                Gestionar Vehículos
+                            </Link>
+                        </>
+                    )}
                     <div className="hamburger-menu">
-                        <button className="hamburger-icon" onClick={toggleHamburgerMenu}>
+                        <button
+                            className="hamburger-icon"
+                            onClick={toggleHamburgerMenu}
+                        >
                             &#9776;
                         </button>
                         {showHamburgerMenu && (
@@ -78,10 +90,6 @@ export const NavbarAfterLogin = () => {
                                 >
                                     Cerrar Sesión
                                 </button>
-                                <Link to="/admin/add-vehicle" className="navbar-link">
-    Agregar Vehículo
-</Link>
-
                             </div>
                         )}
                     </div>

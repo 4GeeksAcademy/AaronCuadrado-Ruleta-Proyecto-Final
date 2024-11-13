@@ -12,6 +12,7 @@ def register():
     email = data.get('email')
     password = data.get('password')
     birthdate_str = data.get('birthdate')  # Formato: YYYY-MM-DD
+    is_admin = data.get('is_admin', False)
 
     # Verificación de datos obligatorios
     if not username or not email or not password or not birthdate_str:
@@ -40,7 +41,8 @@ def register():
         username=username,
         email=email,
         password_hash=generate_password_hash(password),
-        birthdate=birthdate
+        birthdate=birthdate,
+        is_admin=is_admin
     )
 
     db.session.add(new_user)
@@ -64,6 +66,7 @@ def login():
 
     # Crear la sesión
     session['user_id'] = user.id
+    session['is_admin'] = user.is_admin
     return jsonify({"message": "Inicio de sesión exitoso", "user": user.serialize()}), 200
 
 @auth.route('/logout', methods=['POST'])
