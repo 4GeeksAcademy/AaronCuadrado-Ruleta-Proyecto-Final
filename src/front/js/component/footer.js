@@ -7,7 +7,7 @@ export const Footer = () => (
 			<div className="footer-column">
 				<h4>Contacto</h4>
 				<address>
-					<p>email@ruletadorada.com</p>
+					<p>atencion@velocerenting.com</p>
 					<p>Tel: +34 112 112 112</p>
 				</address>
 			</div>

@@ -19,6 +19,15 @@
     align-items: center;
 }
 
+.navbar-title {
+    font-size: 1.5rem; /* Tamaño del texto */
+    font-weight: bold; /* Hace el texto más destacado */
+    color: #003366; /* Color azul profundo para combinar con el tema */
+    font-family: 'Poppins', sans-serif; /* Fuente moderna */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}
+
+
 .navbar-logo img {
     height: 70px; /* Aumenta la altura del logo */
     max-width: none; /* Permite que el logo crezca en proporción */

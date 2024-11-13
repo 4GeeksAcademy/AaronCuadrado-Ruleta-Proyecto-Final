@@ -12,6 +12,7 @@ export const Navbar = () => {
                     <Link to="/">
                     <img src={logo} alt="Veloce logo" className="logo" />
                     </Link>
+                    <span className="navbar-title">Veloce Renting</span>
                 </div>
 
                 {/* Botones del navbar */}
