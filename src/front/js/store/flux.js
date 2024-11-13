@@ -1,49 +1,42 @@
-const getState = ({ getStore, getActions, setStore }) => {
+const getState = ({ getStore, setStore }) => {
     return {
         store: {
-            isAuthenticated: false,  // Inicialización del estado de autenticación
-            user: null,              // Aquí guardamos los datos del usuario
-            userBalance: 0,          // Balance del usuario
+            isAuthenticated: false,
+            user: null,
         },
         actions: {
-            // Acción para iniciar sesión y actualizar autenticación y balance
             login: (user) => {
-                setStore({
-                    isAuthenticated: true,
-                    user: user,         // Almacena el objeto completo del usuario
-                    userBalance: user.balance
-                });
+                setStore({ isAuthenticated: true, user });
+                console.log("Inicio de sesión exitoso", user);
             },
 
-            // Acción para cerrar sesión
             logout: () => {
-                setStore({ isAuthenticated: false, user: null, userBalance: 0 });
+                setStore({ isAuthenticated: false, user: null });
+                console.log("Cierre de sesión exitoso");
             },
 
-            // Acción para actualizar el balance desde el backend
-            updateBalance: async () => {
-                console.log("Consultando el balance actualizado desde el backend");
+            syncAuth: async () => {
                 try {
                     const response = await fetch("https://ideal-guacamole-v6pq4wxxw5w4hrxj-3001.app.github.dev/api/session-info", {
                         method: "GET",
-                        credentials: "include",
+                        credentials: "include", // Asegura que las cookies de sesión se envíen
                     });
+            
                     if (response.ok) {
                         const data = await response.json();
-                        if (data && data.user && typeof data.user.balance !== 'undefined') {
-                            console.log("Balance actualizado:", data.user.balance);
-                            setStore({ userBalance: data.user.balance, isAuthenticated: true });
-                        } else {
-                            console.log("Estructura de respuesta inesperada:", data);
-                        }
+                        setStore({ isAuthenticated: true, user: data.user });
+                        console.log("Sesión sincronizada", data.user);
                     } else {
-                        console.log("No se pudo obtener el balance del backend");
+                        setStore({ isAuthenticated: false, user: null });
+                        console.log("No hay sesión activa");
                     }
                 } catch (error) {
-                    console.error("Error al consultar el balance:", error);
+                    console.error("Error al sincronizar sesión:", error);
+                    setStore({ isAuthenticated: false, user: null });
                 }
             }
-        }
+            
+        },
     };
 };
 

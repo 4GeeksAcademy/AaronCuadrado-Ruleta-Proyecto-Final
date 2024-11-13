@@ -4,7 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 import { Home } from "./pages/home";
 import injectContext, { Context } from "./store/appContext";
 import { Footer } from "./component/footer";
-import { Navbar } from "./component/Navbar";
+import { NavbarWrapper } from "./component/NavbarWrapper";
 
 const Layout = () => {
     const { store } = useContext(Context);
@@ -13,7 +13,7 @@ const Layout = () => {
     return (
         <BrowserRouter basename={basename}>
             <ScrollToTop>
-                <Navbar/>
+                <NavbarWrapper />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="*" element={<h1>Not found!</h1>} />
