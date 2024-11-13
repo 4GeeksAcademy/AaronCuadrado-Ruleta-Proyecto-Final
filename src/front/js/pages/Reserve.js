@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import "../../styles/reserve.css"; 
+import { useLocation } from "react-router-dom";
+import "../../styles/reserve.css";
 
 export const Reserve = () => {
     const location = useLocation();
-    const navigate = useNavigate();
     const { vehicle } = location.state || {};
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
     const [totalPrice, setTotalPrice] = useState(0);
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
 
     if (!vehicle) {
         return <p>Vehículo no encontrado. Por favor, selecciona un vehículo primero.</p>;
@@ -30,7 +30,7 @@ export const Reserve = () => {
         }
 
         const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
-        setTotalPrice(days * vehicle.monthly_price / 30); // Aproximación diaria
+        setTotalPrice((days * vehicle.monthly_price) / 30); // Aproximación diaria
         setError("");
     };
 
@@ -40,23 +40,29 @@ export const Reserve = () => {
             return;
         }
 
+        setLoading(true);
         try {
-            const response = await fetch("https://ideal-guacamole-v6pq4wxxw5w4hrxj-3001.app.github.dev/api/bookings", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",
-                body: JSON.stringify({
-                    vehicle_id: vehicle.id,
-                    start_date: startDate,
-                    end_date: endDate,
-                }),
-            });
+            const response = await fetch(
+                "https://ideal-guacamole-v6pq4wxxw5w4hrxj-3001.app.github.dev/api/reserve-vehicle",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    credentials: "include",
+                    body: JSON.stringify({
+                        vehicle_id: vehicle.id,
+                        start_date: startDate,
+                        end_date: endDate,
+                        total_amount: totalPrice.toFixed(2),
+                    }),
+                }
+            );
 
             if (response.ok) {
                 const data = await response.json();
-                navigate("/payment", { state: { booking: data.booking } });
+                // Redirigir al usuario a la página de Stripe
+                window.location.href = data.stripe_url;
             } else {
                 const errorData = await response.json();
                 setError(errorData.error || "Error al confirmar la reserva.");
@@ -64,6 +70,8 @@ export const Reserve = () => {
         } catch (err) {
             console.error("Error al conectar con el servidor:", err);
             setError("Error al conectar con el servidor.");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -107,6 +115,7 @@ export const Reserve = () => {
                     type="button"
                     className="calculate-button"
                     onClick={calculateTotalPrice}
+                    disabled={loading}
                 >
                     Calcular Precio
                 </button>
@@ -123,8 +132,9 @@ export const Reserve = () => {
                     type="button"
                     className="confirm-button"
                     onClick={handleConfirm}
+                    disabled={loading}
                 >
-                    Confirmar Reserva
+                    {loading ? "Procesando..." : "Confirmar Reserva"}
                 </button>
             </form>
         </div>
