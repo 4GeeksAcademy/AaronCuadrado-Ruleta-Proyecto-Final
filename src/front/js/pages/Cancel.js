@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "../../styles/modalReserve.css"; // Ajusta el archivo CSS si necesitas.
+import "../../styles/modalReserve.css"; 
 
 export const Cancel = () => {
     const navigate = useNavigate();

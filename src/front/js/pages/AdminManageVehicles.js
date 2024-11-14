@@ -8,12 +8,12 @@ export const AdminManageVehicles = () => {
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
 
-    // Fetch vehicles on component mount
+    
     useEffect(() => {
         fetchVehicles();
     }, []);
 
-    // Fetch all vehicles
+    
     const fetchVehicles = async () => {
         try {
             const response = await fetch("https://ideal-guacamole-v6pq4wxxw5w4hrxj-3001.app.github.dev/api/vehicles", {
@@ -32,13 +32,13 @@ export const AdminManageVehicles = () => {
         }
     };
 
-    // Handle edit button click
+    
     const handleEdit = (vehicle) => {
         setEditVehicle(vehicle);
         setFormValues(vehicle);
     };
 
-    // Handle delete request
+    
     const handleDelete = async (id) => {
         try {
             const response = await fetch(`https://ideal-guacamole-v6pq4wxxw5w4hrxj-3001.app.github.dev/api/vehicles/${id}`, {
@@ -58,7 +58,6 @@ export const AdminManageVehicles = () => {
         }
     };
 
-    // Handle input change in the edit form
     const handleInputChange = (e) => {
         setFormValues({
             ...formValues,
@@ -66,7 +65,6 @@ export const AdminManageVehicles = () => {
         });
     };
 
-    // Handle edit form submission
     const handleSubmitEdit = async (e) => {
         e.preventDefault();
         try {

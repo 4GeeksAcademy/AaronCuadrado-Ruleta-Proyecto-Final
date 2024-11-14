@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import "../../styles/navbar-options/modalLogin.css";
 
 export const ModalLogin = ({ onClose }) => {
-    const { actions } = useContext(Context); // Obtén las acciones del contexto
+    const { actions } = useContext(Context);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");

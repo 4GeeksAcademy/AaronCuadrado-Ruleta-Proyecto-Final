@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom"; // useNavigate para redirigir
+import { Link, useNavigate } from "react-router-dom"; 
 import "../../styles/navbar-options/navbarAfter.css";
 import logo from "../../img/logo1.png";
 import { Context } from "../store/appContext";
 
 export const NavbarAfterLogin = () => {
-    const { store, actions } = useContext(Context); // Obtener store y actions
+    const { store, actions } = useContext(Context); 
     const [showHamburgerMenu, setShowHamburgerMenu] = useState(false);
-    const navigate = useNavigate(); // Hook para redirigir
+    const navigate = useNavigate();
 
     const toggleHamburgerMenu = () => {
         setShowHamburgerMenu(!showHamburgerMenu);
@@ -15,20 +15,19 @@ export const NavbarAfterLogin = () => {
 
     const handleLogout = async () => {
         try {
-            // Llamada al backend para cerrar sesión
             const response = await fetch(
                 "https://ideal-guacamole-v6pq4wxxw5w4hrxj-3001.app.github.dev/api/logout",
                 {
                     method: "POST",
-                    credentials: "include", // Incluye cookies de sesión
+                    credentials: "include",
                 }
             );
 
             if (response.ok) {
                 console.log("Sesión cerrada exitosamente");
-                actions.logout(); // Limpia el estado del frontend
+                actions.logout();
                 setShowHamburgerMenu(false);
-                navigate("/"); // Redirige al usuario a la página de inicio
+                navigate("/");
             } else {
                 console.error("Error al cerrar sesión");
             }

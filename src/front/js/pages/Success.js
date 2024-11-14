@@ -10,13 +10,13 @@ export const Success = () => {
     const bookingId = queryParams.get("booking_id");
 
     const handleGoHome = () => {
-        navigate("/"); // Redirige al inicio
+        navigate("/"); 
     };
 
     useEffect(() => {
         if (!bookingId) {
             console.error("No booking ID found");
-            navigate("/"); // Redirige al inicio si no hay booking_id
+            navigate("/"); 
         }
     }, [bookingId, navigate]);
 
