@@ -8,6 +8,7 @@ from api.commands import setup_commands
 from api.webhook import webhook
 from api.users import users
 from api.vehicles import vehicles
+from api.transaction import transaction
 from api.reservations import reservations
 from api.maintenance import maintenance
 from api.auth import auth
@@ -16,7 +17,6 @@ from flask_cors import CORS
 
 
 app = Flask(__name__)
-app.url_map.strict_slashes = False
 
 CORS(app, supports_credentials=True)
 
@@ -46,6 +46,8 @@ app.register_blueprint(reservations, url_prefix='/api')
 app.register_blueprint(maintenance, url_prefix='/api')
 app.register_blueprint(webhook, url_prefix='/api')
 app.register_blueprint(auth, url_prefix='/api')
+app.register_blueprint(transaction, url_prefix='/api')
+
 
 # Ruta principal (puedes eliminarla si no es necesaria)
 @app.route('/')

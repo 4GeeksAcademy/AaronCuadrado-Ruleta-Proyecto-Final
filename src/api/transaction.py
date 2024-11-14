@@ -1,6 +1,8 @@
 from flask import Blueprint, jsonify, request, session
 from api.models import db, User, Booking, Vehicle
 import stripe
+from datetime import datetime
+
 
 transaction = Blueprint('transaction', __name__)
 
@@ -16,14 +18,26 @@ def reserve_vehicle():
     
     data = request.get_json()
     vehicle_id = data.get('vehicle_id')
-    start_date = data.get('start_date')
-    end_date = data.get('end_date')
+    start_date_str = data.get('start_date')
+    end_date_str = data.get('end_date')
     total_amount = data.get('total_amount')
 
     #Verificar todos los datos requeridos
-    if not vehicle_id or not start_date or not end_date or not total_amount:
+    if not vehicle_id or not start_date_str or not end_date_str or not total_amount:
         return jsonify({"error": "Faltan datos obligatorios para la reserva"}), 400
     
+    try:
+        # Convertir las fechas a objetos datetime
+        start_date = datetime.strptime(start_date_str, '%Y-%m-%d')
+        end_date = datetime.strptime(end_date_str, '%Y-%m-%d')
+    except ValueError:
+        return jsonify({"error": "Formato de fecha no válido. Use YYYY-MM-DD"}), 400
+
+    if start_date >= end_date:
+        return jsonify({"error": "La fecha de inicio debe ser anterior a la fecha de fin"}), 400
+
+
+
     #Verificar disponibilidad del vehiculo
     vehicle = Vehicle.query.get(vehicle_id)
     if not vehicle or not vehicle.availability:
